@@ -1,4 +1,6 @@
 {
   "spellcheck": false,
-  "strictLineBreaks": true
+  "strictLineBreaks": true,
+  "attachmentFolderPath": "Static",
+  "autoPairBrackets": false
 }

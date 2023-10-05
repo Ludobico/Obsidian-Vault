@@ -14,3 +14,4 @@ LlamaCPP 란 C/C++ 로 작성된 Llama 모델을 실행시키는 프로그램으
 ```
 pip install llama-cpp-python
 ```
+
