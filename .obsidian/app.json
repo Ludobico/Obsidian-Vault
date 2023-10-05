@@ -2,5 +2,6 @@
   "spellcheck": false,
   "strictLineBreaks": true,
   "attachmentFolderPath": "Static",
-  "autoPairBrackets": false
+  "autoPairBrackets": false,
+  "alwaysUpdateLinks": true
 }
