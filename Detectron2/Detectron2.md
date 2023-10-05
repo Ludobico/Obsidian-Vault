@@ -6,7 +6,7 @@
 Detectron2의 주요 특징은 다음과 같습니다.
 
 ### <font color="#ffc000">1. 모델 아키텍처</font>
-Detectron2는 여러 가지 주요 컴퓨터 비전 작업을 위한 <font color="#ffff00">미리 학습된 모델 아키텍처</font> 를 제공합니다. 예를 들어, [[Faster R-CNN]] , [[Mask R-CNN]] , [[RetinaNet]] 등의 객체 탐지(Object detection) 모델과 [[Panoptic FPN]] , [[DeppLab]] 등의 인스턴스 분할(Instance segmentation) 모델을 사용할 수 있습니다.
+Detectron2는 여러 가지 주요 컴퓨터 비전 작업을 위한 <font color="#ffff00">미리 학습된 모델 아키텍처</font> 를 제공합니다. 예를 들어, [[Faster R-CNN]] , [[Mask R-CNN]] , [[RetinaNet]] 등의 객체 탐지([[Object Detection]]) 모델과 [[Panoptic FPN]] , [[DeppLab]] 등의 인스턴스 분할(Instance segmentation) 모델을 사용할 수 있습니다.
 
 ### <font color="#ffc000">2. 유연성</font>
 Detectron2는 유연한 구성 요소와 설정을 제공하여 사용자가 작업에 맞게 모델을 조정할 수 있습니다. 사용자는 모델의 backbone, head, loss function 등을 정의할 수 있습니다.
