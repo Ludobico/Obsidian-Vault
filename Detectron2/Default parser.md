@@ -1,4 +1,5 @@
-`Detectron2`를 사용하기에 앞서 공통적인 인자들을 생성하는 함수입니다.
+[[Detectron2]] 를 사용하기에 앞서 공통적인 인자들을 생성하는 함수입니다.
+
 ```py
 def default_argument_parser(epilog=None):
     """
