@@ -25,8 +25,7 @@ detr-ex 는 DETR(DEtection TRansformers) 에 경의를 표하며, 이 레파지�
 
 - <font color="#ffc000">Det-rex</font>
 rex는 라틴어로 왕을 의미합니다.
-![[0_zTZPCCpjlol1CrZ6.jpg]]
-mathking
+![[MV5BMWZkNzNlMzMtMjM5ZS00MWYzLWFmMmUtMjE1ODM3NjBlODA5XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg]]
 
 
 - <font color="#ffc000">de-t.rex</font>
