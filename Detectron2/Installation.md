@@ -38,8 +38,10 @@ git clone https://github.com/facebookresearch/detectron2.git
 python -m pip install -e detectron2
 ```
 
+or
+
 ```bash
-python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
+python -m pip install git+https://github.com/facebookresearch/detectron2.git
 ```
 
 
@@ -48,11 +50,16 @@ python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
 pytorch cu118의 경우 cuda 11.9, 12.0, 12.1 모두 지원이 되지만 [[Detectron2]] 는 단순히 CUDA 버전과 pyrorch cu118의 <font color="#ffff00">숫자만 비교</font> 하여 일치하지 않으며 에러가 발생하기 때문에 <font color="#ffff00">pytorch cu121 dev</font> 버전으로 설치하여야합니다.
 
 ```bash
-pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121
 ```
 
 ![[Untitled.png]]
 
+```bash
+pip install timm 
+pip install shapely 
+python -m pip install git+https://github.com/facebookresearch/detectron2.git
+```
 
 > Google colab
 
