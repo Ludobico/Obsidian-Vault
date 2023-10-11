@@ -1,7 +1,7 @@
 [[Detectron2]]를 설치하기에 앞서 아래의 요구사항이 필요합니다.
 
 - <font color="#00b050">python 3.7 이상의 버전</font>
-- [[pytorch]] <font color="#00b050">1.8 이상의 버전</font>
+- [[Pytorch]] <font color="#00b050">1.8 이상의 버전</font>
 - [[OpenCV]] 
 
 CUDA 버전 및 pytorch 버전에 맞게 아래의 터미널 명령어로 설치할 수 있습니다.

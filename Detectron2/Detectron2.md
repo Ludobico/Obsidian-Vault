@@ -1,4 +1,4 @@
-<font color="#ffff00">Detectron2</font> 는 Facebook AI Research에서 개발한 오픈 소스 프레임워크로, <font color="#ffff00">컴퓨터 비전 작업을 위한 딥러닝 프레임워크</font> 입니다. 이 프레임워크는 [[pytorch]]를 기반으로 하며, 객체 탐지, 인스턴스 분할, 
+<font color="#ffff00">Detectron2</font> 는 Facebook AI Research에서 개발한 오픈 소스 프레임워크로, <font color="#ffff00">컴퓨터 비전 작업을 위한 딥러닝 프레임워크</font> 입니다. 이 프레임워크는 [[Pytorch]]를 기반으로 하며, 객체 탐지, 인스턴스 분할, 
 키포인트 감지 등의 컴퓨터 비전 작업을 위한 다양한 기능을 제공합니다.
 
 <font color="#ffff00">Detectron2</font> 는 이전 버전인 Detectron 의 개선된 버전으로, 더 효율적이고 유연한 디자인과 성능향상을 제공합니다. Detectron2는 모델 개발을 위한 강력한 도구를 제공하며, 모델 아키텍처, 데이터 로딩, train, evaluation 등을 지원합니다.

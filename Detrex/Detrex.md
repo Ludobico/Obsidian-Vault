@@ -5,7 +5,7 @@ tags: []
 
 Detrex는  Transformer 기반 알고리즘을 제공하는 프레임워크입니다. [[Detectron2]]를 기반으로 구축되었으며 모듈 설계는 MMDetection 및 DETR에서 부분적으로 차용되었습니다.
 
-이 프레임워크를 사용할때는 [[pytorch]] 1.10 이상 버전에서 작동되며 1.12 를 권장합니다.
+이 프레임워크를 사용할때는 [[Pytorch]] 1.10 이상 버전에서 작동되며 1.12 를 권장합니다.
 
 ## <font color="#ffc000">Major Features</font>
 

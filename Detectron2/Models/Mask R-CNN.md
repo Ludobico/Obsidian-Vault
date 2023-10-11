@@ -1,6 +1,6 @@
 ![[1_dYb3w2iVxkN7Ifx-eA8ZRg.jpg]]
 
-Mask R-CNN은 [[Object Detection]] 및 [[segmentation]] 을 동시에 수행하는 딥러닝 기반의 알고리즘입니다. 이는 R-CNN 계열의 알고리즘 중 하나로, 각 물체의 바운딩 박스를 예측하는 동시에 <font color="#ffff00">픽셀 수준 </font> 에서 각 물체의 정확한 마스크를 생성합니다.
+Mask R-CNN은 [[Object Detection]] 및 [[Segmentation]] 을 동시에 수행하는 딥러닝 기반의 알고리즘입니다. 이는 R-CNN 계열의 알고리즘 중 하나로, 각 물체의 바운딩 박스를 예측하는 동시에 <font color="#ffff00">픽셀 수준 </font> 에서 각 물체의 정확한 마스크를 생성합니다.
 
 Mask R-CNN은 다음과 같은 주요 구성 요소를 포함합니다.
 
