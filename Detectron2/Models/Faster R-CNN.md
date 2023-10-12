@@ -1,6 +1,6 @@
 ![[faster r-cnn.png]]
 
-Faster R-CNN은 컴퓨터 비전 분야에서 객체 탐지(Object Detection)와 관련된 최신 딥러닝 기반의 알고리즘 중 하나입니다. R-CNN(Regions with Convolutional Neural Network) 계열의 알고리즘 중 하나로, 물체 감지를 위한 효과적인 방법을 제공합니다.
+Faster R-CNN은 컴퓨터 비전 분야에서 객체 탐지([[Object Detection]])와 관련된 최신 딥러닝 기반의 알고리즘 중 하나입니다. R-CNN(Regions with Convolutional Neural Network) 계열의 알고리즘 중 하나로, 물체 감지를 위한 효과적인 방법을 제공합니다.
 
 Faster R-CNN은 물체 감지를 두 단계로 나누어 수행합니다. 먼저, <font color="#ffff00">물체가 있을 것으로 예상되는 영역을 식별</font>하고, <font color="#ffff00">각 영역에 대해 물체를 식별</font>합니다.
 
