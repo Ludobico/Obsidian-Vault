@@ -1,4 +1,4 @@
-만약 모델을 학습하는데 있어 object detection, segmentation, 또는 keypoint dataset이 [[COCO Format]] 으로 구성되어 있다면, 해당 데이터셋과 관련된 메타데이터를 쉽게 등록할 수 있습니다. 아래와 같은 코드를 사용하여 이를 수행할 수 있습니다.
+만약 모델을 학습하는데 있어 object detection, segmentation, 또는 keypoint dataset이 [[COCO Format]] 으로 구성되어 있다면, 해당 데이터셋과 관련된 메타데이터([[MetadataCatalog]])를 쉽게 등록할 수 있습니다. 아래와 같은 코드를 사용하여 이를 수행할 수 있습니다.
 
 ```python
 from detectron2.data.datasets import register_coco_instances
