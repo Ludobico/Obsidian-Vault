@@ -40,9 +40,13 @@
       "datasets",
       "datasets",
       "LangChain",
+      "HuggingFace/transformers",
+      "HuggingFace/transformers/PretrainedConfig",
+      "HuggingFace/transformers/PretrainedConfig",
+      "HuggingFace/transformers/PretrainedConfig",
       "Pytorch/Algorithm",
       "HuggingFace",
-      "HuggingFace/transformers"
+      "HuggingFace/transformers/PretrainedConfig"
     ]
   },
   "expandedSpaces": [
@@ -80,7 +84,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1697692862244,
+  "spacesAutoBackupLast": 1697702511023,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "aliases",
