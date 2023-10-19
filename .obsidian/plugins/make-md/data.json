@@ -34,7 +34,18 @@
   "sidebarTabs": true,
   "showRibbon": true,
   "deleteFileOption": "trash",
-  "expandedFolders": {},
+  "expandedFolders": {
+    "Obsidian-Vault": [
+      "datasets",
+      "datasets",
+      "datasets",
+      "HuggingFace/datasets",
+      "HuggingFace/datasets",
+      "HuggingFace/datasets",
+      "HuggingFace/datasets",
+      "HuggingFace/datasets/load"
+    ]
+  },
   "expandedSpaces": [
     "/",
     null,
@@ -70,7 +81,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1697679395534,
+  "spacesAutoBackupLast": 1697682080830,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "aliases",

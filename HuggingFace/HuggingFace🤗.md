@@ -12,3 +12,12 @@ HuggingFace🤗 를 설치하기에 앞서 아래와 같은 요구사항이 필�
 pip install transformers
 ```
 
+
+## datasets
+---
+datasets 라이브러리는 HuggingFace🤗 에서 제공하는 라이브러리입니다. 이 라이브러리는 <font color="#ffff00">다양한 자연어 처리 데이터셋에 대한 액세스와 데이터 준비를 단순화하는데 도움을 주는 도구를 제공</font>합니다. datasets 라이브러리를 사용하면 다양한 자연어 처리 작업에서 데이터를 쉽게 불러오고 전처리할 수 있으며, 모델 훈련 및 평가에 사용할 수 있는 데이터셋을 쉽게 다운로드 미 관리할 수 있습니다.
+
+```bash
+pip install datasets
+```
+
