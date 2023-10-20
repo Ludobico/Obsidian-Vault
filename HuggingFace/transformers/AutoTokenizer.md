@@ -1,4 +1,4 @@
-AutoTokenizer 는 [[HuggingFace🤗]] 의 Transformers 라이브러리에서 제공하는 도구 중 하나로, 자연어 처리(NLP) 모델을 사용하기 전에<font color="#ffff00"> 텍스트 데이터를 모델이 이해할 수 있는 형식으로 변환</font>해주는 역할을 하는 클래스입니다.
+AutoTokenizer 는 [[HuggingFace🤗]] 의 [[transformers]]라이브러리에서 제공하는 도구 중 하나로, 자연어 처리(NLP) 모델을 사용하기 전에<font color="#ffff00"> 텍스트 데이터를 모델이 이해할 수 있는 형식으로 변환</font>해주는 역할을 하는 클래스입니다.
 
 ```python
 from transformers import AutoTokenizer
