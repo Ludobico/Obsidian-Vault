@@ -47,7 +47,10 @@
       "HuggingFace/transformers/PretrainedConfig",
       "HuggingFace",
       "HuggingFace/transformers",
-      "HuggingFace/transformers/PretrainedConfig"
+      "HuggingFace/transformers/PretrainedConfig",
+      "HuggingFace/transformers/PretrainedConfig",
+      "HuggingFace/transformers/PretrainedConfig",
+      "Detectron2"
     ]
   },
   "expandedSpaces": [
@@ -85,7 +88,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1697786422734,
+  "spacesAutoBackupLast": 1698027060703,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "aliases",
