@@ -44,7 +44,8 @@
       "Pytorch",
       "Pytorch/torch.nn",
       "Pytorch/torch.nn",
-      "Pytorch/torch.nn/Containers"
+      "Pytorch/torch.nn/Linear Layers",
+      "Pytorch/torch.nn/Linear Layers"
     ]
   },
   "expandedSpaces": [
@@ -82,7 +83,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1698211678402,
+  "spacesAutoBackupLast": 1698212505517,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "aliases",
