@@ -5,5 +5,5 @@
   "autoPairBrackets": true,
   "alwaysUpdateLinks": true,
   "autoPairMarkdown": true,
-  "smartIndentList": false
+  "smartIndentList": true
 }
