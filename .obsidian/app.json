@@ -4,5 +4,6 @@
   "attachmentFolderPath": "Static",
   "autoPairBrackets": true,
   "alwaysUpdateLinks": true,
-  "autoPairMarkdown": true
+  "autoPairMarkdown": true,
+  "smartIndentList": false
 }

@@ -40,17 +40,10 @@
       "datasets",
       "datasets",
       "LangChain",
-      "HuggingFace/transformers/PretrainedConfig",
-      "HuggingFace/transformers/PretrainedConfig",
-      "HuggingFace/transformers/PretrainedConfig",
       "Pytorch/Algorithm",
-      "HuggingFace/transformers/PretrainedConfig",
-      "HuggingFace",
-      "HuggingFace/transformers",
-      "HuggingFace/transformers/PretrainedConfig",
-      "HuggingFace/transformers/PretrainedConfig",
-      "HuggingFace/transformers/PretrainedConfig",
-      "Detectron2"
+      "Detrex",
+      "Detectron2",
+      "Detectron2/Data"
     ]
   },
   "expandedSpaces": [
@@ -88,7 +81,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1698027060703,
+  "spacesAutoBackupLast": 1698198059649,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "aliases",

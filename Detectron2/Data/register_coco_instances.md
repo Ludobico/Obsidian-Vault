@@ -7,3 +7,31 @@ register_coco_instances("my_dataset", {}, "json_annotation.json", "path/to/image
 
 만약 데이터셋이 COCO 형식으로 되어 있지만 추가적인 전처리가 필요하거나 개별 객체에 대한 사용자 지정 annotation이 있는 경우, [[load_coco_json]] 함수를 사용할 수 있습니다.
 
+## 예시 등록
+---
+```python
+from detectron2.data.datasets import register_coco_instances
+from detectron2.data import DatasetCatalog
+
+dataset_names = DatasetCatalog.list()
+train_dataset_name = "sqr_train"
+valid_dataset_name = "sqr_val"
+test_dataset_name = "sqr_test"
+if train_dataset_name in dataset_names:
+    pass
+else:
+    register_coco_instances(train_dataset_name,
+                            {},
+                            "/NAS/dlab/BGRinfo/KCJ/Detectron2/dataset/08_09_merge_data_cat98_721/train/segmentation.json",
+                            "/NAS/dlab/BGRinfo/KCJ/Detectron2/dataset/08_09_merge_data_cat98_721/train/image")
+
+    register_coco_instances(valid_dataset_name,
+                            {},
+                            "/NAS/dlab/BGRinfo/KCJ/Detectron2/dataset/08_09_merge_data_cat98_721/valid/segmentation.json",
+                            "/NAS/dlab/BGRinfo/KCJ/Detectron2/dataset/08_09_merge_data_cat98_721/valid/image")
+
+    register_coco_instances(test_dataset_name,
+                            {},
+                            "/NAS/dlab/BGRinfo/KCJ/Detectron2/dataset/08_09_merge_data_cat98_721/test/segmentation.json",
+                            "/NAS/dlab/BGRinfo/KCJ/Detectron2/dataset/08_09_merge_data_cat98_721/test/image")
+```
