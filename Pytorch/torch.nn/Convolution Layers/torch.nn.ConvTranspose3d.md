@@ -3,7 +3,7 @@
 `torch.nn.ConvTranspose3d` 클래스는 다음과 같은 주요 매개변수와 기능을 가집니다.
 
 > in_channels -> int
-- 입력의 채널 수 입니다. 이것은 입력 데이터의 차원을 나타냅니다.
+- 입력의 채널 수 입니다. 예를 들어, CT 스캔 이미지의 경우 1또는 3(채널 수에 따라 다름)입니다.
 
 > out_channels -> int
 - 합성곱 연산을 통해 생성된 출력 채널의 수입니다. 이것은 필터 또는 커널의 개수를 나타냅니다.
@@ -29,4 +29,15 @@
 > dilation -> int or tuple, (optional) default = 1
 - 커널 내 요소 사이의 간격을 설정합니다. 이것은 증식된 합성곱(dilated convolution)을 수행하며, 주어진 간격으로 원소를 건너뛰어 데이터 처리를 제어합니다.
 ![[Pasted image 20231026134341.png]]
+
+`torch.nn.Transpose3d` 는 3D 데이터의 업샘플링 작업을 수행하기 위해 합성곱 연산을 반대로 수행하며, 입력 데이터의 공간 해상도를 높이고, 출력 데이터를 생성합니다. 이 클래스는 볼륨 데이터의 형태를 보존하면서 공간 해상도를 높이는 데 사용됩니다. 3D 이미지 처리 작업에서 매우 중요한 역할을 합니다.
+
+```python
+# With square kernels and equal stride
+m = nn.ConvTranspose3d(16, 33, 3, stride=2)
+# non-square kernels and unequal stride and with padding
+m = nn.ConvTranspose3d(16, 33, (3, 5, 2), stride=(2, 1, 1), padding=(0, 4, 2))
+input = torch.randn(20, 16, 10, 50, 100)
+output = m(input)
+```
 

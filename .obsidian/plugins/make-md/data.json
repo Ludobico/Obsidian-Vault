@@ -42,8 +42,7 @@
       "LangChain",
       "Detectron2/Data",
       "Pytorch",
-      "Pytorch/torch.nn",
-      "Pytorch/torch.nn/Convolution Layers"
+      "Pytorch/torch.nn"
     ]
   },
   "expandedSpaces": [

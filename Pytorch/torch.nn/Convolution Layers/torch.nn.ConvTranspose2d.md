@@ -30,3 +30,20 @@
 - 커널 내 요소 사이의 간격을 설정합니다. 이것은 증식된 합성곱(dilated convolution)을 수행하며, 주어진 간격으로 원소를 건너뛰어 데이터 처리를 제어합니다.
 ![[Pasted image 20231026134341.png]]
 
+```python
+# With square kernels and equal stride
+m = nn.ConvTranspose2d(16, 33, 3, stride=2)
+# non-square kernels and unequal stride and with padding
+m = nn.ConvTranspose2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2))
+input = torch.randn(20, 16, 50, 100)
+output = m(input)
+# exact output size can be also specified as an argument
+input = torch.randn(1, 16, 12, 12)
+downsample = nn.Conv2d(16, 16, 3, stride=2, padding=1)
+upsample = nn.ConvTranspose2d(16, 16, 3, stride=2, padding=1)
+h = downsample(input)
+h.size()
+output = upsample(h, output_size=input.size())
+output.size()
+```
+
