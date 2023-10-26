@@ -43,7 +43,6 @@
       "Detectron2/Data",
       "Pytorch",
       "Pytorch/torch.nn",
-      "Pytorch/torch.nn",
       "Pytorch/torch.nn/Convolution Layers"
     ]
   },
@@ -82,7 +81,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1698295783350,
+  "spacesAutoBackupLast": 1698296026595,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "aliases",
