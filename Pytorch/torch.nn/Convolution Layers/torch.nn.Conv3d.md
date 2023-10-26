@@ -42,3 +42,12 @@
 > bias -> bool, (optioanl)
 - True로 설정하면 출려에 학습 가능한 바이어스(bias)를 추가합니다. 학습 가능한 바이어스는 컨볼루션 연산 출력에 추가적인 편향을 제공할 수 있습니다. <font color="#ffc000">기본값은 True</font>이며, False로 설정하면 바이어스를 사용하지 않도록 설정할 수 있습니다.
 
+```python
+# With square kernels and equal stride
+m = nn.Conv3d(16, 33, 3, stride=2)
+# non-square kernels and unequal stride and with padding
+m = nn.Conv3d(16, 33, (3, 5, 2), stride=(2, 1, 1), padding=(4, 2, 0))
+input = torch.randn(20, 16, 10, 50, 100)
+output = m(input)
+```
+
