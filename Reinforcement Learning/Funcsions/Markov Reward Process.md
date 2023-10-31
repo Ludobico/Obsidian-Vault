@@ -20,3 +20,9 @@ $$v(s) = E[G_t | S_t = s]$$
 즉, 가치 함수는 현재 시점에서 미래의 모든 기대되는 보상을 표현하는 미래 가치라고 할 수 있습니다. 따라서 [[Reinforcement Learning]] 의 핵심은 <font color="#ffff00">가치 함수를 최대한 정확하게 찾는 것</font>입니다. 다시 말해 밀 가치가 가장 클 것으로 기대되는 결정을 하고 행동하는 것이 강화 학습의 목표라고 할 수 있습니다.
 
 그러면 병원을 방문한 어느 하루에 대한 마르코프 프로세스에 보상을 추가해 보겠습니다.
+![[Pasted image 20231031174323.png]]
+
+예제에서 $\gamma=0$ 일 때 <font color="#ffc000">웹 서핑</font> 에 대한 가치(value) 값을 -2.4로, <font color="#ffc000">진찰</font>에 대한 가치 값을 1.2로 가정하면 <font color="#ffc000">독서</font>와 <font color="#ffc000">대기</font>에 대한 가치는 다음과 같이 구할 수 있습니다.
+
+- <font color="#ffc000">독서</font> = $10 + \gamma \cdot [(-2.4 \cdot 0.3) + (0 \cdot 0.7)] = 10$
+- <font color="#ffc000">대기</font> = $-2 + \gamma \cdot [(-2.4 \cdot 0.1) + (1.2 \cdot 0.8)] = -2$
