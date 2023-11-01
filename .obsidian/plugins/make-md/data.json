@@ -42,12 +42,6 @@
       "Detectron2/Data",
       "Detectron2/Data/transforms",
       "Detectron2/Data",
-      "Reinforcement Learning",
-      "Reinforcement Learning",
-      "Reinforcement Learning",
-      "Reinforcement Learning",
-      "Reinforcement Learning",
-      "Reinforcement Learning",
       "Reinforcement Learning/Funcsions",
       "Reinforcement Learning/Funcsions"
     ]
@@ -55,8 +49,8 @@
   "expandedSpaces": [
     "/",
     null,
-    "Obsidian-Vault",
-    null
+    null,
+    "Obsidian-Vault"
   ],
   "expandFolderOnClick": true,
   "openFolders": [],
@@ -87,7 +81,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1698799751610,
+  "spacesAutoBackupLast": 1698806096243,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "aliases",
