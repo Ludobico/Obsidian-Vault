@@ -54,8 +54,8 @@
   "expandedSpaces": [
     "/",
     null,
-    null,
-    "Obsidian-Vault"
+    "Obsidian-Vault",
+    null
   ],
   "expandFolderOnClick": true,
   "openFolders": [],
@@ -86,7 +86,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1698825783588,
+  "spacesAutoBackupLast": 1698826156738,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "aliases",
