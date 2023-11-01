@@ -3,7 +3,7 @@
 ## <font color="#ffc000">Markov Decision Process</font>
 강화 학습은 마르코프 결정 과정에 학습 개념을 추가한 것이라고 할 수 있습니다. 그러므로 마르코프 결정 과정에 대해 잘 이해하는 것이 강화 학습에서는 중요합니다. 마르코프 결정 과정을 포함하여 강화 학습의 주요 이론을 살펴보겠습니다.
 
-### Markov Process
+## <font color="#ffc000">Markov Process</font>
 
 ![[Pasted image 20231031145924.png|500]]
 

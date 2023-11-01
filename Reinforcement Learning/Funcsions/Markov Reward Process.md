@@ -1,4 +1,4 @@
-마르코프 보상 프로세스(Markov Reward Process)는 <font color="#ffff00">마르코프 프로세스에서 각 상태마다 좋고 나쁨(reward)이 추가된 확률 모델</font>입니다. 다음 그림과 같이 상태 $s$ 에서 $s'$ 으로 이동했을때 이동 결과가 좋고 나쁨에 대한 보상(혹은 벌칙)을 주는 것이 마르코프 보상 프로세스입니다.
+마르코프 보상 프로세스(Markov Reward Process)는 [[Markov Process]]<font color="#ffff00">에서 각 상태마다 좋고 나쁨(reward)이 추가된 확률 모델</font>입니다. 다음 그림과 같이 상태 $s$ 에서 $s'$ 으로 이동했을때 이동 결과가 좋고 나쁨에 대한 보상(혹은 벌칙)을 주는 것이 마르코프 보상 프로세스입니다.
 
 ![[Pasted image 20231031171150.png]]
 
@@ -19,10 +19,35 @@ $$G_t = r_{t+1} + \gamma r_{t+2} + \gamma^2r_{t+3} + \dots = \Sigma^{\infty}_{k=
 $$v(s) = E[G_t | S_t = s]$$
 즉, 가치 함수는 현재 시점에서 미래의 모든 기대되는 보상을 표현하는 미래 가치라고 할 수 있습니다. 따라서 [[Reinforcement Learning]] 의 핵심은 <font color="#ffff00">가치 함수를 최대한 정확하게 찾는 것</font>입니다. 다시 말해 밀 가치가 가장 클 것으로 기대되는 결정을 하고 행동하는 것이 강화 학습의 목표라고 할 수 있습니다.
 
-그러면 병원을 방문한 어느 하루에 대한 마르코프 프로세스에 보상을 추가해 보겠습니다.
+그러면 병원을 방문한 어느 하루에 대한 [[Markov Process]]에 보상을 추가해 보겠습니다.
+## $\gamma$ = 0
+---
 ![[Pasted image 20231031174323.png]]
 
 예제에서 $\gamma=0$ 일 때 <font color="#ffc000">웹 서핑</font> 에 대한 가치(value) 값을 -2.4로, <font color="#ffc000">진찰</font>에 대한 가치 값을 1.2로 가정하면 <font color="#ffc000">독서</font>와 <font color="#ffc000">대기</font>에 대한 가치는 다음과 같이 구할 수 있습니다.
 
 - <font color="#ffc000">독서</font> = $10 + \gamma \cdot [(-2.4 \cdot 0.3) + (0 \cdot 0.7)] = 10$
-- <font color="#ffc000">대기</font> = $-2 + \gamma \cdot [(-2.4 \cdot 0.1) + (1.2 \cdot 0.8)] = -2$
+- <font color="#ffc000">대기</font> = $-2 + \gamma \cdot [(-2.4 \cdot 0.1) + (10 \cdot 0.1) + (1.2 \cdot 0.8)] = -2$
+
+할인율이 0이므로 미래의 보상을 고려하지 않았기 때문에 근시안적인 가치 값으로만 나타납니다.
+
+## $\gamma = 0.9$
+---
+이번에는 $\gamma$ 가 0.9라고 전제하고 가치 값을 구해 보겠습니다.
+![[Pasted image 20231101093242.png|400]]
+
+<font color="#ffc000">독서</font>와 <font color="#ffc000">대기</font>에 대한 가치는 다음과 같이 구할 수 있습니다.
+
+- <font color="#ffc000">독서</font> = $10 + \gamma \cdot [(-2.4 \cdot 0.3) + (0 \cdot 0.7)] = 9.4$
+- <font color="#ffc000">대기</font> = $-2 + \gamma \cdot [(-2.4 \cdot 0.1) + (9.4 \cdot 0.1) + (1.2 \cdot 0.8)] = -0.5$
+## $\gamma = 1$
+---
+할인율이 0일 때와 차이가 있어 보이나요? 이번에는 $\gamma$ 1인 경우를 알아볼 텐데, 좀 더 극적인 효과를 위해 <font color="#ffc000">웹 서핑</font>에 대한 가치 값을 -24로, <font color="#ffc000">진찰</font>에 대한 가치 값을 0.3으로 가정해 보겠습니다.
+
+![[Pasted image 20231101094119.png|400]]
+
+- <font color="#ffc000">독서</font> = $10 + \gamma \cdot [(-24 \cdot 0.3) + (0 \cdot 0.7)] = 2.8$
+- <font color="#ffc000">대기</font> = $-2 + \gamma \cdot [(-24 \cdot 0.1) + (2.8 \cdot 0.1) + (0.3 \cdot 0.8)] = -3.9$
+
+할인율이 1일 때는 모든 미래 가치에 대해 할인을 고려하지 않았으므로 매우 원시안적인 상태로 가치 값들이 나타납니다.
+
