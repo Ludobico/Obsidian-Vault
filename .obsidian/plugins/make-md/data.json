@@ -47,7 +47,9 @@
       "Reinforcement Learning/Algorithm",
       "/",
       "Detectron2/Data",
-      "Python"
+      "Python",
+      "HuggingFace",
+      "HuggingFace/transformers"
     ]
   },
   "expandedSpaces": [
@@ -85,7 +87,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1699316371387,
+  "spacesAutoBackupLast": 1699855494392,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "aliases",
