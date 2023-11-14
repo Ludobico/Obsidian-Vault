@@ -1,4 +1,5 @@
 {
+  "newNotePlaceholder": "Untitled",
   "defaultInitialization": false,
   "filePreviewOnHover": false,
   "flowMenuEnabled": true,
@@ -8,21 +9,21 @@
   "mobileMakeBar": true,
   "inlineStyler": true,
   "makerMode": true,
+  "spacesMDBInHidden": true,
   "inlineStylerColors": false,
   "editorFlow": true,
   "internalLinkClickFlow": true,
   "contextEnabled": true,
+  "spaceViewEnabled": true,
   "saveAllContextToFrontmatter": true,
   "editorFlowStyle": "seamless",
   "autoOpenFileContext": false,
-  "activeView": "root",
+  "activeView": "/",
   "hideFrontmatter": true,
   "activeSpace": "",
-  "spacesCompactMode": false,
   "defaultDateFormat": "MMM dd yyyy",
   "spacesEnabled": true,
   "spacesPerformance": false,
-  "collapsedTags": [],
   "enableFolderNote": true,
   "folderIndentationLines": true,
   "revealActiveFile": false,
@@ -30,10 +31,68 @@
   "spaceRowHeight": 29,
   "spacesDisablePatch": false,
   "folderNoteInsideFolder": true,
-  "folderNoteDefaultView": true,
   "sidebarTabs": true,
   "showRibbon": true,
   "deleteFileOption": "trash",
+  "expandedSpaces": [
+    "/",
+    null,
+    "Obsidian-Vault",
+    null
+  ],
+  "expandFolderOnClick": true,
+  "menuTriggerChar": "/",
+  "inlineStickerMenu": true,
+  "emojiTriggerChar": ":",
+  "folderContextFile": "context",
+  "folderFrameFile": "frames",
+  "spacesFolder": "Spaces",
+  "hiddenFiles": [
+    "Context"
+  ],
+  "hiddenExtensions": [
+    ".mdb"
+  ],
+  "inlineBacklinks": false,
+  "inlineContext": true,
+  "inlineBacklinksExpanded": false,
+  "inlineContextExpanded": true,
+  "inlineContextSectionsExpanded": true,
+  "dataviewInlineContext": false,
+  "inlineContextNameLayout": "vertical",
+  "waypoints": [
+    "Spaces/Home",
+    "/",
+    "spaces://$tags"
+  ],
+  "rootSpaces": [
+    "Spaces/Home"
+  ],
+  "spacesUseAlias": false,
+  "fmKeyAlias": "aliases",
+  "fmKeyBanner": "banner",
+  "fmKeyColor": "color",
+  "fmKeySticker": "sticker",
+  "fmKeyContexts": "_contexts",
+  "fmKeySort": "_sort",
+  "fmKeyFilter": "_filters",
+  "fmKeyLinks": "_links",
+  "openSpacesOnLaunch": true,
+  "indexSVG": false,
+  "quickFrames": [],
+  "readableLineWidth": true,
+  "autoAddContextsToSubtags": true,
+  "autoMigration08": true,
+  "releaseNotesPrompt": 0.804,
+  "enableDefaultSpaces": true,
+  "enableTagSpaces": true,
+  "enableHomeSpace": true,
+  "showSpacePinIcon": true,
+  "minimalFix": false,
+  "experimental": false,
+  "spacesCompactMode": false,
+  "collapsedTags": [],
+  "folderNoteDefaultView": true,
   "expandedFolders": {
     "Obsidian-Vault": [
       "datasets",
@@ -51,49 +110,17 @@
       "Python"
     ]
   },
-  "expandedSpaces": [
-    "/",
-    null,
-    "Obsidian-Vault",
-    null
-  ],
-  "expandFolderOnClick": true,
   "openFolders": [],
   "fileIcons": [],
   "cachedSpaces": [
     "Obsidian-Vault"
   ],
-  "menuTriggerChar": "/",
-  "inlineStickerMenu": true,
-  "emojiTriggerChar": ":",
-  "folderContextFile": "context",
   "tagContextFolder": "Context",
-  "hiddenFiles": [
-    "Context"
-  ],
   "lineNumbers": false,
-  "hiddenExtensions": [
-    ".mdb"
-  ],
-  "inlineBacklinks": false,
-  "inlineContext": true,
-  "inlineBacklinksExpanded": false,
-  "inlineContextExpanded": true,
-  "inlineContextSectionsExpanded": true,
-  "dataviewInlineContext": false,
-  "inlineContextNameLayout": "vertical",
   "spacesSyncLastUpdated": "Context/spacesLastSync.log",
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1699927655458,
-  "spacesUseAlias": false,
-  "precreateVaultSpace": true,
-  "fmKeyAlias": "aliases",
-  "fmKeyBanner": "banner",
-  "fmKeyColor": "color",
-  "fmKeySticker": "sticker",
-  "openSpacesOnLaunch": true,
-  "indexSVG": false,
-  "readableLineWidth": true
+  "spacesAutoBackupLast": 1699934919448,
+  "precreateVaultSpace": true
 }

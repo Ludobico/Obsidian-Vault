@@ -1,5 +1,6 @@
 [
   "obsidian-git",
   "make-md",
-  "editing-toolbar"
+  "editing-toolbar",
+  "obsidian-plugin-toc"
 ]

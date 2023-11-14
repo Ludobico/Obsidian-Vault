@@ -1,6 +1,7 @@
 typing은 다양한 타입 어노테이션을 위해 사용하는 모듈입니다. 이 모듈은 [[Python]] 3.5 버전 이상부터 사용할 수 있습니다.
 
-## <font color="#ffc000">Simple example (List)</font>
+
+## Simple example (List)
 ---
 A 씨는 어느날 다음과 같은 파이썬 코드를 작성했습니다.
 ```python
@@ -57,7 +58,7 @@ Found 1 error in 1 file (checked 1 source file)
 
 > 파이썬은 3.9 버전 이후부터는 Dict, Tuple, Set 대신 dict, tuple, set 자료형을 그대로 사용할 수 있습니다.
 
-## <font color="#ffc000">Dict</font>
+## Dict
 ---
 딕셔너리는 <font color="#00b050">Dict</font> 모듈을 사용합니다.
 
@@ -69,7 +70,7 @@ Found 1 error in 1 file (checked 1 source file)
 
 ```
 
-## <font color="#ffc000">Tuple</font>
+## Tuple
 ---
 튜플은 <font color="#00b050">Tuple</font> 을 사용합니다.
 
@@ -80,7 +81,7 @@ Found 1 error in 1 file (checked 1 source file)
 ('홍길동', 23, True)
 ```
 
-## <font color="#ffc000">set</font>
+## set
 ---
 집합은 Set 을 사용하여 만들 수 있습니다.
 
@@ -117,4 +118,280 @@ Found 1 error in 1 file (checked 1 source file)
 - <font color="#ffff00">중복을 허용하지 않는다</font>
 - <font color="#ffff00">순서가 없다(Unordered)</font>
 
-리스트나 튜플은 순서가 있기(ordered)
+리스트나 튜플은 순서가 있기(ordered) 때문에 인덱싱을 통해 요솟값을 얻을 수 있지만, set 자료형은 순서가 없기(unordered) 때문에 인덱싱을 통해 요솟값을 얻을 수 없습니다.
+
+만약 set 자료형에 저장된 값을 인덱싱으로 접근하려면 다음과 같이 리스트나 튜플로 변환한 후에 해야합니다.
+
+```python
+>>> s1 = set([1, 2, 3])
+>>> l1 = list(s1)
+>>> l1
+[1, 2, 3]
+>>> l1[0]
+1
+>>> t1 = tuple(s1)
+>>> t1
+(1, 2, 3)
+>>> t1[0]
+1
+
+```
+
+### 교집합, 합집합, 차집합 구하기
+
+set 자료형을 정말 유용하게 사용하는 경우는 <font color="#ffff00">교집합, 합집합, 차집합</font>을 구할 떄입니다.
+먼저 다음과 같이 2개의 set 자료형을 만든 후
+
+```python
+>>> s1 = set([1, 2, 3, 4, 5, 6])
+>>> s2 = set([4, 5, 6, 7, 8, 9])
+```
+
+`s1` 과 `s2` 의 <font color="#ffff00">교집합</font>을 구할때는 <font color="#00b050">&</font> 또는<font color="#00b050"> intersection</font> 함수를 사용하여 구할 수 있습니다.
+
+```python
+>>> s1 & s2
+{4, 5, 6}
+```
+
+```python
+>>> s1.intersection(s2)
+{4, 5, 6}
+```
+
+`s1` 과 `s2` 의 <font color="#ffff00">합집합</font> 을 구할때는 <font color="#00b050">|</font> 또는 <font color="#00b050">union</font> 함수를 사용하여 구할 수 있습니다. 이때 중복해서 포함된 값은 1개씩만 표현됩니다.
+
+```python
+>>> s1 | s2
+{1, 2, 3, 4, 5, 6, 7, 8, 9}
+```
+
+```python
+>>> s1.union(s2)
+{1, 2, 3, 4, 5, 6, 7, 8, 9}
+```
+
+<font color="#ffff00">차집합</font>을 구할때는 <font color="#00b050">-</font> 또는 <font color="#00b050">difference</font> 함수를 사용하여 구할 수 있습니다.
+
+```python
+>>> s1 - s2
+{1, 2, 3}
+>>> s2 - s1
+{8, 9, 7}
+```
+
+```python
+>>> s1.difference(s2)
+{1, 2, 3}
+>>> s2.difference(s1)
+{8, 9, 7}
+```
+
+## Generator
+---
+
+typing 모듈에서 제공하는 `Generator` 는<font color="#ffff00"> 값을 한 번에 하나씩 생성하고 이를 이터레이션(iteration) 할 수 있는 iterator</font> 입니다. 
+
+`Generator` 타입 힌트는 다음과 같은 형태를 가지고 있습니다.
+
+```python
+from typing import Generator
+
+def simple_generator() -> Generator[int, str, float]:
+    yield 42
+    yield "hello"
+    return 3.14
+
+gen = simple_generator()
+
+# 이터레이션을 통해 값을 가져옴
+value1: int = next(gen)  # 42
+value2: str = next(gen)  # "hello"
+value3: float = next(gen)  # 3.14
+```
+
+```python
+from typing import Generator
+
+def simple_generator() -> Generator[int, str, float]:
+  yield 42
+  yield "Hello"
+  yield 3.14
+
+gen = simple_generator()
+
+if __name__ == "__main__":
+  for item in gen:
+    print(item)
+```
+
+> 42
+> Hello
+> 3.14
+
+위의 코드에서 `Generator[int, str, float]` 는 제너레이터가 `int` 값을 생성하고, 그 다음에는 `str` 값을 생성하며, 마지막으로 `float` 값을 생성하는 것을 나타냅니다.
+
+제너레이터는 `yield` 문을 사용하여 값을 반환하고 호출자에게 제어를 넘기는 특징이 있습니다. 이를 통해 함수가 실행 중에 상태를 유지하면서 값을 계속 생성할 수 있습니다. 이는 <font color="#ffff00">메모리를 효율적으로 사용할 수 있고, 대량의 데이터를 처리할 때 유용</font>합니다.
+
+## Any
+---
+
+`Any` 는 <font color="#ffff00">어떤 타입이든 허용되는 동적 타입(dynamic type)을 나타내는 특별한 타입 힌트</font>입니다. 파이썬은 동적 타이핑(dynamic typing) 언어이기 때문에 변수의 타입이 runtime에 결정되기 때문에, `Any` 를 사용하면 어떤 타입이든지 해당 변수나 파라미터에 할당될 수 있다는 것을 나타냅니다.
+
+```python
+from typing import Any
+
+def example_function(value : Any) -> Any:
+  return value
+
+if __name__ == "__main__":
+  result = example_function(42)
+  result_str = example_function("hello")
+  result_list = example_function([1,2,3])
+  print(result)
+  print(result_str)
+  print(result_list)
+```
+
+위의 예제에서 `example_function` 은 어떤 타입의 값을 받든지 상관하지 않고, 동일한 타입의 값을 반환합니다. `Any`를 사용하면 정적 타입 검사는 일부 제약을 갖게 되지만, 동시에 더 유연한 코드 작성이 가능해집니다.
+
+`Any` 를 남용하면 코드의 가독성과 유지보수성이 감소할 수 있으므로, 가능한한 정적 타입 힌트를 사용하여 타입 정보를 명시하는 것이 좋습니다.
+
+## Union
+---
+`Union` 은 <font color="#ffff00">여러 타입 중 하나일 수 있는 경우</font>를 나타냅니다. 일반적으로 파이썬에서는 여러 타입을 허용하는 경우를 다룰 때 `Union` 을 사용합니다.
+
+```python
+from typing import Union
+
+def square_or_cube(value : Union[int, float]) -> Union[int, float]:
+  if isinstance(value, int):
+    return value ** 2
+  elif isinstance(value, float):
+    return value ** 3
+  else:
+    raise ValueError("Unsupported type")
+
+if __name__ == "__main__":
+  print(square_or_cube(2))
+  print(square_or_cube(2.5))
+  print(square_or_cube("error"))
+```
+
+>4
+  15.625
+>ValueError: Unsupported type
+
+위의 예제에서 `Union[int, float]` 은 함수 `square_or_cube` 의 파라미터 `value` 와 반환값이 정수 또는 부동 소수점 숫자 중 하나일 수 있음을 나타냅니다. 
+
+### isinstance
+
+`isinstance` 는 파이썬 내장 함수 중 하나로, <font color="#ffff00">주어진 객체가 특정 클래스 또는 특정 타입의 인스턴스인지를 확인하는데 사용</font>됩니다. 
+
+`isinstance` 함수의 일반적인 사용법은 다음과 같습니다.
+
+```python
+result = isinstance(object, classinfo)
+```
+
+- object : 타입을 확인하고자 하는 객체입니다.
+- classinfo : 확인하고자 하는 타입, 클래스, 또는 튜플입니다.
+
+## Awaitable
+---
+`Awaitable` 은 <font color="#ffff00">비동기 코드에서 사용되는 타입 힌트 중 하나</font>입니다. 비동기 코드에서는 <font color="#00b050">async</font> 키워드가 사용되며, <font color="#00b050">await</font> 키워드를 사용하여 비동기 작업의 완료를 기다립니다. <font color="#00b050">Awaitable</font> 은 이러한 비동기 함수나 객체를 나타냅니다.
+
+간단한 예제를 통해 설명해보겠습니다. 아래 코드에서 `async def` 로 정의된 `async_finction` 함수는 `Awaitable` 을 사용합니다. 
+
+```python
+from typing import Awaitable
+
+async def async_function() -> Awaitable[str]:
+    result = await some_async_operation()
+    return result
+```
+
+여기서 `Awaitable[str]` 은 <font color="#ffff00">비동기적으로 실행되는 함수나 객체가 반환할 것으로 예상되는 타입</font>을 나타냅니다. 위의 예제에서는 문자열(str) 을 기대하고 있습니다.
+
+비동기 함수에서 `Awaitable` 을 사용하지 않아도 일반적으로 에러가 발생하지 않습니다. Python은 동적 타이핑 언어이므로 많은 경우에는 자동으로 타입을 추론할 수 있습니다.
+
+```python
+async def async_function() -> str:
+    result = await some_async_operation()
+    return result
+```
+
+## AsyncIterable
+---
+`AsyncIterable` 은 <font color="#ffff00">비동기적으로 반복 가능한(iterable) 객체를 나타내는 타입</font>입니다. 이는 비동기적으로 값을 생성하는 컨테이너를 나타냅니다. 이러한 객체는 <font color="#00b050">async for</font> 루프에서 사용할 수 있습니다.
+
+간단한 예제로 설명해보겠습니다. 아래는 `AsyncIterable` 을 사용하여 간단한 비동기적으로 값을 생성하는 함수입니다.
+
+```python
+from typing import AsyncIterable, Awaitable, List
+import asyncio
+
+async def counter(numbers = List[int]) -> Awaitable[AsyncIterable[int]]:
+  for number in numbers:
+    print(number)
+
+if __name__ == "__main__":
+  example_numbers = [0,1,2,3,4,5]
+  asyncio.run(counter(example_numbers))
+```
+
+>0
+  1
+  2
+  3
+  4
+  5
+
+## AsyncIterator
+---
+
+
+## AsyncGenerator
+---
+
+`AsyncGenerator` 는 typing 모듈에서 제공하는 하나의 타입으로, 비동기 제너레이터(Asynchronous Generator)를 나타냅니다.
+
+비동기 제너레이터는 일반적인 제너레이터와 유사하지만 <font color="#00b050">async def</font> 키워드를 사용하여 정의되며 비동기적으로 동작합니다. 비동기 제너레이터는 <font color="#00b050">async for</font> 루프를 통해 비동기적으로 값을 생성하고 소비됩니다.
+
+`AsyncGenerator` 는 다음과 같이 사용될 수 있습니다.
+
+```python
+from typing import AsyncGenerator
+import asyncio
+
+async def async_generator_example() -> AsyncGenerator[int, str]:
+  for i in range(5):
+    yield i
+    await asyncio.sleep(0.5)
+  yield "done"
+
+async def consume_async_generator():
+  async for i in async_generator_example():
+    print(i)
+    print(type(i))
+
+if __name__ == "__main__":
+  asyncio.run(consume_async_generator())
+```
+
+>0
+  <class 'int'>
+  1
+  <class 'int'>
+  2
+  <class 'int'>
+  3
+  <class 'int'>
+  4
+  <class 'int'>
+  done
+  <class 'str'>
+
+위의 코드에서 `AsyncGenerator[int, str]` 는 비동기 제너레이터가 생성하는 값의 타입이 `int` 이고, 완료되면 `str` 을 반환함을 나타냅니다. 이러한 타입 힌팅을 통해 코드를 작성할 때 타입 검사를 할 수 있으며, 가독성을 향상시킬 수 있습니다.
+
+
