@@ -1,6 +1,6 @@
 typing은 다양한 타입 어노테이션을 위해 사용하는 모듈입니다. 이 모듈은 [[Python]] 3.5 버전 이상부터 사용할 수 있습니다.
 
-## Simple example
+## <font color="#ffc000">Simple example (List)</font>
 ---
 A 씨는 어느날 다음과 같은 파이썬 코드를 작성했습니다.
 ```python
@@ -55,3 +55,66 @@ typing_sample.py:8: error: List item 2 has incompatible type "str"; expected "in
 Found 1 error in 1 file (checked 1 source file)
 ```
 
+> 파이썬은 3.9 버전 이후부터는 Dict, Tuple, Set 대신 dict, tuple, set 자료형을 그대로 사용할 수 있습니다.
+
+## <font color="#ffc000">Dict</font>
+---
+딕셔너리는 <font color="#00b050">Dict</font> 모듈을 사용합니다.
+
+```python
+>>> from typing import Dict
+>>> persons: Dict[str, int] = {"홍길동":23, "이한수":34}
+>>> persons
+{'홍길동': 23, '이한수': 34}
+
+```
+
+## <font color="#ffc000">Tuple</font>
+---
+튜플은 <font color="#00b050">Tuple</font> 을 사용합니다.
+
+```python
+>>> from typing import Tuple
+>>> hong: Tuple[str, int, bool] = ('홍길동', 23, True)
+>>> hong
+('홍길동', 23, True)
+```
+
+## <font color="#ffc000">set</font>
+---
+집합은 Set 을 사용하여 만들 수 있습니다.
+
+```python
+>>> from typing import Set
+>>> mark: Set[str] = {"A", "B", "C", "D", "F"}
+>>> mark
+{'D', 'B', 'C', 'F', 'A'}
+```
+
+
+집합 자료형은 다음과 같이 set 키워드를 사용해 만들 수 있습니다.
+
+```python
+>>> s1 = set([1, 2, 3])
+>>> s1
+{1, 2, 3}
+```
+
+위와 같이 `set()` 의 괄호 안에 리스트를 입력하여 만들거나 다음과 같이 문자열을 입력하여 만들 수도 있습니다.
+
+```python
+>>> s2 = set("Hello")
+>>> s2
+{'e', 'H', 'l', 'o'}
+```
+
+> 비어 있는 집합 자료형은 s = set() 으로도 만들 수 있습니다.
+
+### 집합 자료형의 특징
+
+그런데 위에서 살펴본 `set("Hello")` 의 결과가 좀 이상합니다. 분명 `Hello` 문자열로 set 자료형을 만들었는데 생성된 자료형에는 l 문자가 하나 빠져 있고 순서도 뒤죽박죽입니다. 그 이유는 `set` 에 다음과 같은 2가지 특징이 있기 때문입니다.
+
+- <font color="#ffff00">중복을 허용하지 않는다</font>
+- <font color="#ffff00">순서가 없다(Unordered)</font>
+
+리스트나 튜플은 순서가 있기(ordered)
