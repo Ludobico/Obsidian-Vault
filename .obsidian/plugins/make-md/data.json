@@ -48,8 +48,7 @@
       "/",
       "Detectron2/Data",
       "Python",
-      "HuggingFace",
-      "HuggingFace/transformers"
+      "Python"
     ]
   },
   "expandedSpaces": [
@@ -87,7 +86,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1699858871187,
+  "spacesAutoBackupLast": 1699927655458,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "aliases",
