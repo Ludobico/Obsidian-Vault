@@ -1,5 +1,20 @@
 typing은 다양한 타입 어노테이션을 위해 사용하는 모듈입니다. 이 모듈은 [[Python]] 3.5 버전 이상부터 사용할 수 있습니다.
 
+- [[#Simple example (List)|Simple example (List)]]
+- [[#Dict|Dict]]
+- [[#Tuple|Tuple]]
+- [[#set|set]]
+	- [[#set#집합 자료형의 특징|집합 자료형의 특징]]
+	- [[#set#교집합, 합집합, 차집합 구하기|교집합, 합집합, 차집합 구하기]]
+- [[#Generator|Generator]]
+- [[#Any|Any]]
+- [[#Union|Union]]
+	- [[#Union#isinstance|isinstance]]
+- [[#Callable|Callable]]
+- [[#Awaitable|Awaitable]]
+- [[#AsyncIterable|AsyncIterable]]
+- [[#AsyncIterator|AsyncIterator]]
+- [[#AsyncGenerator|AsyncGenerator]]
 
 ## Simple example (List)
 ---
@@ -296,6 +311,43 @@ result = isinstance(object, classinfo)
 
 - object : 타입을 확인하고자 하는 객체입니다.
 - classinfo : 확인하고자 하는 타입, 클래스, 또는 튜플입니다.
+
+## Callable
+---
+
+`Callble` 은 <font color="#ffff00">함수나 메서드의 시그니처(signature)를 표현하는 타입 힌트</font>입니다. 함수가 어떤 파라미터를 받고 어떤 타입의 값을 반환하는지 명시적으로 나타낼 수 있습니다.
+
+`Callable` 은 다음과 같은 형태를 가집니다.
+
+```python
+from typing import Callable
+
+def example_function(x : int, y : str) -> float:
+  return float(x)
+
+callable_example : Callable[[int, str], float] = example_function
+
+if __name__ == "__main__":
+  result = callable_example(1, "Hello")
+  print(result)
+```
+> 1.0
+
+위의 예제에서 `Callable[[int, str], float]` 는 함수가 `int` 타입과 `float` 타입의 파라미터를 받아들이고 `float` 타입의 값을 반환함을 나타냅니다. 이러한 타입 힌트를 사용하면 함수의 인터페이스를 명확하게 정의하고, 코드를 더욱 가독성 있게 만들 수 있습니다.
+
+`Callable` 은 파라미터의 개수와 타입, 그리고 반환 타입을 정의할 수 있습니다. 예를 들어, 다음은 <font color="#ffff00">파라미터가 없는 함수를 나타내는 사용 예제</font>입니다.
+
+```python
+from typing import Callable
+
+def no_argument_function() -> None:
+    print("No arguments")
+
+callable_no_argument: Callable[[], None] = no_argument_function
+
+callable_no_argument()  # 타입 검사를 통과
+```
+
 
 ## Awaitable
 ---
