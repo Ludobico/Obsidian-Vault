@@ -38,7 +38,8 @@
     "/",
     null,
     "Obsidian-Vault",
-    null
+    null,
+    "//Python"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
