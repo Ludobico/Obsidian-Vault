@@ -39,7 +39,11 @@
     null,
     "Obsidian-Vault",
     null,
-    "//Python"
+    "//Python",
+    "//Detectron2/Detectron2/Data",
+    "//Python",
+    "//Python/Python/Class",
+    "//Python/Python/Class"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
