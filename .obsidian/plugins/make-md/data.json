@@ -39,13 +39,9 @@
     null,
     "Obsidian-Vault",
     null,
-    "//Python",
     "//Detectron2/Detectron2/Data",
     "//Python",
-    "//Python/Python/Class",
-    "//Python/Python/Class",
-    "//Python/Python/Class",
-    "//Python/Python/Class"
+    "//Python/Python/Asyncio"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
@@ -73,7 +69,8 @@
     "spaces://$tags"
   ],
   "rootSpaces": [
-    "Spaces/Home"
+    "Spaces/Home",
+    "Python/Asyncio"
   ],
   "spacesUseAlias": false,
   "fmKeyAlias": "aliases",
