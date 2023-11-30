@@ -40,8 +40,7 @@
     "Obsidian-Vault",
     null,
     "//Detectron2/Detectron2/Data",
-    "//Python",
-    "//Python/Python/Asyncio"
+    "//Python"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
