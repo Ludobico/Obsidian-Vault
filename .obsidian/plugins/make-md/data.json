@@ -40,7 +40,13 @@
     "Obsidian-Vault",
     null,
     "//Detectron2/Detectron2/Data",
-    "//Python/Python/Class"
+    "//Python/Python/Class",
+    "//Frontend",
+    "//Frontend/Frontend/Three",
+    "//Frontend/Frontend/Three",
+    "//Frontend/Frontend/Three",
+    "//Frontend/Frontend/Three/Frontend/Three/Hooks",
+    "//Frontend/Frontend/Three/Frontend/Three/ThreeJS"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
@@ -69,7 +75,9 @@
   ],
   "rootSpaces": [
     "Spaces/Home",
-    "Python/Asyncio"
+    "Python/Asyncio",
+    "Frontend/Three/Hooks",
+    "Frontend/Three/ThreeJS"
   ],
   "spacesUseAlias": false,
   "fmKeyAlias": "aliases",
