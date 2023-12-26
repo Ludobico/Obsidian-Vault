@@ -42,11 +42,9 @@
     "//Detectron2/Detectron2/Data",
     "//Python/Python/Class",
     "//Frontend",
-    "//Frontend/Frontend/Three",
-    "//Frontend/Frontend/Three",
-    "//Frontend/Frontend/Three",
     "//Frontend/Frontend/Three/Frontend/Three/Hooks",
-    "//Frontend/Frontend/Three/Frontend/Three/ThreeJS"
+    "//Frontend/Frontend/Three/Frontend/Three/ThreeJS",
+    "//Frontend/Frontend/GLSL"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
