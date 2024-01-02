@@ -41,10 +41,10 @@
     null,
     "//Detectron2/Detectron2/Data",
     "//Python/Python/Class",
-    "//Frontend",
     "//Frontend/Frontend/Three/Frontend/Three/Hooks",
     "//Frontend/Frontend/Three/Frontend/Three/ThreeJS",
-    "//Frontend/Frontend/GLSL"
+    "//Frontend/Frontend/GLSL",
+    "//Reinforcement Learning/Reinforcement Learning/Algorithm"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
