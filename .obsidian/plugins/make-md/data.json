@@ -45,11 +45,9 @@
     "//Frontend/Frontend/Three/Frontend/Three/ThreeJS",
     "//Frontend/Frontend/GLSL",
     "//Reinforcement Learning/Reinforcement Learning/Algorithm",
-    "//ComfyUI",
-    "//ComfyUI",
-    "//ComfyUI",
-    "//Pytorch",
-    "//Pytorch/Pytorch/Model example"
+    "//Pytorch/Pytorch/Model example",
+    "//Frontend/Frontend/GLSL",
+    "//ComfyUI"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",

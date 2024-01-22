@@ -32,13 +32,13 @@ path/your/directory/ComfyUI_windows_portable/ComfyUI
 ```
 
 ```
-main.py
+python main.py
 ```
 
 다중 GPU를 사용하고 있고, 그 중 GPU를 선택하고 사용하려면 <font color="#ffff00">main.py</font>에 추가적인 인자를 붙여줍니다.
 
 ```
-main.py --cuda-device 1
+python main.py --cuda-device 1
 ```
 
 GPU Device 같은 경우는 [[Pytorch]] 의 `torch.cuda.current_device()` 로 확인할 수 있으며,
