@@ -48,8 +48,11 @@
     "//Pytorch/Pytorch/Model example",
     "//Frontend/Frontend/GLSL",
     "//ComfyUI",
-    "//ComfyUI/ComfyUI/Prompt",
-    "//ComfyUI/ComfyUI/Prompt"
+    "//ComfyUI/ComfyUI/Nodes",
+    "//ComfyUI/ComfyUI/Nodes",
+    "//ComfyUI/ComfyUI/Nodes",
+    "//ComfyUI/ComfyUI/Nodes",
+    "//ComfyUI/ComfyUI/Nodes"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
@@ -81,7 +84,9 @@
     "Python/Asyncio",
     "Frontend/Three/Hooks",
     "Frontend/Three/ThreeJS",
-    "ComfyUI/Prompt"
+    "ComfyUI/Prompt",
+    "ComfyUI/Nodes",
+    "ComfyUI/Nodes/Loaders"
   ],
   "spacesUseAlias": false,
   "fmKeyAlias": "aliases",
