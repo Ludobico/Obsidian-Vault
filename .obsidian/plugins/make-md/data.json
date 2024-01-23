@@ -47,7 +47,9 @@
     "//Reinforcement Learning/Reinforcement Learning/Algorithm",
     "//Pytorch/Pytorch/Model example",
     "//Frontend/Frontend/GLSL",
-    "//ComfyUI"
+    "//ComfyUI",
+    "//ComfyUI/ComfyUI/Prompt",
+    "//ComfyUI/ComfyUI/Prompt"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
@@ -78,7 +80,8 @@
     "Spaces/Home",
     "Python/Asyncio",
     "Frontend/Three/Hooks",
-    "Frontend/Three/ThreeJS"
+    "Frontend/Three/ThreeJS",
+    "ComfyUI/Prompt"
   ],
   "spacesUseAlias": false,
   "fmKeyAlias": "aliases",
