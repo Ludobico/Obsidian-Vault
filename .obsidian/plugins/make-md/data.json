@@ -52,7 +52,8 @@
     "//ComfyUI/ComfyUI/Nodes",
     "//ComfyUI/ComfyUI/Nodes",
     "//ComfyUI/ComfyUI/Nodes",
-    "//ComfyUI/ComfyUI/Nodes"
+    "//ComfyUI/ComfyUI/Nodes",
+    "//ComfyUI/ComfyUI/Nodes/ComfyUI/Nodes/Sampling"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
@@ -86,7 +87,8 @@
     "Frontend/Three/ThreeJS",
     "ComfyUI/Prompt",
     "ComfyUI/Nodes",
-    "ComfyUI/Nodes/Loaders"
+    "ComfyUI/Nodes/Loaders",
+    "ComfyUI/Nodes/Sampling"
   ],
   "spacesUseAlias": false,
   "fmKeyAlias": "aliases",
