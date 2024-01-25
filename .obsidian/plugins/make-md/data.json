@@ -44,16 +44,18 @@
     "//Frontend/Frontend/Three/Frontend/Three/Hooks",
     "//Frontend/Frontend/Three/Frontend/Three/ThreeJS",
     "//Frontend/Frontend/GLSL",
-    "//Reinforcement Learning/Reinforcement Learning/Algorithm",
     "//Pytorch/Pytorch/Model example",
     "//Frontend/Frontend/GLSL",
-    "//ComfyUI",
     "//ComfyUI/ComfyUI/Nodes",
     "//ComfyUI/ComfyUI/Nodes",
     "//ComfyUI/ComfyUI/Nodes",
     "//ComfyUI/ComfyUI/Nodes",
     "//ComfyUI/ComfyUI/Nodes",
-    "//ComfyUI/ComfyUI/Nodes/ComfyUI/Nodes/Sampling"
+    "//ComfyUI/ComfyUI/Nodes",
+    "//Pytorch",
+    "//Pytorch/Pytorch/torch.nn",
+    "//Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Normalization Layers",
+    "//Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Linear Layers"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
@@ -88,7 +90,8 @@
     "ComfyUI/Prompt",
     "ComfyUI/Nodes",
     "ComfyUI/Nodes/Loaders",
-    "ComfyUI/Nodes/Sampling"
+    "ComfyUI/Nodes/Sampling",
+    "Pytorch/torch.nn/Normalization Layers"
   ],
   "spacesUseAlias": false,
   "fmKeyAlias": "aliases",
