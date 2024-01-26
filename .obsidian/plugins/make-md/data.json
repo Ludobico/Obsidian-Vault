@@ -53,9 +53,9 @@
     "//ComfyUI/ComfyUI/Nodes",
     "//ComfyUI/ComfyUI/Nodes",
     "//Pytorch",
-    "//Pytorch/Pytorch/torch.nn",
-    "//Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Normalization Layers",
-    "//Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Linear Layers"
+    "//Pytorch/Pytorch/Model example",
+    "//Pytorch/Pytorch/torch.Tensor",
+    "//Pytorch/Pytorch/torch.Tensor"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
@@ -91,7 +91,8 @@
     "ComfyUI/Nodes",
     "ComfyUI/Nodes/Loaders",
     "ComfyUI/Nodes/Sampling",
-    "Pytorch/torch.nn/Normalization Layers"
+    "Pytorch/torch.nn/Normalization Layers",
+    "Pytorch/torch.Tensor"
   ],
   "spacesUseAlias": false,
   "fmKeyAlias": "aliases",
