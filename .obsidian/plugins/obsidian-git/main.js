@@ -42624,7 +42624,7 @@ function instance9($$self, $$props, $$invalidate) {
           plugin.setState(0 /* idle */);
           return false;
         }
-        plugin.promiseQueue.addTask(() => plugin.gitManager.commit(commitMessage).then(() => {
+        plugin.promiseQueue.addTask(() => plugin.gitManager.commit({ message: commitMessage }).then(() => {
           if (commitMessage !== plugin.settings.commitMessage) {
             $$invalidate(2, commitMessage = "");
           }
