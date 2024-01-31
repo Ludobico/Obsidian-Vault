@@ -63,14 +63,13 @@
     "Spaces/Home///AI Concepts/AI Concepts/Math/AI Concepts/Math/변수와 수식",
     "Spaces/Home///AI Concepts/AI Concepts/Math/AI Concepts/Math/변수와 수식",
     "Spaces/Home///AI Concepts/AI Concepts/Math",
-    "Spaces/Home///Pytorch/Pytorch/torch.nn",
     "Spaces/Home///Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Sparse Layers",
-    "Spaces/Home///LangChain",
     "Spaces/Home///LangChain/LangChain/VectorStore",
-    "Spaces/Home///LangChain",
     "Spaces/Home///LangChain/LangChain/VectorStore",
-    "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/langchain_community"
+    "Spaces/Home///LangChain/LangChain/langchain",
+    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/text_splitter",
+    "Spaces/Home///Pytorch",
+    "Spaces/Home///Pytorch/Pytorch/torch.Tensor"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
