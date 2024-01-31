@@ -68,8 +68,7 @@
     "Spaces/Home///LangChain/LangChain/VectorStore",
     "Spaces/Home///LangChain/LangChain/langchain",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/text_splitter",
-    "Spaces/Home///Pytorch",
-    "Spaces/Home///Pytorch/Pytorch/torch.Tensor"
+    "Spaces/Home///Pytorch"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
