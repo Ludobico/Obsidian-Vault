@@ -6,10 +6,10 @@ Trainer 클래스의 인스턴스를 만들 때는 훈련에 필요한 여러 �
 - 훈련할 모델의 인스턴스입니다.
 
 > args -> TrainingArguments, (optional)
-- 훈련에 피룡한 여러 파라미터 및 설정을 포함하는 [[TrainingArguments]] 클래스의 인스턴스입니다. 이 클래스에는 <font color="#ffff00">epoch, 배치 크기, 로그 출력 디렉토리</font> 등을 설정할 수 있는 다양한 파라미터가 있습니다. 
+- 훈련에 필요한 여러 파라미터 및 설정을 포함하는 [[TrainingArguments]] 클래스의 인스턴스입니다. 이 클래스에는 <font color="#ffff00">epoch, 배치 크기, 로그 출력 디렉토리</font> 등을 설정할 수 있는 다양한 파라미터가 있습니다. 
 
 > data_collator -> DataCollator, (optional)
-- 미<font color="#ffff00">니배치의 데이터를 처리</font>하기 위한 [[DataCollator]] 또는 [[DataCollatorWithPadding]] 의 인스턴스입니다. train 데이터를 모델 입력 형식을 변환하고 패딩을 추가하는 데 사용됩니다.
+- <font color="#ffff00">미</font><font color="#ffff00">니배치의 데이터를 처리</font>하기 위한 [[DataCollator]] 또는 [[DataCollatorWithPadding]] 의 인스턴스입니다. train 데이터를 모델 입력 형식을 변환하고 패딩을 추가하는 데 사용됩니다.
 
 > tokenizer -> PreTrainedTokenizerBase, (optional)
 - 모델의 토크나이저입니다. 주어진 텍스트 데이터를 모델이 이해할 수 있는 형식으로 토큰화하는 데 사용됩니다.
