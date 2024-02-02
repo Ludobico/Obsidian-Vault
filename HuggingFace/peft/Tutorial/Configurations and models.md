@@ -35,7 +35,7 @@ PEFT의 configuration은 특정 PEFT 방법이 적용되는 방식을 지정하�
 }
 ```
 
-###  PromptEncoderConfig
+### PromptEncoderConfig
 
 ```json
 {
