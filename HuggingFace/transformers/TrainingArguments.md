@@ -6,6 +6,11 @@ TrainingArguments 는 [[HuggingFace🤗]] 의 [[transformers]] 라이브러리�
 > learning_rate -> float, (optional), Default : 5e-5
 - [[AdamW]] 옵티마이저에 사용되는 초기 학습률입니다.
 
+> logging_steps -> int or float, (optional), Default : 500
+- 학습 과정 중에 로그를 출력하는 빈도를 결정하는 매개변수입니다.
+- 이 매개변수는 학습 과정에서 모델의 성능 및 진행 상황을 모니터링하는 데 사용됩니다.
+- 기본적으로 <font color="#ffff00">500</font> 으로 설정되어 있으며, 매 500번의 steps 마다 로그가 출력됩니다.
+
 > per_device_train_batch_size -> int, (optional), Default : 8
 - 훈련 시 GPU 또는 CPU에 사용되는 배치사이즈입니다.
 
@@ -82,4 +87,10 @@ TrainingArguments 는 [[HuggingFace🤗]] 의 [[transformers]] 라이브러리�
 그라디언트를 계산하고 이를 누적합니다.
 총 4번의 배치를 처리한 후, 역전파 및 가중치 업데이트를 수행합니다.
 ```
+
+> gradient_checkpointing -> bool, (optional), defaults to False
+- **메모리를 절약하기 위해** gradient checkpointing을 사용할지 여부를 결정하는 파라미터입니다.
+- 일반적으로 역전파 과정에서는 중간 계산 결과를 메모리에 저장하여 나중에 gradient를 계산하는데 사용됩니다. 그러나 gradient checkpointing을 사용하면 <font color="#ffff00">중간 계산 결과를 메모리에 저장하지 않고 필요할때마다 다시 계산하여 메모리 사용량을 줄일 수 있습니다</font>. 
+- bench mark 결과를 보면 **연산 시간이 25% 가량 증가한 대신 메모리 사용량이 60% 가량 줄었다는 내용이 있습니다.**
+![[Pasted image 20240205112100.png]]
 
