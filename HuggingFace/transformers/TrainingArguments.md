@@ -66,7 +66,7 @@ TrainingArguments 는 [[HuggingFace🤗]] 의 [[transformers]] 라이브러리�
 > optim -> str, (optional), Default : "adamw_torch"
 - 옵티마이저를 지정하는데 사용되는 매개변수입니다. 종류는 아래와 같습니다.
 - <font color="#ffff00">adamw_torch</font> : [[HuggingFace🤗]] 의 AdamW 옵티마이저입니다.
-- <font color="#ffff00"> adamw_torch</font> : [[Pytorch]] 의 AdamW 옵티마이저입니다.
+- <font color="#ffff00">adamw_torch</font> : [[Pytorch]] 의 AdamW 옵티마이저입니다.
 - <font color="#ffff00">adamw_torch_fused</font> : [[Pytorch]] 의 Fused AdamW 옵티마이저입니다.
 - <font color="#ffff00">adamw_apex_fused</font> : NVIDIA Apex의 Fused AdamW 옵티마이저입니다.
 - <font color="#ffff00">adamw_anyprecision</font> : 다양한 정밀도를 지원하는 AdamW 옵티마이저입니다.
