@@ -43,3 +43,40 @@ output = model(input_data)
 
 [[torch.nn.ModuleList]] 와의 주요 차이점은 `torch.nn.Sequential` 은 <font color="#ffff00">모듈을 순차적으로 연결</font>하는 반면 `ModuleList` 는 모듈을 순차적으로 연결하지 않고 List 형태로 저장한다는 것입니다.
 
+또한, Sequential 객체는 그 안에 포함된 각 모듈을 순차적으로 실행해 주는데 다음과 같이 코드를 작성할 수 있습니다.
+
+```python
+import torch
+import torch.nn as nn
+from torch.nn import functional as F
+
+class MLP(nn.Module):
+  def __init__(self):
+    super(MLP, self).__init__()
+    self.layer1 = nn.Sequential(
+      nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3),
+      nn.ReLU(inplace=True),
+      nn.MaxPool2d(2)
+    )
+
+    self.layer2 = nn.Sequential(
+      nn.Conv2d(in_channels=64, out_channels=30, kernel_size=5),
+      nn.ReLU(inplace=True),
+      nn.MaxPool2d(2)
+    )
+
+    self.layer3 = nn.Sequential(
+      nn.Linear(in_features=30*5*5, out_features=10, bias=True),
+      nn.ReLU(inplace=True)
+    )
+
+  def forward(self, x):
+      x = self.layer1(x)
+      x = self.layer2(x)
+      x = x.view(x.shape[0], -1)
+      x = self.layer3(x)
+      return x
+
+model = MLP()
+```
+

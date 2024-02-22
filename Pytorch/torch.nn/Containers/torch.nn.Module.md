@@ -41,3 +41,23 @@ class Model(nn.Module):
         x = F.relu(self.conv1(x))
         return F.relu(self.conv2(x))
 ```
+
+```python
+import torch
+import torch.nn as nn
+from torch.nn import functional as F
+
+class MLP(nn.Module):
+  def __init__(self, inputs):
+    super(MLP, self).__init__()
+    # 계층 정의
+    self.layer = nn.Linear(inputs, 1)
+    # 활성화 함수 정의
+    self.activation = nn.Sigmoid()
+
+  def forward(self, x):
+    x = self.layer(x)
+    x = self.activation(x)
+    return x
+```
+
