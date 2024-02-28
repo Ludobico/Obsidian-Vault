@@ -68,8 +68,10 @@
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/text_splitter",
     "Spaces/Home//",
     "Spaces/Home///Pytorch",
-    "Spaces/Home///Pytorch/Pytorch/torch.nn",
-    "Spaces/Home///Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Containers"
+    "Spaces/Home///Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Containers",
+    "Spaces/Home///Pytorch/Pytorch/Algorithm",
+    "Spaces/Home///Pytorch/Pytorch/Algorithm",
+    "Spaces/Home///Pytorch/Pytorch/Algorithm/Pytorch/Algorithm/Activation"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
