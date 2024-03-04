@@ -89,5 +89,41 @@ temperature_output : tensor([0.2144, 0.0891, 0.0189, 0.6655, 0.0121])
 temperature sum output : 1.0
 ```
 
+`temparature` 가 더 낮을수록 위의 결과대로 더 결정론적인 답변이 나옵니다.
+
+```python
+import torch
+import torch.nn as nn
+
+input_x = torch.tensor([1.6641,  0.9614, -0.2781,  2.5703, -0.6387])
+
+print(input_x)
 
 
+softmax = nn.Softmax(dim=0)
+
+
+def temparature(input_tensor, temp=0.1):
+  scaled_tensor = torch.tensor(input_tensor / temp)
+  return torch.exp(scaled_tensor) / torch.sum(torch.exp(scaled_tensor))
+
+
+temp_output = temparature(input_x)
+print("softmax_output : {0}".format(softmax(input_x)))
+print("-"*80)
+print("sofrmax_sum : {0}".format(torch.sum(softmax(input_x))))
+print("-"*80)
+print("temperature_output : {0}".format(temp_output))
+print("-"*80)
+print("temperature sum output : {0}".format(torch.sum(temp_output)))
+```
+
+```
+softmax_output : tensor([0.2373, 0.1175, 0.0340, 0.5874, 0.0237])
+--------------------------------------------------------------------------------
+sofrmax_sum : 1.0
+--------------------------------------------------------------------------------
+temperature_output : tensor([1.1598e-04, 1.0294e-07, 4.2609e-13, 9.9988e-01, 1.1573e-14])
+--------------------------------------------------------------------------------
+temperature sum output : 1.0
+```
