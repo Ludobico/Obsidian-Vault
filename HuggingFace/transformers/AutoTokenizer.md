@@ -1,3 +1,9 @@
+- [[#AutoTokenizer.from_pretrained()|AutoTokenizer.from_pretrained()]]
+- [[#Tokenizer Methods|Tokenizer Methods]]
+- [[#Tokenizer Methods#encode|encode]]
+- [[#Tokenizer Methods#decode|decode]]
+
+
 AutoTokenizer 는 [[HuggingFace🤗]] 의 [[transformers]]라이브러리에서 제공하는 도구 중 하나로, 자연어 처리(NLP) 모델을 사용하기 전에<font color="#ffff00"> 텍스트 데이터를 모델이 이해할 수 있는 형식으로 변환</font>해주는 역할을 하는 클래스입니다.
 
 ```python
@@ -60,4 +66,81 @@ AutoTokenizer.from_pretrained() 은 미리 학습된 모델의 이름 또는 경
 > kwargs -> additional keyword arguments, (optional)
 - 추가적인 키워드 인자로 `Tokenizer__init__()` 메서드로 전달됩니다. 이를 사용하여 `bos_token` `eos_token` `unk_token` `sep_token` `pad_token` 과 같은 특수 토큰을 설정할 수 있습니다.
 
+
+## Tokenizer Methods
+---
+`AutoTokenizer.from_pretrained()` 으로 [[Tokenizer]] 인스턴스화 시킬 수 있습니다.
+
+```python
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("Upstage/SOLAR-10.7B-v1.0")
+```
+
+인스턴스된 토크나이저는 다음과 같은 메서드를 사용할 수 있습니다.
+
+### encode
+
+이 encode 메서드는 <font color="#ffff00">주어진 입력을 정수 시퀀스로 변환하는 역할</font>을 합니다. 이 메서드는 [[Tokenizer]] 와 어휘 사전(vocab dict)를 사용하여 작동합니다. 주어진 텍스트를 정수 시퀀스로 변환하기 위해 먼저 tokenize 메서드를 사용하여 텍스트를 토큰화하고, `convert_tokens_to_ids` 메서드를 사용하여 토큰을 정수로 변환합니다.
+
+주요 파라미터는 다음과 같습니다.
+
+> text -> str, List[str] or List[int]
+
+- 첫번째 시퀀스입니다. 문자열, 토큰화된 문자열의 리스트, 또는 정수의 리스트를 인자로 받습니다.
+
+> text_pair -> str, List[str] or List[int], optional
+- 두 번째 시퀀스입니다.
+
+> add_special_tokens -> bool, optional
+- True로 설정하면 시퀀스의 특수 토큰이 추가됩니다.
+
+```python
+  class TokenizerExam:
+  def __init__(self):
+    self.tokenizer = AutoTokenizer.from_pretrained("Upstage/SOLAR-10.7B-v1.0")
+  @classmethod
+  def special_token_test(cls):
+    tokenizer = cls().tokenizer
+    print(tokenizer.encode("I am learning how to use transformers for text generation.", add_special_tokens=False))
+    print('-'*50)
+    print(tokenizer.encode("I am learning how to use transformers for text generation.", add_special_tokens=True))
+```
+
+```
+[315, 837, 5168, 910, 298, 938, 5516, 404, 354, 2245, 8342, 28723]
+--------------------------------------------------
+[1, 315, 837, 5168, 910, 298, 938, 5516, 404, 354, 2245, 8342, 28723]
+```
+
+
+> max_length -> int, optional
+- 반환되는 시퀀스의 최대 길이를 제한하는 데 사용됩니다.
+
+> stride -> int, optional
+- `max_length` 와 함께 설정된 경우, 반환된 오버플로우 토큰에는 주요 시퀀스의 일부 토큰이 포함됩니다.
+
+> truncation_strategy -> str, optional
+- 주어진 옵션 중 하나를 선택하여 입력 시퀀스를 잘라내는 strategy를 지정합니다.
+
+> pad_to_max_length -> bool, optional
+- True로 설정하면 반환된 시퀀스가 모델의 최대 길이까지 [[padding]] 됩니다.
+
+> return_tensors -> str, optional
+- '<font color="#ffff00">tf' </font>또는 <font color="#ffff00">'pt'</font> 로 설정하여 TensorFlowtf.constant 또는 [[Pytorch]] 의 [[torch.Tensor]] 를 반환합니다.
+
+### decode
+
+이 decode 메서드는 <font color="#ffff00">정수 시퀀스를 문자열로 변환하는 역할</font>을 합니다. 이 메서드는 토크나이저와 어휘 사전을 사용하여 작동합니다. 주어진 정수 시퀀스를 토큰으로 변환하고 이를 문자열로 결합하여 반환합니다.
+
+주요 파라미터는 다음과 같습니다.
+
+> token_ids -> List[int]
+- 토큰화된 입력 시퀀스의 정수 ID 리스트입니다. 이는 `encode` 또는 `encode_plus` 메서드를 사용하여 얻을 수 있습니다.
+
+> skip_special_tokens -> bool, default by False
+- True로 설정하면 특수 토큰을 제거하고 일반 토큰만을 포함한 문자열을 반환합니다.
+
+> clean_up_tokenization_spaces -> bool, default by False
+- True로 설정하면 토큰화 과정에서 추가된 공백을 제거하여 더 정확한 문자열을 생성합니다.
 
