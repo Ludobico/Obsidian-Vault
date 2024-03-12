@@ -69,7 +69,9 @@
     "Spaces/Home//////",
     "Spaces/Home////////",
     "Spaces/Home//",
-    "Spaces/Home///Pytorch/Pytorch/Algorithm/Pytorch/Algorithm/Activation"
+    "Spaces/Home///Pytorch/Pytorch/Algorithm/Pytorch/Algorithm/Activation",
+    "Spaces/Home///Pytorch",
+    "Spaces/Home///Pytorch/Pytorch/torch.Tensor"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
