@@ -71,7 +71,9 @@
     "Spaces/Home//",
     "Spaces/Home///Pytorch/Pytorch/Algorithm/Pytorch/Algorithm/Activation",
     "Spaces/Home//",
-    "Spaces/Home///Python"
+    "Spaces/Home///HuggingFace/HuggingFace/transformers",
+    "Spaces/Home///Python",
+    "Spaces/Home///Python/Python/Decorator"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",

@@ -1,5 +1,5 @@
 
-<font color="#00b050">**kwargs</font> 는 파이썬 함수의 인자로 사용되는 특별한 형태의 매개변수입니다. kwargs는 **keyword arguments** 의 약자입니다.
+<font color="#00b050">**kwargs</font> 는 [[Python]] 함수의 인자로 사용되는 특별한 형태의 매개변수입니다. kwargs는 **keyword arguments** 의 약자입니다.
 
 일반적으로 함수를 정의할 때, <font color="#ffff00">인자의 개수나 종류를 미리 정해놓지 않고 유연하게 다양한 인자를 전달하고 싶을 때 사용</font>합니다. 보통 이러한 상황은 함수가 다양한 설정 옵션을 가지거나, 다른 함수에 전달할 인자를 동적으로 선택할 때 발생합니다.
 
