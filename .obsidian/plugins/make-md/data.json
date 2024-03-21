@@ -71,9 +71,9 @@
     "Spaces/Home//",
     "Spaces/Home///Pytorch/Pytorch/Algorithm/Pytorch/Algorithm/Activation",
     "Spaces/Home//",
-    "Spaces/Home///HuggingFace/HuggingFace/transformers",
-    "Spaces/Home///Python",
-    "Spaces/Home///Python/Python/Decorator"
+    "Spaces/Home///Python/Python/Decorator",
+    "Detectron2/Detectron2/Models/Detectron2/Models/Config",
+    "Detectron2/Detectron2/Config"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
