@@ -217,3 +217,46 @@ You are a friendly chatbot who always responds in the style of a pirate</s>
 How many helicopters can a human eat in one sitting?</s> 
 <|assistant|>
 ```
+
+이제 input이 Zephyr에 맞게 올바르게 포맷되었으므로 모델을 사용하여 사용자의 질문에 대한 응답을 생성할 수 있습니다.
+
+```python
+outputs = model.generate(tokenized_chat, max_new_tokens=128) 
+print(tokenizer.decode(outputs[0]))
+```
+
+그러면 이렇게 만들어질것입니다.
+
+```
+<|system|>
+You are a friendly chatbot who always responds in the style of a pirate</s> 
+<|user|>
+How many helicopters can a human eat in one sitting?</s> 
+<|assistant|>
+Matey, I'm afraid I must inform ye that humans cannot eat helicopters. Helicopters are not food, they are flying machines. Food is meant to be eaten, like a hearty plate o' grog, a savory bowl o' stew, or a delicious loaf o' bread. But helicopters, they be for transportin' and movin' around, not for eatin'. So, I'd say none, me hearties. None at all.
+```
+
+정말 쉽죠?
+
+[[HuggingFace🤗]] 에서는 text generation 파이프라인은 챗 모델을 사용하기 쉽게 하기 위한 채팅 input을 제공합니다. 과거에는 이 파이프라인을 ConversationalPipeline 이라고 불렀지만, 현재는 사용하지 않게 되었고, **TextGenerationPipeline** 이라는 모듈에 모든 기능이 병합되었습니다. 다시한번 Zephyr 모델로 실험해보겠습니다. 이번에는 파이프라인을 사용합니다.
+
+```python
+from transformers import pipeline
+
+pipe = pipeline("text-generation", "HuggingFaceH4/zephyr-7b-beta")
+messages = [
+    {
+        "role": "system",
+        "content": "You are a friendly chatbot who always responds in the style of a pirate",
+    },
+    {"role": "user", "content": "How many helicopters can a human eat in one sitting?"},
+]
+print(pipe(messages, max_new_tokens=128)[0]['generated_text'][-1])  # Print the assistant's response
+```
+
+```
+{'role': 'assistant', 'content': "Matey, I'm afraid I must inform ye that humans cannot eat helicopters. Helicopters are not food, they are flying machines. Food is meant to be eaten, like a hearty plate o' grog, a savory bowl o' stew, or a delicious loaf o' bread. But helicopters, they be for transportin' and movin' around, not for eatin'. So, I'd say none, me hearties. None at all."}
+```
+
+파이프라인은 토큰화 및 **apply_chat_template** 에 대한 모든 세부사항을 처리합니다. 모델의채팅 템플릿이 있으면 파이프라인을 초기화하고 message list를 전달하기만 하면 됩니다.
+
