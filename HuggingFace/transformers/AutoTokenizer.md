@@ -144,3 +144,76 @@ tokenizer = AutoTokenizer.from_pretrained("Upstage/SOLAR-10.7B-v1.0")
 > clean_up_tokenization_spaces -> bool, default by False
 - True로 설정하면 토큰화 과정에서 추가된 공백을 제거하여 더 정확한 문자열을 생성합니다.
 
+### apply_chat_template
+
+채팅 모델의 템플릿은 모델이 <font color="#ffff00">채팅 형식을 입력을 받을 때 어떻게 처리할지를 지정하는 것</font>입니다. 각 채팅 모델은 다양한 형식의 입력을 기대하기 때문에 템플릿은 그에 맞게 대화를 처리하는 방법을 정의합니다.
+
+예를 들어, FaceBook의 BlenderBot 모델의 경우 매우 간단한 기본 템플릿을 가지고 있습니다. 이 기본 템플릿은 주로 대화의 각 라운드 사이에 공백을 추가합니다. 따라서 대화를 모델이 처리할 수 있는 형식으로 변환합니다.
+
+```python
+from transformers import AutoTokenizer
+tokenizer = AutoTokenizer.from_pretrained("facebook/blenderbot-400M-distill")
+
+chat = [
+   {"role": "user", "content": "Hello, how are you?"},
+   {"role": "assistant", "content": "I'm doing great. How can I help you today?"},
+   {"role": "user", "content": "I'd like to show off how chat templating works!"},
+]
+
+tokenizer.apply_chat_template(chat, tokenize=False)
+```
+
+```
+" Hello, how are you?  I'm doing great. How can I help you today?   I'd like to show off how chat templating works!</s>"
+```
+
+문장에서 언급된 것처럼 전체 채팅이 하나의 문자열로 압축됩니다. 기본 설정인 `tokenize=True` 를 사용하면 이 문자열도 토큰화됩니다. 그러나 좀 더 복잡한 템플릿이 어떻게 작동하는지 보기위해 mistralai/Mistral-7B-Instruct-v0.1 모델을 사용해 보겠습니다.
+
+```python
+from transformers import AutoTokenizer
+tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
+
+chat = [
+  {"role": "user", "content": "Hello, how are you?"},
+  {"role": "assistant", "content": "I'm doing great. How can I help you today?"},
+  {"role": "user", "content": "I'd like to show off how chat templating works!"},
+]
+
+tokenizer.apply_chat_template(chat, tokenize=False)
+```
+
+```
+"<s>[INST] Hello, how are you? [/INST]I'm doing great. How can I help you today?</s> [INST] I'd like to show off how chat templating works! [/INST]"
+```
+
+위의 예제에서 보듯이, 채팅 템플릿을 사용하는 것은 매우 간단합니다. 단순히 역할(role) 과 내용(content) 키를 가진 메시지 목록을 작성한 다음 **apply_chat_template()** 메서드에 전달하면 됩니다. 그러면 출력을 얻게 됩니다.
+
+모델 생성에 채팅 템플릿을 입력으로 사용할때, generation prompt를 추가하기 위해 **add_generation_prompt = True** 를 사용하는 것도 좋은 아이디어입니다.
+
+아래 예제에서는 Zephyr 모델을 사용하여 **model.generate()** 에 대한 입력을 준비합니다.
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+checkpoint = "HuggingFaceH4/zephyr-7b-beta"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+model = AutoModelForCausalLM.from_pretrained(checkpoint)  # You may want to use bfloat16 and/or move to GPU here
+
+messages = [
+    {
+        "role": "system",
+        "content": "You are a friendly chatbot who always responds in the style of a pirate",
+    },
+    {"role": "user", "content": "How many helicopters can a human eat in one sitting?"},
+ ]
+tokenized_chat = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True, return_tensors="pt")
+print(tokenizer.decode(tokenized_chat[0]))
+```
+
+```
+<|system|>
+You are a friendly chatbot who always responds in the style of a pirate</s> 
+<|user|>
+How many helicopters can a human eat in one sitting?</s> 
+<|assistant|>
+```
