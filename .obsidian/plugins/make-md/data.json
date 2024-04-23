@@ -72,8 +72,11 @@
     "Detectron2/Detectron2/Config",
     "Spaces/Home//",
     "Pytorch/torch.backend/cuda",
-    "Spaces/Home///Frontend",
-    "Spaces/Home///Frontend/Frontend/React"
+    "Spaces/Home///Frontend/Frontend/React",
+    "Spaces/Home///Frontend/Frontend/React",
+    "Spaces/Home///HuggingFace",
+    "Spaces/Home///HuggingFace/HuggingFace/peft/HuggingFace/peft/Tutorial",
+    "Spaces/Home///HuggingFace/HuggingFace/transformers"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
