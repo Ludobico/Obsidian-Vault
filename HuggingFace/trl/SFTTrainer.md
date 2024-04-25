@@ -1,3 +1,7 @@
+- [[#difference between Trainer and SFTTrainer|difference between Trainer and SFTTrainer]]
+- [[#Optimizer.pt|Optimizer.pt]]
+
+
 [[HuggingFace🤗]] 의 <font color="#ffff00">SFTTrainer(Supervised Fine-Tuning Trainer)</font> 는 **대화형 언어 모델을 효과적으로 미세조정하기 위해 설계된 트레이너**입니다. 주요 특징은 다음과 같습니다.
 
 1. Contrastive Language Modeling : SFTTrainer는 전통적인 교사 강요 방식 대신 누적 교정 전략을 사용합니다. 이 전략에서는 모델 출력과 실제 레이블 간의 유사도를 최대화하도록 학습합니다. 이를 통해 모델이 보다 일관된 응답을 생성할 수 있습니다.
@@ -38,3 +42,16 @@
 
 - SFTTrainer : 대화형 모델 학습에 특화된 추가 하이퍼파라미터(`max_len`, `truncate_longer_inputs` 등을 제공합니다.)
 
+## Optimizer.pt
+---
+![[Pasted image 20240425160355.png]]
+
+SFTTrainer를 사용하여 LLM 모델을 학습할 때 <font color="#ffff00">optimizer.pt</font> 파일의 용량이 매우 커지는 현상은 SFTTrainer의 특성때문입니다.
+
+일반적인 [[Trainer]] 와 달리 SFTTrainer는 누적 교정(Contrastive Language modeling) 전략을 사용합니다. 이 전략에서는 모델의 출력과 실제 레이블 간의 유사도를 최대화하도록 학습하는데, 이를 위해 모델의 모든 출력 토큰에 대한 손실을 계산해야 합니다.
+
+손실 계산은 위해서는 모델의 모든 중간 활성화(intermediate activations) 를 메모리에 저장해야 하는데, 이 활성화 값들이 **optimizer.pt 파일에 누적되어 저장되기 때문에 파일 크기가 매우 커지게 됩니다.**
+
+반면 일반 Trainer는 교사 강요(Teacher forcing) 전략을 사용하므로, 각 단계마다 실제 레이블만 사용해 손실을 계산하면 되기 때문에 중간 활성화 값을 저장할 필요가 없습니다. 따라서 optimizer.pt 파일의 크기가 SFTTrainer에 비해 작습니다.
+
+이러한 SFTTrainer 의 특성으로 인해 대용량 LLM 모델을 학습할 때 optimizer.pt 파일의 크기가 수십 기가바이트에 이를 수 있습니다. 

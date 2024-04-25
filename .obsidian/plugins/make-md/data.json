@@ -73,7 +73,6 @@
     "Pytorch/torch.backend/cuda",
     "Spaces/Home///Frontend/Frontend/React",
     "Spaces/Home///Frontend/Frontend/React",
-    "Spaces/Home///HuggingFace/HuggingFace/peft/HuggingFace/peft/Tutorial",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/from",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/from",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/from",
@@ -89,9 +88,9 @@
     "//AI Concepts",
     "//AI Concepts/AI Concepts/NLP Concepts",
     "//AI Concepts/AI Concepts/NLP Concepts",
-    "Spaces/Home///HuggingFace",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/Methods",
-    "Spaces/Home///HuggingFace/HuggingFace/trl"
+    "Spaces/Home///HuggingFace",
+    "Spaces/Home///HuggingFace/HuggingFace/peft"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
