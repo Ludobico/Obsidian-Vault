@@ -86,11 +86,12 @@
     "Spaces/Home",
     "Spaces/Home///LangChain/LangChain/langchain_core",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts",
-    "Spaces/Home///HuggingFace/HuggingFace/transformers",
     "//AI Concepts",
     "//AI Concepts/AI Concepts/NLP Concepts",
     "//AI Concepts/AI Concepts/NLP Concepts",
-    "Spaces/Home///HuggingFace"
+    "Spaces/Home///HuggingFace",
+    "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/Methods",
+    "Spaces/Home///HuggingFace/HuggingFace/trl"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
