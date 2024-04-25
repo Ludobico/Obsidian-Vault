@@ -73,9 +73,35 @@ output_dir/runs/CURRENT_DATETIME_HOSTNAME
 - 기본값은 `False` 이며, 예측을 수행하지 않습니다.
 - 이 파라미터는 [[Trainer]] 에 직접적으로 사용되지 않고, 학습/평가 스크립트에서 사용됩니다.
 
-> save_safetensors -> bool, (optional), Default : True
-- 이 파라미터를 통해 모델의 상태를 저장하고 로드할 떄 기본적으로 제공되는 `torch.load` 및 `torch.save` 대신에 SafeTensors를 사용할지 여부를 설정할 수 있습니다.
+> save_strategy -> str or [[IntervalStrategy]], optional, Default : "steps"
+- 훈련 중 **체크포인트를 언제 저장할지 결정하는 전략** 입니다. 가능한 값으로는
+	-  "no" : 훈련 중에는 체크포인트를 저장하지 않습니다.
+	- "epoch" : 매 에포크의 끝에서 체크포인트를 저장합니다.
+	- "steps" : 지정된 스텝마다 체크포인트를 저장합니다.
+	
 
+> save_steps -> int or float, optional, Default : 500
+- `save_strategy` 가 "steps" 일 경우, 몇 번의 업데이트 스텝 후에 체크포인트를 저장할지 결정하는 값입니다. 정수 혹은 0과 1 사이의 부동소수점으로 설정할 수 있습니다. 1미만의 값은 전체 훈련스텝의 비율로 해석됩니다. 소숫점으로 할 시 아래와 같은 전략에 따라 체크포인트가 저장됩니다.
+```python
+save_stpes = 0.1, 전체 학습 steps : 100
+# 전체 학습 스텝이 100으로 가정할때 0.1*100=10 이므로 10 steps 마다 저장
+
+save_steps = 0.25, 전체 학습 steps : 1000
+# 전체 학습 스텝이 1000이므로 0.25*1000, 250 steps 마다 저장
+```
+
+> save_total_limit -> int, optional
+- 저장할 체크포인트의 최대개수를 제한합니다. 이 값이 설정되면, **오래된 체크포인트부터 삭제하 제한된 수의 최신 체크포인트만 유지**합니다. `load_best_model_at_end` 가 활성화되면, 최적의 모델 체크포인트와 가장 최근의 체크포인트들을 함께 보존합니다.
+
+> save_safetensors -> bool, (optional), Default : True
+- 이 파라미터를 통해 모델의 상태를 저장하고 로드할 떄 기본적으로 제공되는 [[Pytorch]]  의 `torch.load` 및 `torch.save` 대신에 SafeTensors를 사용할지 여부를 설정할 수 있습니다.
+
+> save_on_each_node -> bool, optional, Default : False
+- 멀티노드 분산 훈련을 할 때, 각 노드에 모델과 체크포인트를 저장할지, 아니면 main 노드에만 저장할지를 결정합니다. 모든 노드가 같은 스토리지를 사용할 경우, 파일명 충돌을 피하기 위해 이 옵션을 활성화하지 않는 것이 좋습니다.
+
+> save_only_model -> bool, optional, Default : False
+- 체크포인트 저장 시, 모델만 저장할지 아니면 옵티마이저, 스케줄러 및 난수 생성 상태도 함께 저장할지 결정합니다. 이 옵션이 `True` 일 경우, 저장 공간을 절약할 수 있지만 훈련을 제개할 수 없게 됩니다. 이 경우 모델은 [[from_pretrained]] 를 사용하여 로딩할 수만 있습니다.
+ 
 > use_cpu -> bool, (optional), Default : False
 - CPU 사용 여부를 결정하는 파라미터입니다.
 - 기본값은 `False` 이며, CUDA 또는 MPS 장치가 사용가능한 경우에는 해당 장치를 사용합니다.
@@ -122,4 +148,9 @@ output_dir/runs/CURRENT_DATETIME_HOSTNAME
 - 일반적으로 역전파 과정에서는 중간 계산 결과를 메모리에 저장하여 나중에 gradient를 계산하는데 사용됩니다. 그러나 gradient checkpointing을 사용하면 <font color="#ffff00">중간 계산 결과를 메모리에 저장하지 않고 필요할때마다 다시 계산하여 메모리 사용량을 줄일 수 있습니다</font>. 
 - bench mark 결과를 보면 **연산 시간이 25% 가량 증가한 대신 메모리 사용량이 60% 가량 줄었다는 내용이 있습니다.**
 ![[Pasted image 20240205112100.png]]
+
+> load_best_model_at_end -> bool, optional, Default : False
+- train이 종료된 후 **가장 좋은 성능을 보인 모델을 자동으로 로드할지 결정하는 설정**입니다.
+- 훈련 동안 모델의 성능이 검증 데이터셋에 대해 주기적으로 평가됩니다. 이 때 사용되는 매트릭은 일반적으로 설정에서 지정하거나 모델의 구성에 따라 자동으로 결정됩니다.
+- `save_total_limit` 설정과 연동되어, 저장된 체크포인트의 수가 제한된 경우 최적의 체크포인트는 항상 보존됩니다. 예를 들어, `save_total_limit` 가 5로 설정되어있고 `load_best_model_at_end` 가 활성화되어 있다면, 최적의 모델과 가장 최근에 4개의 체크포인트가 보존됩니다. 이는 저장 공간을 효율적으로 사용하면서도, 최적의 모델을 손실하지 않기 위함입니다.
 
