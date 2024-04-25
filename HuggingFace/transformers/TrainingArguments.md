@@ -20,6 +20,35 @@ TrainingArguments 는 [[HuggingFace🤗]] 의 [[transformers]] 라이브러리�
 > num_train_epochs -> float, (optional), Default : 3.0
 - 총 학습 에포크 수입니다. int 형식이 아닐 시, 학습이 종료되기 전 마지막 에포크의 소숫점 이하 백분율로 표시됩니다.
 
+> max_steps -> int, optional, Default : -1
+- 훈련을 진행할 최대 스탭 수를 정의합니다. 이 값이 양수로 설정되면, 지정된 스텝 수에 도달할 때지 데이터셋을 여러 번 반복하여 훈련합니다. `num_train_epochs` 설정을 덮어쓰기 때문에, 이 값ㅣ 설정되면 에포크 수 설정은 무시됩니다.
+
+> lr_scheduler_type -> str or [[SchedulerType]] , optional, Default : "linear"
+- 학습률 스케줄러의 유형을 결정합니다. 가능한 값은 [[SchedulerType]] 을 참조하십시오, "linear", "cosine", "constant" 등 여러 스케줄러 타입을 선택할 수 있습니다.
+
+> lr_scheduler_kwargs -> 'dict', optional, Default : {}
+- 학습률 스케줄러에 전달할 추가적인 인자들입니다. 각 스케줄러 타입에 따라 다른 인자들이 요구될 수 있습니다.
+
+> warmup_ratio -> float, optional, Default : 0.0
+- 전체 훈련 스텝 중 초기 학습률을 서서히 증가시키는데 사용되는 스텝의 비율을 설정합니다. 이는 학습 초기에 모델의 학습률을 점차 증가시키는 방법으로, 안정적인 학습이 가능하게 합니다.
+
+> warmup_steps -> int, optional, Default : 0
+- 학습 초기에 학습률을 서서히 증가시키는데 사용할 스텝 수를 명시합니다. `warmup_ratio` 의 를 덮어쓰므로, 이 값이 설정되면 `warmup_ratio` 는 무시됩니다.
+
+> log_level -> str, optional, Default : passive
+- 메인 프로세스에 사용할 로깅레벨을 설정합니다. 가능한 선택지는
+```
+'debug', 'info', 'warning', 'error', 'critical', 'passive'
+```
+입니다. 'passive'가 설정되면 [[transformers]] 라이브러리의 기본 로깅 레벨("warning")을 유지합니다.
+
+> logging_dir -> str, optional
+- TensorBoard 로그를 저장할 디렉토리 경로입니다. 설정되지 않은 경우
+```
+output_dir/runs/CURRENT_DATETIME_HOSTNAME
+```
+형태로 기본 경로가 설정됩니다.
+
 > weight_decay -> float, (optional), Default : 0
 - 0이 아닐 시, 바이어스와 [[AdamW]] 옵티마이저에 사용되는 LayerNorm 에 사용되는 가중치를 제외한 모든 레이어에 weight decay를 적용합니다.
 

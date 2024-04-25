@@ -127,13 +127,6 @@ example_prompt = PromptTemplate(
 print(example_prompt.format(**examples[0]))
 ```
 
-```python
-example_prompt = PromptTemplate(
-    input_variables=["question", "answer"], template="Question: {question}\n{answer}"
-)
-
-print(example_prompt.format(**examples[0]))
-```
 
 ```python
 prompt = FewShotPromptTemplate(

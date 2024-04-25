@@ -79,7 +79,6 @@
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/from",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/from",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/from",
-    "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/Methods",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/from",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/Methods/HuggingFace/transformers/Methods/PretrainedConfig",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/Methods/HuggingFace/transformers/Methods/PretrainedConfig",
@@ -91,8 +90,7 @@
     "//AI Concepts",
     "//AI Concepts/AI Concepts/NLP Concepts",
     "//AI Concepts/AI Concepts/NLP Concepts",
-    "Spaces/Home///AI Concepts",
-    "Spaces/Home///AI Concepts/AI Concepts/NLP Concepts"
+    "Spaces/Home///HuggingFace"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
