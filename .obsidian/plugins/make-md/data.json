@@ -89,8 +89,10 @@
     "//AI Concepts/AI Concepts/NLP Concepts",
     "//AI Concepts/AI Concepts/NLP Concepts",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/Methods",
-    "Spaces/Home///AI Concepts",
-    "Spaces/Home///AI Concepts/AI Concepts/Math"
+    "Spaces/Home///Reinforcement Learning",
+    "Spaces/Home///Reinforcement Learning/Reinforcement Learning/Algorithm",
+    "Spaces/Home///HuggingFace",
+    "Spaces/Home///HuggingFace/HuggingFace/trl"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
