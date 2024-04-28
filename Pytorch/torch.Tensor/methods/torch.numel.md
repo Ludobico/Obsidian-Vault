@@ -3,7 +3,7 @@
 torch.numel(input) → int
 ```
 
-`torch.numel()` 함수는 [[torch.Tensor]] 의 <font color="#ffff00">요소 수(크기)를 반환하는 함수</font>입니다. **numel** 은 **number of elements** 의 줄임말로, 텐서의 모든 요소 수를 나타냅니다.
+`torch.numel()` 함수는 [[Pytorch/torch.Tensor/torch.Tensor]] 의 <font color="#ffff00">요소 수(크기)를 반환하는 함수</font>입니다. **numel** 은 **number of elements** 의 줄임말로, 텐서의 모든 요소 수를 나타냅니다.
 
 예를 들어, (2,3) 크기의 텐서를 생각해 봅시다. 이 텐서는 총 $2 * 3 = 6$ 개의 요소를 가지고 있습니다. 따라서 `torch.numel()` 함수를 이 텐서에 적용하면 6이 반환됩니다.
 

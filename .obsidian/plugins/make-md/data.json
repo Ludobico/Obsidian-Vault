@@ -90,7 +90,8 @@
     "//Pytorch/Pytorch/torch.Tensor",
     "Spaces/Home//",
     "Spaces/Home///Pytorch",
-    "Spaces/Home///Pytorch/Pytorch/torch.Tensor"
+    "Spaces/Home///Pytorch/Pytorch/torch.Tensor",
+    "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/Tensors"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",

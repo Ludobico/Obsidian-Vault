@@ -31,7 +31,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 - 모델의 구성을 지정합니다. **구성은 자동으로 로드되지만 사용자가 직접 지정할 수도 있습니다.** 모델이 라이브러리에 의해 지정되거나 [[save_pretrained]] 를 통해 저장된 경우 구성이 자동으로 로드됩니다.
 
-> state_dict -> Dict[str, [[torch.Tensor]] ] , optional
+> state_dict -> Dict[str, [[Pytorch/torch.Tensor/torch.Tensor]] ] , optional
 
 - 사전 훈련된 모델의 가중치 대신 사용할 state_dict를 지정합니다. 이 옵션은 사전 훈련된 구성으로 모델을 생성하되 **사용자 자신이 가중치를 로드하고자 할 때 유용**합니다.
 

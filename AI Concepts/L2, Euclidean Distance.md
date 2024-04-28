@@ -22,7 +22,7 @@ L2 Distance : 5.196152210235596
 
 계산식으로는 다음과 같이 진행됩니다.
 
-먼저 [[torch.Tensor]] 로 만들어진 각 텐서의 절댓값 차이를 계산합니다.
+먼저 [[Pytorch/torch.Tensor/torch.Tensor]] 로 만들어진 각 텐서의 절댓값 차이를 계산합니다.
 $$\left\vert [1,2,3] - [4,5,6] \right\vert$$
 
 각 차이로 계산된 텐서를 제곱합니다.

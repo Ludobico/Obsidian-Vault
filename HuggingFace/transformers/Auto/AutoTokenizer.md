@@ -129,7 +129,7 @@ tokenizer = AutoTokenizer.from_pretrained("Upstage/SOLAR-10.7B-v1.0")
 - True로 설정하면 반환된 시퀀스가 모델의 최대 길이까지 [[padding]] 됩니다.
 
 > return_tensors -> str, optional
-- '<font color="#ffff00">tf' </font>또는 <font color="#ffff00">'pt'</font> 로 설정하여 TensorFlowtf.constant 또는 [[Pytorch]] 의 [[torch.Tensor]] 를 반환합니다.
+- '<font color="#ffff00">tf' </font>또는 <font color="#ffff00">'pt'</font> 로 설정하여 TensorFlowtf.constant 또는 [[Pytorch]] 의 [[Pytorch/torch.Tensor/torch.Tensor]] 를 반환합니다.
 
 ### decode
 
