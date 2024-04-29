@@ -82,15 +82,15 @@
     "Spaces/Home",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/Methods",
     "Spaces/Home///Reinforcement Learning/Reinforcement Learning/Algorithm",
-    "Spaces/Home///HuggingFace/HuggingFace/trl",
     "//Pytorch",
     "//Pytorch/Pytorch/torch.Tensor",
     "//Pytorch/Pytorch/torch.Tensor",
     "Spaces/Home//",
-    "Spaces/Home///LangChain",
     "Spaces/Home///LangChain/LangChain/langchain_core",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts",
-    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/prompt"
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/few_shot",
+    "Spaces/Home///HuggingFace",
+    "Spaces/Home///HuggingFace/HuggingFace/transformers"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
