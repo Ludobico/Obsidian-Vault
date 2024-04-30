@@ -81,3 +81,30 @@ chain.invoke({"user_input": "태양계에서 가장 큰 행성은 무엇인가�
 태양계에서 가장 큰 행성은 목성입니다. 목성은 태양 주위를 도는 행성 중에서 가장 크고 질량도 가장 많이 가지고 있습니다.
 ```
 
+```python
+  def prompt_chat_template():
+    chat_prompt = ChatPromptTemplate.from_messages([
+      SystemMessagePromptTemplate.from_template("이 시스템은 주어진 질문에 답변할 수 있습니다."),
+      HumanMessagePromptTemplate.from_template("{user_input}, {test_input}")
+    ])
+    return chat_prompt
+```
+
+```python
+    prompt = GemmaWithLangchain.prompt_chat_template()
+	question = "태양계에서 가장 큰 행성은 무엇인가요?"
+    chains = LLMChain(llm=langchain_pipeline, prompt=prompt, verbose=True, output_parser=StrOutputParser())
+    print(chains.invoke({"user_input" : question, "test_input" : "이 문장은 테스트문장입니다."}))
+
+```
+
+```
+# verbose
+Prompt after formatting:
+System: 이 시스템은 주어진 질문에 답변할 수 있습니다.
+Human: 태양계에서 가장 큰 행성은 무엇인가요?, 이 문장은 테스트문장입니다.
+
+# result
+{'user_input': '태양계에서 가장 큰 행성은 무엇인가요?', 'test_input': '이 문장은 테스트문장입니다.', 'text': 'System: 이 시스템은 주어진 질문에 답변할 수 있습니다.\nHuman: 태양계에서 가장 큰 행성은 무엇인가요?, 이 문장은 테스트문장입니다.'}
+```
+
