@@ -89,8 +89,7 @@
     "Spaces/Home///LangChain/LangChain/langchain_core",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/few_shot",
-    "Spaces/Home///HuggingFace",
-    "Spaces/Home///HuggingFace/HuggingFace/transformers"
+    "Spaces/Home///LangChain"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
