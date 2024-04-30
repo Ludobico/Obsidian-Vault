@@ -87,8 +87,6 @@
     "//Pytorch/Pytorch/torch.Tensor",
     "Spaces/Home//",
     "Spaces/Home///LangChain/LangChain/langchain_core",
-    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts",
-    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/few_shot",
     "Spaces/Home///LangChain"
   ],
   "expandFolderOnClick": true,

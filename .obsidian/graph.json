@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "",
+  "search": "langchai",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -17,6 +17,6 @@
   "repelStrength": 13.4602076124567,
   "linkStrength": 0.714532871972318,
   "linkDistance": 257,
-  "scale": 4.81921068591916,
+  "scale": 1.0534979423868278,
   "close": false
 }
