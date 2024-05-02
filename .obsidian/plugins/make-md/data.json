@@ -86,10 +86,8 @@
     "//Pytorch/Pytorch/torch.Tensor",
     "//Pytorch/Pytorch/torch.Tensor",
     "Spaces/Home//",
-    "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/langchain_community",
-    "Spaces/Home///LangChain/LangChain/langchain_community/LangChain/langchain_community/llms",
-    "Spaces/Home///LangChain/LangChain/langchain_community/LangChain/langchain_community/llms/LangChain/langchain_community/llms/huggingface_pipeline"
+    "Spaces/Home///HuggingFace",
+    "Spaces/Home///HuggingFace/HuggingFace/transformers"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",

@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "langchai",
+  "search": "",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -10,13 +10,13 @@
   "collapse-display": false,
   "showArrow": false,
   "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1.02404844290657,
-  "lineSizeMultiplier": 1.93961937716263,
+  "nodeSizeMultiplier": 1,
+  "lineSizeMultiplier": 1,
   "collapse-forces": false,
-  "centerStrength": 0.434256055363322,
-  "repelStrength": 13.4602076124567,
-  "linkStrength": 0.714532871972318,
-  "linkDistance": 257,
-  "scale": 1.0534979423868278,
+  "centerStrength": 0.518713248970312,
+  "repelStrength": 10,
+  "linkStrength": 1,
+  "linkDistance": 250,
+  "scale": 0.382301096876995,
   "close": false
 }
