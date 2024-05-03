@@ -86,8 +86,10 @@
     "//Pytorch/Pytorch/torch.Tensor",
     "//Pytorch/Pytorch/torch.Tensor",
     "Spaces/Home//",
-    "Spaces/Home///HuggingFace",
-    "Spaces/Home///HuggingFace/HuggingFace/transformers"
+    "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/PreTrained",
+    "Spaces/Home///Pytorch",
+    "Spaces/Home///Pytorch/Pytorch/torch.Tensor",
+    "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/Operations"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
