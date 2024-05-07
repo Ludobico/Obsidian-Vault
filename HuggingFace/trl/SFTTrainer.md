@@ -55,3 +55,27 @@ SFTTrainer를 사용하여 LLM 모델을 학습할 때 <font color="#ffff00">opt
 반면 일반 Trainer는 교사 강요(Teacher forcing) 전략을 사용하므로, 각 단계마다 실제 레이블만 사용해 손실을 계산하면 되기 때문에 중간 활성화 값을 저장할 필요가 없습니다. 따라서 optimizer.pt 파일의 크기가 SFTTrainer에 비해 작습니다.
 
 이러한 SFTTrainer 의 특성으로 인해 대용량 LLM 모델을 학습할 때 optimizer.pt 파일의 크기가 수십 기가바이트에 이를 수 있습니다. 
+
+## Parameters
+---
+SFTTrainer의 파라미터로는 다음과 같습니다.
+
+> model -> Union\[transformers.PretrainedModel, nn.Module, str\]
+- 트레이닝에 사용될 모델을 지정합니다. 이 모델은 [[transformers]].PretrainedModel, [[torch.nn.Module]] 이거나 모델의 이름을 나타내는 문자열중 하나입니다. 문자열을 사용할 경우, 해당 모델은 캐시에서 로드되거나 다운로드 됩니다. 또한 PeftConfig 객체가 `peft_config` 인자로 전달되면, 모델은 [[PeftModel]] 로 변환됩니다.
+
+> args -> [[TrainingArguments]] , optional
+- 학습 중에 조정할 수 있는 다양한 학습 매개변수를 설정하는데 사용됩니다. [[TrainingArguments]] 는 학습 시간, 배치 크기, 학습률 등을 포함한 다양한 설정을 제공합니다.
+
+> data_collator -> [[DataCollator]] , optional 
+- 데이터 콜레이터는 학습 데이터 배치를 자동으로 생성하는 데 사용됩니다. 예를 들어, 토크나이징 후 패딩 처리를 자동화하는 등의 작업을 처리할 수 있습니다.
+
+> train_dataset -> [[datasets]], optional
+- 학습에 사용될 데이터셋을 지정합니다. 이 외에도 [[trl]] 의 `ConstantLengthDataset` 을 사용하여 데터셋을 생성하는 것이 권장됩니다.
+
+> eval_dataset -> optional, Union, [[datasets]] , Dict[str, datasets]
+- 평가에 사용될 데이터셋입니다. 평가 시 여러 데이터셋을 사용할 경우 딕셔너리 형태로 제공할 수 있으며, 각 키에 해당하는 데이터셋이 평가에 사용됩니다. 여기서도 `train_dataset` 과 같이 [[trl]] 의 `constantLengthDataset` 을 권장합니다.
+
+> tokenizer -> [[PreTrainedTokenizer]] , optional
+- 텍스트 데이터를 모델이 처리할 수 있는 형태로 변환하는 데 사용되는 토크나이저입니다. 지정하않을 경우 **모델과 연관된 기본 토크나이저가 사용됩니다.**
+
+> 
