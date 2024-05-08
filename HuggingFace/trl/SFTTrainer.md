@@ -105,4 +105,33 @@ SFTTrainer의 파라미터로는 다음과 같습니다.
 > max_seq_length -> int, optional, Default : 512
 - `ConstantLengthDataset` 및 데이터셋 생성에 사용될 최대 시퀀스 길이입니다. 기본값은 512입니다.
 
+> infinite -> bool, optional
+- 데이터셋을 무한 반복할지 여부를 지정합니다. 기본값은 `False` 입니다.
+
+> num_of_sequences -> int, optional
+- `ConstantLengthDataset` 에 사용될 스퀀스의 수입니다. 기본값은 `1024` 입니다.
+
+> chars_per_token -> float, optional
+- 토큰 당 사용할 문자 수입니다. 이 값은 데이터셋의 효율적인 구성을 돕습니다. 기본값은 `3.6` 입ㅣ다.
+
+> packing -> bool, optional
+- 시퀀스를 패킹할지 여부를 지정합니다. 이는 주로 `dataset_text_filed` 가 지정되었을 때 사용합ㅣ다.
+
+> dataset_num_proc -> int, optional
+- 데이터 토크나이징에 사용될 [[worker]]의 수입니다. `packing=False` 인 경우에만 사용됩니다. 기본값은 `None` 입니다.
+
+> dataset_batch_size -> int
+- 한 번에 토크나이즈할 배치 사이즈입니다. 이 값이 0이하거나 `None` 일 경우, 전체 데이터셋을 단일 배치로 처리합니다. 기본값은 1000입니다.
+
+> neftune_noise_alpha -> float, optional
+- NEFTune 노이즈 임베딩을 활성화할지 여부입니다. 이 설정은 SFTtraining의 지시적 미세조정에있어 모델 성능을 크게 향상시킬 수 있습니다.
+
+> model_init_kwargs -> dict, optional
+- 모델 초기화의 추가적인 맥변수를 제공합니다.
+
+> dataset_kwargs -> dict, optional
+- 데이터셋 생성에 추가적인 매개변수를 제공합니다.
+
+> eval_packing -> bool, optional
+- 평가 데이터셋 패킹에 추가적인 매개변수를 제공합니다.
 
