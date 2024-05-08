@@ -78,4 +78,31 @@ SFTTrainer의 파라미터로는 다음과 같습니다.
 > tokenizer -> [[PreTrainedTokenizer]] , optional
 - 텍스트 데이터를 모델이 처리할 수 있는 형태로 변환하는 데 사용되는 토크나이저입니다. 지정하않을 경우 **모델과 연관된 기본 토크나이저가 사용됩니다.**
 
-> 
+> model_list -> Callable, PreTrainedModel
+- 모델을 초기화하는 함수입니다. 이 함수는 아무런 인자 없이 호출되며, 새로운 `transformers.PreTrainedModel` 인스턴스를 반환해야 합니다. 이는 특히 교차 검증과 같이 여러번의 학습이 필요할 때 유용합니다.
+
+> compute_metrics -> Callable, transformers.EvalPrediction, Dict, optional
+- 평가 중에 메트릭을 계산하는 함수입니다. 이 함수는 `transformers.EvalPrediction` 을 입력으로 받고, 메트릭 이름과 그 값을 매핑한 딕셔너리를 반환해야 합니다.
+
+> callbacks -> List, transformers.TrainerCallback
+- 학습 과정에서 호출될 콜백 함수들의 리스트입니다.
+
+> optimizers -> Tuple (torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR)
+- 이 튜플은 학습에 사용될 옵티마이저와 학습률 스케줄러를 지정합니다. 옵티마이저는 모델의 파라미터를 업데이트하는 데 사용되며, 스케줄러는 학습 동안 학습률을 조정하는 데 사용됩니다.
+
+> preprocess_logits_for_metrics -> Callable, [[Pytorch/torch.Tensor/torch.Tensor|torch.Tensor]] 
+- 매트릭을 계산하기 전에 로짓(모델 출력의 원시 값)을 전처리하는 함수입니다. 이 함수는 로짓과 레이블을 입력으로 받아 처리된 로짓을 반환합니다.
+
+> peft_config -> PeftConfig, optional
+- [[PeftModel]] 을 초기화하는 데 사용되는 `PeftConfig` 객체입니다. 이 설정을 통해 모델의 특정 성능 특성을 조정할 수 있습니다.
+
+> dataset_text_filed -> str, optional
+- 데이터셋의 텍스트 필드 이름입니다. 이 필드는 `ConstantLengthDataset` 을 **자동으로 생성할 때 사용**됩니다.
+
+> formatting_func -> Callable, optional
+- `ConstantLengthDataset` 생성 시 사용할 포맷팅 함수입니다. 이 함수는 **데이터셋의 항목을 적절한 형태로 변환**하는 데 사용됩니다.
+
+> max_seq_length -> int, optional, Default : 512
+- `ConstantLengthDataset` 및 데이터셋 생성에 사용될 최대 시퀀스 길이입니다. 기본값은 512입니다.
+
+
