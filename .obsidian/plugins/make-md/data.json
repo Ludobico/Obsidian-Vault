@@ -89,7 +89,11 @@
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/PreTrained",
     "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/Operations",
     "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/Tensors",
-    "Spaces/Home///HuggingFace"
+    "Spaces/Home///LangChain/LangChain/langchain_core",
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts",
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/chat",
+    "Spaces/Home///AI Concepts",
+    "Spaces/Home///AI Concepts/AI Concepts/NLP Concepts"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",

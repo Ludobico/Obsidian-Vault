@@ -1,5 +1,7 @@
 - [[#difference between Trainer and SFTTrainer|difference between Trainer and SFTTrainer]]
 - [[#Optimizer.pt|Optimizer.pt]]
+- [[#Parameters|Parameters]]
+
 
 
 [[HuggingFace🤗]] 의 <font color="#ffff00">SFTTrainer(Supervised Fine-Tuning Trainer)</font> 는 **대화형 언어 모델을 효과적으로 미세조정하기 위해 설계된 트레이너**입니다. 주요 특징은 다음과 같습니다.
