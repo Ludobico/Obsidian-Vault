@@ -89,12 +89,14 @@
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/PreTrained",
     "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/Operations",
     "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/Tensors",
-    "Spaces/Home///LangChain/LangChain/langchain_core",
-    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/chat",
+    "Spaces/Home///AI Concepts/AI Concepts/NLP Concepts/AI Concepts/NLP Concepts/Upstage",
+    "Spaces/Home///LangChain/LangChain/langchain_community",
+    "Spaces/Home///LangChain/LangChain/langchain_community",
+    "Spaces/Home///LangChain/LangChain/langchain",
+    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/text_splitter",
     "Spaces/Home///AI Concepts",
-    "Spaces/Home///AI Concepts/AI Concepts/NLP Concepts",
-    "Spaces/Home///AI Concepts/AI Concepts/NLP Concepts/AI Concepts/NLP Concepts/Upstage"
+    "Spaces/Home///AI Concepts/AI Concepts/NLP Concepts"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
