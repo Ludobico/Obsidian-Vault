@@ -1,3 +1,6 @@
+---
+Created: 2024-02-07
+---
 typing은 다양한 타입 어노테이션을 위해 사용하는 모듈입니다. 이 모듈은 [[Python]] 3.5 버전 이상부터 사용할 수 있습니다.
 
 - [[#Simple example (List)|Simple example (List)]]

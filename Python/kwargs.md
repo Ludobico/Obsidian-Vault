@@ -1,3 +1,6 @@
+---
+Created: 2024-03-15
+---
 
 <font color="#00b050">**kwargs</font> 는 [[Python]] 함수의 인자로 사용되는 특별한 형태의 매개변수입니다. kwargs는 **keyword arguments** 의 약자입니다.
 
