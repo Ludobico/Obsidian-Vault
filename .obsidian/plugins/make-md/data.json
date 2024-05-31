@@ -71,8 +71,6 @@
     "Detectron2/Detectron2/Models/Detectron2/Models/Config",
     "Detectron2/Detectron2/Config",
     "Pytorch/torch.backend/cuda",
-    "Spaces/Home///Frontend/Frontend/React",
-    "Spaces/Home///Frontend/Frontend/React",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/from",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/from",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/from",
@@ -96,10 +94,11 @@
     "Spaces/Home///AI Concepts/AI Concepts/NLP Concepts/AI Concepts/NLP Concepts/Upstage",
     "Spaces/Home///AI Concepts/AI Concepts/NLP Concepts",
     "Spaces/Home///Pytorch/Pytorch/torch.nn",
-    "Spaces/Home///LangChain",
     "Spaces/Home///LangChain/LangChain/langchain",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory",
-    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory/LangChain/langchain/memory/buffer"
+    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory/LangChain/langchain/memory/buffer",
+    "Spaces/Home///Frontend",
+    "Spaces/Home///Frontend/Frontend/gsap"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
