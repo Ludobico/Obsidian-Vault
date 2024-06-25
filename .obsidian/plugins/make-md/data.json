@@ -93,12 +93,11 @@
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/chat",
     "Spaces/Home///AI Concepts/AI Concepts/NLP Concepts/AI Concepts/NLP Concepts/Upstage",
     "Spaces/Home///AI Concepts/AI Concepts/NLP Concepts",
-    "Spaces/Home///Pytorch/Pytorch/torch.nn",
     "Spaces/Home///LangChain/LangChain/langchain",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory/LangChain/langchain/memory/buffer",
-    "Spaces/Home///Frontend",
-    "Spaces/Home///Frontend/Frontend/gsap"
+    "Spaces/Home///Frontend/Frontend/gsap",
+    "Spaces/Home///Pytorch"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
