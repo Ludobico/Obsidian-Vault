@@ -51,3 +51,36 @@ plt.show()
 
 ![[Pasted image 20240708110514.png]]
 
+## Difference between erf and tanh
+
+```python
+import torch
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = torch.linspace(-3, 3, 100)
+erf_y = torch.erf(x)
+tanh_y = torch.tanh(x)
+
+plt.plot(x.numpy(), erf_y.numpy(), label="erf(x)")
+plt.plot(x.numpy(), tanh_y.numpy(), label="tanh(x)")
+plt.title("Error Function (erf) vs Hyperbolic Tangent Function (tanh)")
+plt.xlabel("x")
+plt.ylabel("Output")
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+![[Pasted image 20240708112236.png]]
+
+- erf는 적분 형태로 정의되며, 정규 분포와 관련된 확률 계산에 사용됩니다.
+- tanh는 지수 함수로 정의되며, 신경망의 [[Activation]] 으로 사용됩니다.
+---
+- erf의 기울기는 중간 구간에서 점진적으로 변화합니다.
+- tanh의 기울기는 중간 구간에서 더 급격하게 변화하며, 이는 시그모이드 함수와 유사하지만 출력 범위가 -1에서 1로 확장된 것입니다.
+
+---
+- erf는 통계적 계산, 정규 분포의 누적 분포 함수(CDF) 계산 등에 사용됩니다.
+- tanh는 신경망의 활성화 함수로 사용되어 뉴런의 출력을 -1에서 1 사이로 제한됩니다.
+
