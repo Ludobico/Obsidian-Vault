@@ -1,5 +1,5 @@
 
-`torch.erf` 는 [[Pytorch]] 에서 제공하는 함수로, 주어진 입력 텐서의 각 요소에 대해 **오차 함수(error function)를 계산**합니다. 오차 함수는 다음과 같이 정의됩니다.
+`torch.erf` 는 [[Pytorch]] 에서 제공하는 함수로, 주어진 입력 텐서의 각 요소에 대해 [[Error function]]을 계산합니다. 오류 함수는 다음과 같이 정의됩니다.
 
 $$
 erf(x) = \frac{2}{\sqrt{\pi}}
