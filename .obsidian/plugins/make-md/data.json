@@ -66,7 +66,6 @@
     "Spaces/Home///Spaces/Spaces/Home",
     "Spaces/Home//////",
     "Spaces/Home////////",
-    "Spaces/Home///Python/Python/Decorator",
     "Detectron2/Detectron2/Models/Detectron2/Models/Config",
     "Detectron2/Detectron2/Config",
     "Pytorch/torch.backend/cuda",
@@ -92,9 +91,8 @@
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory/LangChain/langchain/memory/buffer",
     "Spaces/Home///Frontend/Frontend/gsap",
-    "Spaces/Home///Pytorch",
     "Spaces/Home///Pytorch/Pytorch/torch.Tensor",
-    "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/methods"
+    "Spaces/Home///Python"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
