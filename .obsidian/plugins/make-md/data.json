@@ -91,9 +91,9 @@
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory/LangChain/langchain/memory/buffer",
     "Spaces/Home///Frontend/Frontend/gsap",
-    "Spaces/Home///Pytorch",
     "Spaces/Home///Pytorch/Pytorch/torch.nn",
-    "Spaces/Home///Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Normalization Layers"
+    "Spaces/Home///Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Normalization Layers",
+    "Spaces/Home///AI Concepts"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
