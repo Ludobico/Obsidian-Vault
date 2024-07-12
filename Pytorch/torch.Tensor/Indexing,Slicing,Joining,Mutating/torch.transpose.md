@@ -55,3 +55,31 @@ tensor([[1, 4],
         [3, 6]])
 ```
 
+```python
+import torch
+
+N = 2
+query_lens = 4
+key_lens = 4
+heads = 8
+head_dim = 3
+
+query = torch.randn(N, query_lens, heads, head_dim)
+key = torch.randn(N, key_lens, heads, head_dim)
+
+print(query.shape)
+print(key.shape)
+
+transposed_query = torch.transpose(query, -1, -2)
+print(transposed_query.shape)
+
+output = transposed_query @ key
+print(output.shape)
+```
+
+```
+torch.Size([2, 4, 8, 3])
+torch.Size([2, 4, 8, 3])
+torch.Size([2, 4, 3, 8])
+torch.Size([2, 4, 3, 3])
+```

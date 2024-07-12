@@ -93,7 +93,7 @@
     "Spaces/Home///Frontend/Frontend/gsap",
     "Spaces/Home///Pytorch",
     "Spaces/Home///Pytorch/Pytorch/torch.Tensor",
-    "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/Indexing,Slicing,Joining,Mutating"
+    "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/methods"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
