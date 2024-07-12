@@ -92,8 +92,8 @@
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory/LangChain/langchain/memory/buffer",
     "Spaces/Home///Frontend/Frontend/gsap",
     "Spaces/Home///Pytorch",
-    "Spaces/Home///Pytorch/Pytorch/torch.Tensor",
-    "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/methods"
+    "Spaces/Home///Pytorch/Pytorch/torch.nn",
+    "Spaces/Home///Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Normalization Layers"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
