@@ -63,7 +63,7 @@ SFTTrainer를 사용하여 LLM 모델을 학습할 때 <font color="#ffff00">opt
 SFTTrainer의 파라미터로는 다음과 같습니다.
 
 > model -> Union\[transformers.PretrainedModel, nn.Module, str\]
-- 트레이닝에 사용될 모델을 지정합니다. 이 모델은 [[transformers]].PretrainedModel, [[torch.nn.Module]] 이거나 모델의 이름을 나타내는 문자열중 하나입니다. 문자열을 사용할 경우, 해당 모델은 캐시에서 로드되거나 다운로드 됩니다. 또한 PeftConfig 객체가 `peft_config` 인자로 전달되면, 모델은 [[PeftModel]] 로 변환됩니다.
+- 트레이닝에 사용될 모델을 지정합니다. 이 모델은 [[transformers]].PretrainedModel, [[nn.Module]] 이거나 모델의 이름을 나타내는 문자열중 하나입니다. 문자열을 사용할 경우, 해당 모델은 캐시에서 로드되거나 다운로드 됩니다. 또한 PeftConfig 객체가 `peft_config` 인자로 전달되면, 모델은 [[PeftModel]] 로 변환됩니다.
 
 > args -> [[TrainingArguments]] , optional
 - 학습 중에 조정할 수 있는 다양한 학습 매개변수를 설정하는데 사용됩니다. [[TrainingArguments]] 는 학습 시간, 배치 크기, 학습률 등을 포함한 다양한 설정을 제공합니다.

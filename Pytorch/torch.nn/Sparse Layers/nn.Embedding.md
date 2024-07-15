@@ -1,3 +1,7 @@
+- [[#<font color="#ffc000">임베딩 층은 룩업 테이블이다.</font>|<font color="#ffc000">임베딩 층은 룩업 테이블이다.</font>]]
+- [[#<font color="#ffc000">use Embedding Layer</font>|<font color="#ffc000">use Embedding Layer</font>]]
+
+
 ```python
 torch.nn.Embedding(num_embeddings, embedding_dim, padding_idx=None, max_norm=None, norm_type=2.0, scale_grad_by_freq=False, sparse=False, _weight=None, _freeze=False, device=None, dtype=None)
 ```
@@ -25,7 +29,7 @@ torch.nn.Embedding(num_embeddings, embedding_dim, padding_idx=None, max_norm=Non
 > sparse -> bool, optional
 - True로 설정할 경우, 가중치 행렬에 대한 gradient가 희소 텐서로 반환됩니다. 이는 메모리 효율성을 높일 수 있습니다.
 
-## <font color="#ffc000">임베딩 층은 룩업 테이블이다.</font>
+## The Embedding layer is lookup table
 ---
 임베딩 층의 입력으로 사용하기 위해서<font color="#ffff00"> 입력 시퀀스의 각 단어들은 모두 정수 인코딩</font>이 되어있어야 합니다.
 
@@ -140,7 +144,7 @@ tensor([[0.0000, 0.0000, 0.0000],
         [0.1000, 0.8000, 0.9000]])
 ```
 
-## <font color="#ffc000">use Embedding Layer</font>
+## use Embedding Layer
 ---
 이제 `nn.Embedding()`으로 사용할 경우를 봅시다. 우선 전처리는 동일한 과정을 거칩니다.
 

@@ -4,7 +4,7 @@ named_parameters(prefix='', recurse=True, remove_duplicate=True)
 
 `named_parameters()` 메서드는 [[Pytorch]] 모델의 <font color="#ffff00">모든 파라미터를 이름과 함께 반환하는 메서드</font>입니다. 이 메서드는 모델의 각 레이어와 해당 레이어에 속한 파라미터의 이름과 값을 쌍으로 제공합니다.
 
-일반적으로 pytorch 모델은 [[torch.nn.Module]] 클래스를 상속하여 정의됩니다.
+일반적으로 pytorch 모델은 [[nn.Module]] 클래스를 상속하여 정의됩니다.
 `named_parameters()` 메서드는 이 클래스에서 제공하는 메서드 중 하나이며, 모델 객체를 호출하여 사용할 수 있습니다.
 
 ```python

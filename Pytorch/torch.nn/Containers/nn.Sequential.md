@@ -41,7 +41,7 @@ output = model(input_data)
 
 `Sequential` 을 사용하면 신경망의 계층을 더 간편하게 구성할 수 있으며, 복잡한 모델을 간결하게 표현할 수 있습니다.
 
-[[torch.nn.ModuleList]] 와의 주요 차이점은 `torch.nn.Sequential` 은 <font color="#ffff00">모듈을 순차적으로 연결</font>하는 반면 `ModuleList` 는 모듈을 순차적으로 연결하지 않고 List 형태로 저장한다는 것입니다.
+[[nn.ModuleList]] 와의 주요 차이점은 `torch.nn.Sequential` 은 <font color="#ffff00">모듈을 순차적으로 연결</font>하는 반면 `ModuleList` 는 모듈을 순차적으로 연결하지 않고 List 형태로 저장한다는 것입니다.
 
 또한, Sequential 객체는 그 안에 포함된 각 모듈을 순차적으로 실행해 주는데 다음과 같이 코드를 작성할 수 있습니다.
 

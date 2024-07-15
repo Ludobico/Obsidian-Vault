@@ -47,3 +47,35 @@ result = torch.cat((tensor1, tensor2), dim=0)
 RuntimeError: Tensors must have same number of dimensions: got 2 and 3
 ```
 
+`torch.cat()` 을 사용할때, **지정된 차원을 제외한 다른 차원의 크기는 동일**해야 작동합니다.
+
+```python
+t1 = torch.randn(2,3,1,2,3)
+t2 = torch.randn(2,25,1,2,3)
+
+tc = torch.cat((t1, t2), dim=1)
+
+print(tc.shape)
+```
+
+```
+torch.Size([2, 28, 1, 2, 3])
+```
+
+```python
+import torch
+import torch.nn as nn
+
+
+t1 = torch.randn(2,3,1,2,3)
+t2 = torch.randn(2,25,1,4,3)
+
+tc = torch.cat((t1, t2), dim=1)
+
+print(tc.shape)
+```
+
+```
+RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 2 but got size 4 for tensor number 1 in the list.
+```
+

@@ -1,4 +1,4 @@
-`torch.nn.ConvTranspose1d` 는 [[torch.nn.Conv1d]] 의 역연산을 수행하는 [[Pytorch]] 모듈입니다. 이 모듈은 주로 이미지 처리와 영상 처리에서 사용되며, <font color="#ffff00">역 합성곱 또는 디컨볼루션(deconvolution)</font> 이라고도 불립니다. `ConvTranspose1d` 를 사용하여 입력 데이터를 더 큰 출력 데이터로 [[upsampling]]하거나, 특징 맵을 더 사에하게 복원하는 작업을 수행할 수 있습니다.
+`torch.nn.ConvTranspose1d` 는 [[nn.Conv1d]] 의 역연산을 수행하는 [[Pytorch]] 모듈입니다. 이 모듈은 주로 이미지 처리와 영상 처리에서 사용되며, <font color="#ffff00">역 합성곱 또는 디컨볼루션(deconvolution)</font> 이라고도 불립니다. `ConvTranspose1d` 를 사용하여 입력 데이터를 더 큰 출력 데이터로 [[upsampling]]하거나, 특징 맵을 더 사에하게 복원하는 작업을 수행할 수 있습니다.
 
 `ConvTranspose1d` 모듈은 주로 이미지 변환과 재구성 작업에서 사용됩니다. 예를 들어, 이미지 [[Segmentation]] 또는 영상 복원 작업에서 사용될 수 있습니다. 이 모듈을 통해 저해상도 입력을 고해상도 이미지로 업샘플링하거나, 주파수 정보를 복원하는데 활용할 수 있습니다.
 
