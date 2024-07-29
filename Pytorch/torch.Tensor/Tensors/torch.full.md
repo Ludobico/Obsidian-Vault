@@ -20,4 +20,37 @@ torch.full(size, fill_value, *, out=None, dtype=None, layout=torch.strided, devi
 > layout -> [[torch.layout]], optional
 - 반환된 텐서의 레이아웃입니다. 기본값은 `torch.strided` 입니다.
 
-> device -> 
+> device -> [[torch.device]] , optional
+- 반환된 텐서가 생성될 장치입니다. 기본값은 `None` 이며, 이는 현재 디폴트 장치를 사용합니다. CPU 텐서의 경우 기본적으로 CPU 장치를 사용하고, [[Pytorch/CUDA/CUDA|CUDA]] 텐서의 경우 현재 CUDA 장치를 사용합니다.
+
+> requires_grad -> bool, optional
+- 반환된 텐서에 대해 autograd가 연산을 기록할지 여부입니다. 기본값은 `False` 입니다.
+
+```python
+import torch
+import torch.nn as nn
+
+tensor = torch.full((2,3), 3.14)
+print(tensor)
+
+tensor = torch.full((2,3), 3.14, dtype=torch.float32)
+print(tensor)
+
+tensor = torch.full((2,3), 3.14, device='cuda')
+print(tensor)
+
+tensor = torch.full((2,3), 3.14, requires_grad=True)
+print(tensor)
+```
+
+```
+tensor([[3.1400, 3.1400, 3.1400],
+        [3.1400, 3.1400, 3.1400]])
+tensor([[3.1400, 3.1400, 3.1400],
+        [3.1400, 3.1400, 3.1400]])
+tensor([[3.1400, 3.1400, 3.1400],
+        [3.1400, 3.1400, 3.1400]], device='cuda:0')
+tensor([[3.1400, 3.1400, 3.1400],
+        [3.1400, 3.1400, 3.1400]], requires_grad=True)
+```
+
