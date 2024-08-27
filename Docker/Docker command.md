@@ -1,3 +1,13 @@
+- [[#image list|image list]]
+- [[#Create and execute docker container|Create and execute docker container]]
+- [[#docker container list|docker container list]]
+- [[#Connect inner container|Connect inner container]]
+- [[#Exit the container|Exit the container]]
+- [[#Execute into exited container|Execute into exited container]]
+- [[#Remove the container|Remove the container]]
+- [[#Remove the image|Remove the image]]
+- [[#docker image command list|docker image command list]]
+- [[#docker container command list|docker container command list]]
 
 ## image list
 
@@ -192,4 +202,42 @@ python       3.11.6    0dba5a08d425   10 months ago   1.01GB
 | docker image rm      | 하나 이상의 이미지를 삭제합니다.                     |
 | docker image save    | 이미지를 tarball로 저장합니다.                   |
 | docker image tag     | 이미지 태그를 생성합니다.                         |
+
+## docker container command list
+
+여기서 주의할 점은 **docker container create** , **docker container start** , **docker container run** 이라는 명령어입니다. 이 세 명령어는 서로 비슷하게 보이지만 차이가 있습니다. 먼저 **docker container create [이미지 ID]** 명령어는 새로운 컨테이너를 생성하는 명령어로 create 다음에 나오는 이미지를 활용해 새로운 컨테이너를 생성합니다. 그리고 **docker container start [컨테이너 ID]** 는 정지 상태의 명령어를 실행하는 명령어입니다. 따라서 docker container create 명령어를 통해 컨테이너를 생성하고 docker container start 명령어로 앞서 생성된 컨테이너를 실행하는 것입니다. 한편 **docker container run** 은 컨테이너를 생성한 후 실행까지 진행하는 명령어입니다. 즉,
+
+<font color="#ffff00">docker container create 명령어와 docker container start 명령어를 합친 명령어가 docker container run 이라고 볼 수 있는 것입니다.</font>
+
+| 명령어                      | 설명                                    |
+| ------------------------ | ------------------------------------- |
+| docker container attach  | 실행 중인 컨테이너의 표준 입출력 스트림에 붙습니다.(attach) |
+| docker container commit  | 변경된 컨테이너에 대한 새로운 이미지를 생성합니다.          |
+| docker container cp      | 컨테이너와 로컬 파일 시스템 간 파일/폴더를 복사합니다.       |
+| docker container create  | 새로운 컨테이너를 생성합니다.                      |
+| docker container diff    | 컨테이너 파일 시스템의 변경 내용을 검사합니다.            |
+| docker container exec    | 실행 중인 컨테이너에 명령어를 실행합니다.               |
+| docker container export  | 컨테이너 파일 시스템을 tarball로 추출합니다.          |
+| docker container inspect | 하나 이상의 컨테이너의 자세한 정보를 표시합니다.           |
+| docker container kill    | 하나 이상의 실행중인 컨테이너를 kill합니다.            |
+| docker container logs    | 컨테이너 로그를 불러옵니다.                       |
+| docker container ls      | 컨테이너 목록을 확인합니다.                       |
+| docker container pause   | 하나 이상의 컨테이너 내부의 모든 프로세스를 정지합니다.       |
+| docker container port    | 특정 컨테이너의 매핑된 포트 리스트를 확인합니다.           |
+| docker container prune   | 멈춰 있는(stopped) 모든 컨테이너를 삭제합니다.        |
+| docker container rename  | 컨테이너 이름을 다시 짓습니다.                     |
+| docker container restart | 하나 이상의 컨테이너를 재실행합니다.                  |
+| docker container rm      | 하나 이상의 컨테이너를 삭제합니다.                   |
+| docker container run     | 이미지로부터 컨테이너를 생성하고 실행합니다.              |
+| docker container start   | 멈춰 있는 하나 이상의 컨테이너를 실행합니다.             |
+| docker container stats   | 컨테이너 리소스 사용 통계를 표시합니다.                |
+| docker container stop    | 하나 이상의 실행 중인 컨테이너를 정지합니다.             |
+| docker container top     | 컨테이너의 실행 중인 프로세스를 표시합니다.              |
+| docker container unpause | 컨테이너 내부의 멈춰 있는 프로세스를 재실행합니다.          |
+| docker container update  | 하나 이상의 컨테이너 설정을 업데이트합니다.              |
+| docker container wait    | 컨테이너가 종료될 때까지 기다린 후 exit code를 표시합니다. |
+
+**docker container exec** 명령어와 **docker container attach** 명령어가 서로 비슷해 보이는데 두 명령어의 차이는 다음과 같습니다. 먼저 **docker container exec**는 실행 중인 컨테이너 내부에서 명령어를 실행하는 역할을 합니다. 그리고 **docker container attach** 는 실행 중인 컨테이너의 표준 입력(stdin), 표준 출력(stdout), 표준 오류(stderr) 스트림에 연결할 때 사용합니다. 
+
+<font color="#ffff00">즉, docker container exec 명령어가 새로운 프로세스를 시작해서 컨테이너 내에서 작업을 수행하는 반면 docker container attach 는 기존에 실행 중인 프로세스에 연결한다는 점이 다릅니다.</font>
 
