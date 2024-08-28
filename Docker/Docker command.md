@@ -186,6 +186,97 @@ ubuntu       latest    edbfe74c41f8   3 weeks ago     78.1MB
 python       3.11.6    0dba5a08d425   10 months ago   1.01GB
 ```
 
+## Modify docker image
+
+기존에 있던 도커 이미지를 수정한 후 새로운 이미지를 만들어보겠습니다. 여기서는 <font color="#ffff00">기존 우분투 이미지를 컨테이너로 실행하고 네트워크 도구를 설치한 후 나만의 도커 이미지를 생성</font>하겠습니다.
+
+```bash
+admin@BGR_AI C:\Users\admin\Desktop\repo>docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+ubuntu       latest    edbfe74c41f8   3 weeks ago     78.1MB
+python       3.11.6    0dba5a08d425   10 months ago   1.01GB
+```
+
+```bash
+admin@BGR_AI C:\Users\admin\Desktop\repo>docker container run -it ubuntu
+root@a947ca49e66b:/# 
+```
+
+1. 첫 번째 터미널을 열고 이미지를 확인합니다.
+2. **-it** 옵션을 사용해 우분투 컨테이너를 실행합니다.
+3. 해당 컨테이너 내부에 접속한 것을 알 수 있습니다.
+
+```bash
+root@a947ca49e66b:/# ifconfig
+bash: ifconfig: command not found
+```
+
+```bash
+root@a947ca49e66b:/# apt update && apt install net-tools
+Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:3 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [12.7 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:5 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [337 kB]
+Get:6 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+...
+Preparing to unpack .../net-tools_2.10-0.1ubuntu4_amd64.deb ...
+Unpacking net-tools (2.10-0.1ubuntu4) ...
+Setting up net-tools (2.10-0.1ubuntu4) ...
+```
+
+1. 컨테이너 내부 IP를 확인하려고 `ifconfig` 명령어를 입력한다고 해서 ifconfig 명령어를 사용할 수는 없습니다. ifconfig 명령어를 사용하려면 `net-tools` 를 설치해야 합니다.
+2. 따라서 해당 명령어를 입력하면 net-tools가 설치됩니다.
+
+```bash
+root@a947ca49e66b:/# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 19372  bytes 26230066 (26.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4993  bytes 333651 (333.6 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+
+1. `ifconfig` 명령어를 입력합니다.
+2. 컨테이너의 IP가 127.17.0.2 인 것을 확인할 수 있습니다.
+
+정리하면 기존 컨테이너에서는 net-tools가 설치되어있지 않아 ifconfig 명령어를 사용할 수 없었는데, 기존 컨테이너에 net-tools를 설치함으로써 IP 주소를 확인할 수 있게 된 것입니다. 그럼 이제부터 <font color="#ffff00">net-tools가 설치된 컨테이너를 새로운 이미지</font>로 만들겠습니다.
+
+```bash
+admin@BGR_AI C:\Users\admin\Desktop\repo>docker container ls
+CONTAINER ID   IMAGE     COMMAND       CREATED         STATUS         PORTS     NAMES
+a947ca49e66b   ubuntu    "/bin/bash"   7 minutes ago   Up 7 minutes             eager_galois
+```
+
+이를 위해 기존 터미널을 종료하지 않고 새로운 터미널을 실행합니다.
+
+```bash
+admin@BGR_AI C:\Users\admin\Desktop\repo>docker container commit a947ca49e66b my-ubuntu:0.1
+sha256:985949ed782220a574236a0dfa645c07df3a2bc688139b25c2f810a034619cc5
+```
+
+새로운 터미널에서 **commit** 명령어를 이용하면 실행 중인 컨테이너를 my-ubuntu:0.1 이라는 새로운 이미지로 생성할 수 있습니다.
+
+```bash
+admin@BGR_AI C:\Users\admin\Desktop\repo>docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+my-ubuntu    0.1       985949ed7822   59 seconds ago   119MB
+ubuntu       latest    edbfe74c41f8   3 weeks ago      78.1MB
+python       3.11.6    0dba5a08d425   10 months ago    1.01GB
+```
+
+
 ## docker image command list
 
 | 명령어                  | 설명                                     |
@@ -240,4 +331,68 @@ python       3.11.6    0dba5a08d425   10 months ago   1.01GB
 **docker container exec** 명령어와 **docker container attach** 명령어가 서로 비슷해 보이는데 두 명령어의 차이는 다음과 같습니다. 먼저 **docker container exec**는 실행 중인 컨테이너 내부에서 명령어를 실행하는 역할을 합니다. 그리고 **docker container attach** 는 실행 중인 컨테이너의 표준 입력(stdin), 표준 출력(stdout), 표준 오류(stderr) 스트림에 연결할 때 사용합니다. 
 
 <font color="#ffff00">즉, docker container exec 명령어가 새로운 프로세스를 시작해서 컨테이너 내에서 작업을 수행하는 반면 docker container attach 는 기존에 실행 중인 프로세스에 연결한다는 점이 다릅니다.</font>
+
+## Copy files host to container
+
+**docker container cp \[출발경로/보내고싶은 파일명\] \[도착 컨테이너:파일 저장 경로\] 
+
+이 명령어를 이용해 호스트에 존재하는 `test.txt` 파일을 `ab37165c92ea` 컨테이너의 home 디렉터리로 복사해보겠습니다.
+
+```bash
+root@ab37165c92ea:/# ls
+bin  bin.usr-is-merged  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  sbin.usr-is-merged  srv  sys  tmp  usr  var
+root@ab37165c92ea:/# cd home/
+root@ab37165c92ea:/home# ls
+ubuntu
+```
+
+```bash
+admin@BGR_AI C:\Users\admin\Desktop\repo>docker container cp ./test.txt ab37165c92ea:/home
+Successfully copied 2.05kB to ab37165c92ea:/home
+```
+
+```bash
+admin@BGR_AI C:\Users\admin\Desktop\repo>docker container start ab37165c92ea
+ab37165c92ea
+
+admin@BGR_AI C:\Users\admin\Desktop\repo>docker container attach ab37165c92ea
+root@ab37165c92ea:/# cd home/
+root@ab37165c92ea:/home# ls
+test.txt  ubuntu
+```
+
+## Copy files container to host
+
+이번에는 반대로 컨테이너에서 호스트로 파일을 전송하겠습니다.
+
+```bash
+root@ab37165c92ea:/home# ls
+test.txt  ubuntu
+root@ab37165c92ea:/home# cp test.txt test2.txt
+root@ab37165c92ea:/home# ls
+test.txt  test2.txt  ubuntu
+```
+
+```bash
+admin@BGR_AI C:\Users\admin\Desktop\repo>docker container ls
+CONTAINER ID   IMAGE          COMMAND       CREATED       STATUS         PORTS     NAMES
+ab37165c92ea   985949ed7822   "/bin/bash"   2 hours ago   Up 6 minutes             lucid_grothendieck
+
+admin@BGR_AI C:\Users\admin\Desktop\repo>docker cp ab37165c92ea:/home/test2.txt C:\Users\admin\Desktop\repo
+Successfully copied 2.05kB to C:\Users\admin\Desktop\repo
+
+admin@BGR_AI C:\Users\admin\Desktop\repo>dir
+ C 드라이브의 볼륨에는 이름이 없습니다.
+ 볼륨 일련 번호: 8219-0BCE
+
+ C:\Users\admin\Desktop\repo 디렉터리
+
+2024-08-28  오전 10:58    <DIR>          .
+2024-08-23  오후 03:57    <DIR>          ..
+2024-08-20  오후 03:19    <DIR>          BGR-Detector
+2024-08-28  오전 10:38                 6 test.txt
+2024-08-28  오전 10:55                 6 test2.txt
+               2개 파일                  12 바이트
+               3개 디렉터리  280,882,434,048 바이트 남음
+```
 
