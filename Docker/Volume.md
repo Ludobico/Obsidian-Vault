@@ -1,3 +1,11 @@
+- [[#1. Volume|1. Volume]]
+- [[#2. Bind Mount|2. Bind Mount]]
+- [[#3. Tmpfs Mount|3. Tmpfs Mount]]
+- [[#Volume|Volume]]
+- [[#Bind mount|Bind mount]]
+- [[#tmpfs mount|tmpfs mount]]
+
+
 [[Docker]] 에서는 컨테이너의 데이터 저장을 관리하기 위해 여러 가지 스토리지 옵션을 제공합니다. 이 중 주요한 세 가지는 다음과 같습니다.
 
 ## 1. Volume
@@ -204,4 +212,48 @@ test01.txt  test02.txt  test_dir
 - 해당 경로의 파일 목록을 확인해보면 컨테이너 내부에서 생성했던 `test_dir` 디렉토리가 도커호트에도 생성되어 있는 것을 알 수 있습니다. 즉, 컨테이너 내부에서 파일이 변하면 연결되어 있는 도커 호스트 경로도 함께 변하는 것을 알 수 있습니다.
 
 ![[Pasted image 20240828141204.png]]
+
+
+## tmpfs mount
+
+세 번째로는 tmpfs mount 를 활용하겠습니다. tmpfs mount는 앞서 배운 volume mount, bind mount와는 다르게 <font color="#ffff00">중요한 데이터를 일시적으로 도커 호스트 메모리에 저장하고 싶을 때 사용하며 컨테이너 간 데이터 공유를 지원하지 않습니다</font>. 또한 실행 중인 컨테이너를 정지시키면 tmpfs mount도 삭제됩니다.
+
+```bash
+admin@BGR_AI C:\Users\admin\Desktop\repo\bind-mount>docker container run -e POSTGRES_PASSWORD=mysecretpassword --mount type=tmpfs,destination=/var/lib/postgresql/data -d postgres
+84721875d4bc9f496891f112808044d99055e0523f106e614edc3b8219cded4a
+
+admin@BGR_AI C:\Users\admin\Desktop\repo\bind-mount>docker container ls
+CONTAINER ID   IMAGE      COMMAND                   CREATED         STATUS         PORTS      NAMES
+84721875d4bc   postgres   "docker-entrypoint.s…"   8 seconds ago   Up 7 seconds   5432/tcp   unruffled_bose
+```
+
+```bash
+[
+    {
+        "Id": "84721875d4bc9f496891f112808044d99055e0523f106e614edc3b8219cded4a",
+        "Created": "2024-08-28T06:05:27.708460516Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "postgres"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 4561,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2024-08-28T06:05:28.180067547Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+            ...
+```
+
+- **--mount** 옵션을 활용해 `type=tmpfs` 라고 설정해주고 저장하고자 하는 경로를 `destination` 으로 입력합니다.
+
+- 실행 중인 컨테이너 목록을 확인하면 원활하게 작동하고 있는 것을 볼 수 있습니다.
+
+- **inspect** 명령어를 이용해 확인해보면 tmpfs 타입으로 마운트된 것을 볼 수 있습니다.
 
