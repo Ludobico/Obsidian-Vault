@@ -60,6 +60,10 @@ volumes:
   composevol01:
 ```
 
+```bash
+docker compose up -d --build
+```
+
 ```
  => [postgrestest internal] load build definition from Dockerfile                                                                                           0.1s
  => => transferring dockerfile: 57B                                                                                                                         0.0s 
@@ -183,4 +187,16 @@ volumes:
 ```
 
 볼륨 정보를 입력합니다.
+
+```bash
+admin@BGR_AI G:\st002\Docker-test\docker-compose>docker compose down
+time="2024-09-02T15:37:40+09:00" level=warning msg="G:\\st002\\Docker-test\\docker-compose\\docker-compose.yaml: `version` is obsolete"
+[+] Running 4/4
+ ✔ Container docker-compose-nginxtest-1     Removed                                                                                                         0.8s 
+ ✔ Container docker-compose-djangotest-1    Removed                                                                                                        10.7s 
+ ✔ Container docker-compose-postgrestest-1  Removed                                                                                                         0.8s 
+ ✔ Network docker-compose_composenet01      Removed                                                                                                         0.4s 
+```
+
+*docker compose down* 명령어를 활용하면 도커 컴포즈를 활용해 실행했던 컨테이너를 정지시킬 수 있습니다.
 
