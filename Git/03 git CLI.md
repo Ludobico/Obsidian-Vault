@@ -148,7 +148,7 @@ $ git config color.ui auto
 
 먼저 기본 Git 명령어를 살펴보겠습니다.
 
-| git add <파일명>                            | 파일들을 스테이지에 추가합니다. 새로 생성한 파일을 스테이지에 추가하고 싶다면 반드시 add 명령어를 사용합니다.                                        |
+| git add <파일명> ...                        | 파일들을 스테이지에 추가합니다. 새로 생성한 파일을 스테이지에 추가하고 싶다면 반드시 add 명령어를 사용합니다.                                        |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | git commit                               | 스테이지에 있는 파일들을 커밋합니다.                                                                                   |
 | git commit -a                            | add 명령어를 생략하고 바로 커밋하고 싶을 때 사용합니다. 변경된 파일과 삭제된 파일은 자동으로 스테이징되고 커밋됩니다. 주의할 점은 untracked 파일은 커밋되지 않습니다.   |
@@ -156,4 +156,114 @@ $ git config color.ui auto
 | git pull                                 | 원격 저장소의 변경 사항을 워킹트리에 반영합니다. 사실은 git fetch + git merge 명령입니다.                                           |
 | git fetch \[원격 저장소 별명\] \[브랜치 이름\]       | 원격 저장소의 브랜치와 커밋들을 로컬 저장소와 동기화합니다. 옵션을 생략하면 모든 원격 저장소에서 모든 브랜치를 가져옵니다.                                  |
 | git merge <대상 브랜치>                       | 지정한 브랜치의 커밋들을 현재 브랜치 및 워킹트리에 반영합니다.                                                                    |
+
+커밋을 실행하기 위해 먼저 간단한 파일을 만들겠습니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ echo "hello git"
+hello git
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ echo "hello git" > file1.txt
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ ls
+file1.txt
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file1.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+**git status** 명령으로 상태를 살펴보니 file1.txt 이라는 파일이 생성되었고 untracked 상태임을 확인할 수 있습니다. 또한 git add \<file\> ... 명령을 사용하면 커밋에 포함될 수 있다는 내용도 볼 수 있습니다.
+
+> ... 은 한 번에 여러 파일 이름을 지정할 수도 있다는 뜻입니다.
+
+이번에는 변경 내용을 **git add** 명령으로 스테이지에 추가해 보겠습니다. 파일을 스테이지에 올린다하여 <font color="#ffff00">스테이징</font>이라고도 합니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git add file1.txt 
+warning: in the working copy of 'file1.txt', LF will be replaced by CRLF the next time Git touches it
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   file1.txt
+```
+
+file1.txt 파일이 스테이지 영역에 추가된 것을 확인할 수 있습니다.
+
+### reset : unstage
+
+위 실행 결과의 마지막에서 두 번째 줄을 보면 아래와 같은 커맨드가 있습니다.
+
+```bash
+(use "git rm --cached <file>..." to unstage)
+```
+
+이 명령으로 스테이지에서 내릴수 있다(unstage)는 메시지가 있습니다. 그런데 스테이지에서 내리기 위해 저 명령보다 자주 사용하는 명령이 있습니다. 바로 **git reset** 명령인데요, 이것을 사용하면 더 쉽게 파일을 스테이지에서 내릴 수 있습니다.
+
+| git reset \[파일명\] ... | 스테이지 영역에 있는 파일을 스테이지에서 내립니다(unstaging). 워킹트리의 내용은 변경되지 않습니다. 옵션을 생략할 경우 스테이지의 모든 변경 사항을 초기화합니다. |
+| --------------------- | ----------------------------------------------------------------------------------------------- |
+
+이 명령은 워킹트리의 내용은 그대로 두고 해당 파일을 스테이지에서만 내립니다. 세 가지 옵션 (<font color="#ffff00">soft, mixed, hard</font>) 을 사용할 수 있는데 지금처럼 옵션 없이 사용하면 mixed reset 으로 동작합니다. 이렇게 스테이지에서 내리는 작업을 언스테이징(unstaging) 이라고 합니다.
+
+다음은 `file1.txt` 를 **git reset** 명령으로 언스테이징하고, cat 명령어로 파일 내용이 변경되었는지 확인합니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   file1.txt
+
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git reset file1.txt
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file1.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ ls
+file1.txt
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ cat file1.txt 
+hello git
+```
+
+파일의 내용은 그대로 두고 단지 언스테이징만 진행한 것을 알 수 있습니다.
+
+### create commit
+
+이제 커밋을 실행해 보겠습니다. 좀 전에 언스테이징을 했으므로 다시 **git add** 명령을 실해한 후 커밋합니다. 커밋은 **git commit** 명령으로 수행합니다.
 
