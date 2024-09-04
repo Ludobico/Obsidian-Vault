@@ -1,3 +1,7 @@
+- [[#push to repository|push to repository]]
+- [[#Update the local repository with new commits from the remote repository|Update the local repository with new commits from the remote repository]]
+
+
 Git Repository 는 [[Git]]이 관리하는 프로젝트의 저장소를 의미합니다. repository는 파일과 폴더 뿐만 아니라, 이들의 변경 이력, 커밋 기록, 브랜치, 태그 등을 포함하는 구조로 구성되어 있습니다.
 
 ## push to repository

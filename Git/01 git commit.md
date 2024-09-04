@@ -1,3 +1,6 @@
+- [[#Build first commit|Build first commit]]
+- [[#Move to another commit|Move to another commit]]
+
 
 `git commit` 은 [[Git]] 에서 **파일의 변경 사항을 로컬 저장소에 저장하는 명령어**입니다. Git은 분산 버전 관리 시스템으로, 프로젝트의 모든 변경 사항을 추적하고, 각 변경 사항을 커밋(commit) 이라는 단위로 기록하여 관리합니다. `git commit` 명령어는 소스 코드의 특정 상태를 기록하고, 이후 해당 상태로 되돌리거나 협업을 위해 공유할 수 있도록 합니다.
 
