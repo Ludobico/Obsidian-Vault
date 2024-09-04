@@ -86,7 +86,74 @@ nothing to commit (create/copy files and use "git add" to track)
 | remote repository | 로컬 저장소를 업로드하는 곳을 원격 저장소라고 부릅니다. 우리가 사용하고 있는 GitHub가 원격 저장소입니다.                                                                                                                                                     |
 | Git repository    | Git 명령으로 관리할 수 있는 폴더 전체를 일반적으로 Git 프로젝트 혹은 Git 저장소라고 부릅니다. 공식문서에서는 로컬 저장소와 Git 저장소를 같은 뜻으로 사용합니다.                                                                                                                  |
 
-## Git command option
+## Git config option
 
 Git을 사용하기 위해서 해야 할 일이 더 있습니다. **git config** 명령을 사용해서 Git 옵션을 설정해야 합니다.
+
+| git config --global <옵션명>             | 지정한 전역 옵션의 내용을 살펴봅니다.    |
+| ------------------------------------- | ------------------------ |
+| git config --global <옵션명> <새로운 값>     | 지정한 전역 옵션의 값을 새로 설정합니다.  |
+| git config --global --unset <옵션명>     | 지정한 전역 옵션을 삭제합니다.        |
+| git config --local <옵션명>              | 지정한 로컬 옵션의 내용을 살펴봅니다.    |
+| git config --local <옵션명> <새로운 값>      | 지정한 로컬 옵션의 값을 새로 설정합니다.  |
+| git config --local --unset <옵션명>      | 지정한 로컬 옵션을 삭제합니다.        |
+| git config --system <옵션명>             | 지정한 시스템 옵션의 내용을 살펴봅니다.   |
+| git config --system <옵션명> <새로운 값>     | 지정한 시스템 옵션의 값을 새로 설정합니다. |
+| git config --system --unset <옵션명> <값> | 지정한 시스템 옵션의 값을 삭제합니다.    |
+| git config --list                     | 현재 프로젝트의 모든 옵션을 살펴봅니다.   |
+
+**git config** 명령으로는 옵션을 보거나, 값을 바꿀 수 있습니다. Git 옵션에는 <font color="#ffff00">지역(local) 옵션</font>과 전<font color="#ffff00">역(global) 옵션</font>, <font color="#ffff00">시스템(system) 환경 옵션</font>의 세 종류가 있습니다. <font color="#ffff00">시스템 환경 옵션은 PC 전체의 사용자를 위한 옵션</font>, <font color="#ffff00">전역 옵션은 현재 사용자를 위한 옵션</font>이고, <font color="#ffff00">지역 옵션은 Git 저장소에서만 유효한 옵션</font>입니다. 우선순위는 지역 옵션 > 전역 옵션 > 시스템 옵션 순으로 지역 옵션이 가장 높습니다. 일반적으로 개인 PC에서는 전역 옵션을 많이 사용하는데, 공용 PC처럼 여러 사람이 사용하거나 Git을 잠깐만 써야 할 일이 있다면 지역 옵션을 사용해야 합니다. 시스템 옵션은 Git 설치 시에 몇 가지 값들이 지정되는데 직접 수정하는 일은 그리 많지 않습니다.
+
+옵션값을 이용하면 여러 가지 설정이 가능합니다. 지금은 필수 설정인 **user.name** , **user.email** , **core.editor** 세 옵션의 값을 입력해 보겠습니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git config --global user.name
+Ludobico
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git config --global user.name "MA SADIK"
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git config --global user.name
+MA SADIK
+```
+
+> git config --global user.name 명령을 실행했을 때 아무런 결과도 출력되지 않는다면 현재 설정된 값이 없다는 의미입니다.
+
+중요한 설정이 하나 더 남아 있습니다. CLI를 사용하면 텍스트 에디터를 쓸 일이 생기는데, 현재 Git Bash의 기본 에디터는 보통 리눅스 운영체제에서 주로 쓰이는 vim이나 nano로 설정되어 있습니다. 기본 에디터를 VS 코드로 변경하는 것이 좋습니다. 만약 이미 VS 코드가 기본 에디터로 되어 있다면 그대로 두면 됩니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git config core.editor
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git config --global core.editor
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git config --system core.editor
+```
+
+마지막으로 **user.name** 값과 **color.ui** 값도 설정해 보겠습니다. user.email 값에는 GitHub를 가입할 때 사용한 이메일을 지정하고, color.ui 값에는 가독성을 위해 auto로 지정합니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git config user.email "aqs450@gmail.com"
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git config color.ui auto
+```
+
+## add & commit
+
+먼저 기본 Git 명령어를 살펴보겠습니다.
+
+| git add <파일명>                            | 파일들을 스테이지에 추가합니다. 새로 생성한 파일을 스테이지에 추가하고 싶다면 반드시 add 명령어를 사용합니다.                                        |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| git commit                               | 스테이지에 있는 파일들을 커밋합니다.                                                                                   |
+| git commit -a                            | add 명령어를 생략하고 바로 커밋하고 싶을 때 사용합니다. 변경된 파일과 삭제된 파일은 자동으로 스테이징되고 커밋됩니다. 주의할 점은 untracked 파일은 커밋되지 않습니다.   |
+| git push \[-u\] \[원격 저장소 별명\] \[브랜치 이름\] | 현재 브랜치에서 새로 생성한 커밋들을 원격 저장소에 업로드합니다. -u 옵션으로 브랜치의 업스트림을 등록할 수 있습니다. 한 번 등록한 후에는 git push 명령만 입력해도 됩니다. |
+| git pull                                 | 원격 저장소의 변경 사항을 워킹트리에 반영합니다. 사실은 git fetch + git merge 명령입니다.                                           |
+| git fetch \[원격 저장소 별명\] \[브랜치 이름\]       | 원격 저장소의 브랜치와 커밋들을 로컬 저장소와 동기화합니다. 옵션을 생략하면 모든 원격 저장소에서 모든 브랜치를 가져옵니다.                                  |
+| git merge <대상 브랜치>                       | 지정한 브랜치의 커밋들을 현재 브랜치 및 워킹트리에 반영합니다.                                                                    |
 
