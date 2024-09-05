@@ -267,6 +267,26 @@ hello git
 
 이제 커밋을 실행해 보겠습니다. 좀 전에 언스테이징을 했으므로 다시 **git add** 명령을 실해한 후 커밋합니다. 커밋은 **git commit** 명령으로 수행합니다.
 
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git add file1.txt 
+warning: in the working copy of 'file1.txt', LF will be replaced by CRLF the next time Git touches it
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git status 
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   file1.txt
+
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git commit
+
+```
 
 **git commit** 명령을 실행하면 다음 그림과 같이 git bash의 기본 코어에디터인 [[vim]]이 열립니다
 
@@ -301,4 +321,60 @@ hello git
 # Changes to be committed:
 #       new file:   file1.txt
 ```
+
+```bash
+[main (root-commit) 8217549] 첫 번째 커밋
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+```
+
+만약 **git commit** 명령을 실행한 후 갑작스런 변심 등의 이유로 커밋을 하고 싶지 않다면 vim을 기준으로 :q! 명령으로 종료합니다. 그럼 커밋도 자동으로 취소됩니다.
+
+커밋을 성공했다면 **git status** 명령을 실행해 상태를 확인하면 스테이지 영역이 깨끗해진 걸 확인할 수 있을 것입니다.
+
+```bash
+$ git status
+On branch main
+nothing to commit, working tree clean
+```
+
+커밋이 만들어지면 그 커밋 시점의 파일 상태로 언제라도 복구할 수 있습니다. 그리고 커밋은 절대 사라지지 않습니다.
+
+> 좋은 커밋 메시지의 일곱 가지 규칙
+> 1. 제목과 본문을 빈 줄으로 분리합니다.
+> 2. 제목은 50자 이내로 씁니다.
+> 3. 제목을 영어로 쓸 경우 첫 글자는 대문자로 씁니다.
+> 4. 제목에는 마침표를 넣지 않습니다.
+> 5. 제목을 영어로 쓸 경우 동사원형(현재형)으로 시작합니다.
+> 6. 본문을 72자 단위로 줄바꿈합니다.
+> 7. 어떻게 보다 무엇과 왜를 설명합니다.
+
+### log : check the commit history
+
+**git log** 명령으로 Git의 커밋 히스토리를 확인해 보겠습니다.
+
+| git log                                    | 현재 브랜치의 커밋 이력을 보는 명령입니다.                                                                                                                                                                                                                                                    |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| git log -n <숫자>                            | 전체 커밋 중에서 최신 n개의 커밋만 살펴봅니다. 아래의 다양한 옵션과 조합해서 쓸 수 있습니다.                                                                                                                                                                                                                      |
+| git log --oneline --graph --all --decorate | 자주 사용하는 옵션입니다. 로그를 간결하게 보여줍니다.<br><br>--oneline : 커밋 메시지를 한 줄로 요약해서 보여줍니다. 생략하면 커밋 정보를 자세히 표시합니다.<br><br>--graph : 커밋 옆에 브랜치의 흐름을 그래프로 보여 줍니다. GUI와 유사한 모습으로 나옵니다.<br><br>--all : all 옵션을 지정하지 않으면 HEAD와 관계없는 옵션은 보여 주지 않습니다.<br><br>--decorate : 브랜치와 태그 등의 참조를 간결히 표시합니다. |
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git log --oneline --graph --all --decorate
+* 8217549 (HEAD -> main) 첫 번째 커밋
+```
+
+커밋 히스토리에 보이는 앞의 16진수 7자리 숫자는 <font color="#ffff00">커밋 체크섬</font> 또는 <font color="#ffff00">커밋 아이디</font> 입니다. SHA1 해시 체크섬 값을 사용하는데, 전 세계에서 유일한 값을 가집니다. 실제로 커밋 체크섬은 40자리인데 앞의 7자리만 화면에 보여 줍니다.
+
+## help
+
+Git에는 각 명령의 도움말을 볼 수 있는 명령이 있습니다. 모르는 명령이 있거나 그 명령의 자세한 옵션들이 보고 싶을 때에는 **git help** 명령을 사용하면 됩니다.
+
+| git help <명령어> | 해당 명령어의 도움말을 표시합니다. |
+| -------------- | ------------------- |
+**help** 명령을 수행하면 웹 브라우저가 열리면서 다음과 같이 해당 명령어에 대한 내용이 표시됩니다.
+
+![[Pasted image 20240905142010.png]]
+
+## remote and push
 
