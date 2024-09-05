@@ -378,3 +378,205 @@ Git에는 각 명령의 도움말을 볼 수 있는 명령이 있습니다. 모�
 
 ## remote and push
 
+커밋을 했으니 이제 남은 작업은 원격 레파지토리에 푸시하는 것입니다.
+
+먼저 깃허브의 새로운 레파지토리를 만들어서 환경을 실습합니다.
+
+![[Pasted image 20240905143002.png]]
+
+원격 레파지토리를 등록하는 Git 명령을 살펴보면 다음과 같습니다.
+
+| git remote add <원격 저장소 이름> <원격 저장소 주소> | 원격 저장소를 등록합니다.<br>원격 저장소는 여러 개 등록할 수 있지만 같은 alias의 원격 저장소는 하나만 가질 수 있습니다. 통상 첫 번째 원격 저장소의 이름을 origin으로 지정합니다. |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| git remote -v                          | 원격 저장소 목록을 살펴봅니다.                                                                                             |
+프로젝트를 만들면 원격 저장소 URL이 표시됩니다. 이 URL을 <font color="#ffff00">origin</font> 이라는 이름으로 등록하고 푸시를 시도해 보겠습니다.
+
+> git bash 에서 붙여넣기하는 단축키는 `shift` + `insert` 입니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git remote add origin https://github.com/Ludobico/hello-git-cli.git
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git remote -v
+origin  https://github.com/Ludobico/hello-git-cli.git (fetch)
+origin  https://github.com/Ludobico/hello-git-cli.git (push)
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git push
+fatal: The current branch main has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin main
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+```
+
+아쉽게도 **git push** 명령에 실패했습니다. 오류 메시지를 읽어 보면 로컬 레파지토리의 \[main\] 브랜치와 연결된 원격 저장소의 브랜치가 없어서 발생한 오류라는 걸 알 수 있습니다.
+
+오류 메시지에 <font color="#00b050">업스트림(upstream)</font> 이라는 텍스트가 보이는데, <font color="#ffff00">업스트림 브랜치는 로컬 레파지토리와 연결된 원격 레파지토리를 일컫는 단어</font>입니다. 
+
+업스트림 브랜치 설정을 하려면 오류 메시지가 알려준 대로 **--set-upstream** 명령을 쓰거나 이 명령의 단축 명령인 **-u** 옵션을 사용합니다. 그러면 이후에는 origin 저장소의 \[main\] 브랜치의 업스트림으로 지정되어 **git push** 명령만으로도 오류 없이 푸시할 수 있습니다. 
+
+이제 업스트림을 지정하면서 다시 푸시해 보겠습니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git push -u origin main
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 292 bytes | 292.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Ludobico/hello-git-cli.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git log --oneline -n 1
+8217549 (HEAD -> main, origin/main) 첫 번째 커밋
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git push
+Everything up-to-date
+```
+
+만약 인증 관련 정보가 저장되어 있지 않다면 업스트림 지정 및 최초 푸시를 할 때 Github 로그인 창이 나타납니다.
+
+**-u** 옵션을 지정해서 푸시를 성공했습니다.
+
+**git log** 명령으로 최신 커밋 1개를 확인해보면 HEAD는 \[main\] 을 가리키고 있고, \[origin/main\] 브랜치가 생겨난 것도 볼 수 있습니다. <font color="#ffff00">HEAD는 항상 현재 작업 중인 브랜치 혹은 커밋을 가리킵니다</font>. 지금 HEAD가 가리키는 \[main\] 은 로컬의 \[main\] 브랜치이고, \[origin/main\] 은 원격 저장소인 GitHub의 메인 브랜치입니다. 따라서 지금 HEAD, main, origin/main 모두 똑같이 커밋 `8217549` 를 가리키는 것을 알 수 있습니다.
+
+마지막으로 **git push** 명령을 한 번 더 수행했는데 이번에는 오류 없이 잘 수행되었습니다. 이미 **-u** 옵션으로 업스트림을 지정했기 때문입니다. 더 이상 푸시할 게 없기 때문에 Everything up-to-date 라는 결과 메시지가 화면에 표시됩니다.
+
+### clone
+
+이번에는 CLI에서 저장소를 클론해 보겠습니다. **git clone** 명령을 이용하면 원격 저장소를 복제할 수 있습니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ pwd
+/c/Users/aqs45/OneDrive/Desktop/repoSub/hello-git-cli
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ cd ../
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub
+$ git clone https://github.com/Ludobico/hello-git-cli.git
+fatal: destination path 'hello-git-cli' already exists and is not an empty directory.
+```
+
+저장소를 클론하려다 실패했습니다. 명령을 실행할 때 \[새로운 폴더명\] 옵션을 지정하지 않으면 클론한 프로젝트 이름과 같은 폴더를 만들게 되는데 이미 폴더가 존재하기때문에 실패한 것입니다.
+
+| git clone <저장소 주소> \[새로운 폴더명\] | 저장소 주소에서 프로젝트를 클론해옵니다. 이때 새로 생길 폴더명은 생략가능하며, 프로젝트 이름과 같은 이름의 폴더가 새로 생성됩니다. 주소는 원격 저장소가 아니어도 되며 로컬 저장소도 git clone 명령으로 클론할 수 있습니다. |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+
+이번에는 \[새로운 폴더명\] 옵션을 지정해서 다시 시도해 봅니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub
+$ git clone https://github.com/Ludobico/hello-git-cli.git hello-git-cli2
+Cloning into 'hello-git-cli2'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (3/3), done.
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub
+$ ls
+'AI School'/      BetterLife/                     FB-docker-deployment/           hello-git-cli/                    lusion/              Rossetta/            tag_select_padnas/
+ AI_Study/        chat_dataset_preprocess/        git-test/                       hello-git-cli2/                   React-Native-test/   SNU-Upstage-LLM/     torch_from_scratch/
+ AI-Descendant/   Datacenter_LLM_backup_240516/   Hearing_loss_data_preprocess/   llama_cpp_build_bin_release.png   rlgus/               SolarLLMZeroToAll/
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub
+$ cd hello-git-cli
+hello-git-cli/  hello-git-cli2/ 
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub
+$ cd hello-git-cli2
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli2 (main)
+$ git log --oneline
+8217549 (HEAD -> main, origin/main, origin/HEAD) 첫 번째 커밋
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli2 (main)
+$ git remote -v
+origin  https://github.com/Ludobico/hello-git-cli.git (fetch)
+origin  https://github.com/Ludobico/hello-git-cli.git (push)
+```
+
+이번에는 **git clone** 명령을 성공했습니다. 명령의 결과로 \[hello-git-cli2\] 폴더가 생기고, 그 안에는 \[main\] 브랜치의 최신 커밋으로 체크아웃되었습니다.
+
+두 번ㅉ 저장소에서 다시 한번 커밋과 푸시를 실행해 보겠습니다. 이후 저장소의 상태는 다음과 같습니다. 이때 **git add** 명령을 사용하지 않고 **git commit** 명령에 **-a** 옵션을 사용하면 기존에 커밋 이력이 있는 파일, 즉 modified 상태의 파일의 스테이징 과정을 생략할 수 있습니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli2 (main)
+$ echo "second" >> file1.txt
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli2 (main)
+$ cat file1.txt
+hello git
+second
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli2 (main)
+$ git commit -a
+warning: in the working copy of 'file1.txt', LF will be replaced by CRLF the next time Git touches it
+[main 991cb7e] 두 번째 커밋
+ 1 file changed, 1 insertion(+)
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli2 (main)
+$ git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Writing objects: 100% (3/3), 277 bytes | 277.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Ludobico/hello-git-cli.git
+   8217549..991cb7e  main -> main
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli2 (main)
+$ git log --oneline
+991cb7e (HEAD -> main, origin/main, origin/HEAD) 두 번째 커밋
+8217549 첫 번째 커밋
+```
+
+> git commit -a 명령을 실행하면 vim 창이 나타나는데, 첫 번째 줄의 커밋 메시지로 "두 번째 커밋"이라고 입력하고 저장한 후 창을 닫습니다.
+
+이제 원격 저장소의 변경 사항을 워킹트리에 반영해 보겠습니다. 첫 번째 저장소로 돌아가서 **git pull** 명령을 실행합니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli2 (main)
+$ cd ../
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub
+$ cd hello-git-cli
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git log --oneline --graph --all --decorate
+* 8217549 (HEAD -> main, origin/main) 첫 번째 커밋
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 257 bytes | 18.00 KiB/s, done.
+From https://github.com/Ludobico/hello-git-cli
+   8217549..991cb7e  main       -> origin/main
+Updating 8217549..991cb7e
+Fast-forward
+ file1.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git log --oneline --graph --all --decorate
+* 991cb7e (HEAD -> main, origin/main) 두 번째 커밋
+* 8217549 첫 번째 커밋
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ cat file1.txt 
+hello git
+second
+```
+
+위 과정을 보면 일단 처음 생성했던 \[hello-git-cli\] 저장소로 이동한 후 **git pull** 명령을 실행했습니다. 나중에 다시 살펴보겠지만 <font color="#ffff00">pull = fetch + merge</font> 라는 사실을 떠올리고 이 장을 마치면 됩니다.
+
