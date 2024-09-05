@@ -267,3 +267,38 @@ hello git
 
 이제 커밋을 실행해 보겠습니다. 좀 전에 언스테이징을 했으므로 다시 **git add** 명령을 실해한 후 커밋합니다. 커밋은 **git commit** 명령으로 수행합니다.
 
+
+**git commit** 명령을 실행하면 다음 그림과 같이 git bash의 기본 코어에디터인 [[vim]]이 열립니다
+
+```vim
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+#
+# Initial commit
+#
+# Changes to be committed:
+#       new file:   file1.txt
+#
+.git/COMMIT_EDITMSG [unix] (10:36 05/09/2024)
+```
+
+[[vim]] 명령어를 활용하여 다음 처럼 적어줍니다. 이때 <font color="#ffff00">첫째 줄과 둘째 줄 사이는 반드시 한 줄 비어야 합니다.</font> 그리고 첫 줄에는 작업 요약, 다음 줄에는 작업 내용을 자세하게 기록합니다. 첫 줄은 제목이고 그 다음 줄은 본문이라고 생각하면 됩니다. 로그를 볼 때나 Pull request 메뉴 등에서 이 규치을 활용해서 내용을 자동으로 구성하기 때문에 꼭 지키는 것이 좋습니다.
+
+```vim
+첫 번째 커밋
+
+간단하게 hello git이라고 쓴 내용을 커밋했다.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+#
+# Initial commit
+#
+# Changes to be committed:
+#       new file:   file1.txt
+```
+
