@@ -329,3 +329,143 @@ Fast-forward
 | 장점  | 한 번만 충돌 발생   | 깔끔한 히스토리                    |
 | 단점  | 트리가 약간 지저분해짐 | 여러 번 충돌이 발생할 수 있음           |
 
+![[Pasted image 20240909113423.png]]
+
+### Tree prune
+
+보통 한 PC에서 커밋을 만들고 푸시했는데, 다른 PC에서 또 다른 커밋을 하게 되면 이전 커밋을 부모로 한 커밋이 생깁니다. 그 상황에서 뒤늦게 풀을 시도하면 자동으로 3-way 병합이 되기 때문에 아래 그림 같은 모양이 되는 것입니다.
+
+![[Pasted image 20240909113920.png]]
+
+지금 같은 경우는 불필요하게 병합 커밋이 생긴 상황입니다. 이 상황을 해결하려면
+
+**reset --hard** 명령으로 병합 커밋을 되돌리고 **git rebase** 명령을 사용하는 것입니다.
+
+먼저 가지 커밋을 하나 만들어 보겠습니다.가지를 만들기 위해 정상인 커밋을 만들고 푸시합니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ echo "main1" > main1.txt
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git add main1.txt 
+warning: in the working copy of 'main1.txt', LF will be replaced by CRLF the next time Git touches it
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git commit -m "main 커밋 1"
+[main edcbbc8] main 커밋 1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 main1.txt
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git push origin main
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 285 bytes | 285.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Ludobico/hello-git-cli.git
+   26928fc..edcbbc8  main -> main
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git log --oneline -n1
+edcbbc8 (HEAD -> main, origin/main, origin/HEAD) main 커밋 1
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ ls
+file1.txt  main1.txt
+```
+
+일단 평범하게 커밋을 하나 생성했습니다. 이제 **reset --hard** 명령을 이용해서 한 단계 이전 커밋으로 이동합니다. 여기에서 다시 커밋을 생성하면 가지가 하나 생겨날 것입니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git reset --hard HEAD~
+HEAD is now at 26928fc hotfix 실습
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ echo "main2" >main2.txt
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git add .
+warning: in the working copy of 'main2.txt', LF will be replaced by CRLF the next time Git touches it
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git commit -m "main2 커밋"
+[main 637bfee] main2 커밋
+ 1 file changed, 1 insertion(+)
+ create mode 100644 main2.txt
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git log --oneline --graph --all -n3
+* 637bfee (HEAD -> main) main2 커밋
+| * edcbbc8 (origin/main, origin/HEAD) main 커밋 1
+|/  
+* 26928fc hotfix 실습
+```
+
+1. hard reset 모드로 \[main\] 브랜치를 한 단계 되돌립니다.
+2. `main2.txt` 파일을 생성하고 커밋을 합니다.
+3. 로그를 확인해 보면 main1 커밋과 main2 커밋 모두 `26928fc` 커밋을 부모로 하는 커밋이므로 가가 생긴 것을 알 수 있습니다.
+
+지금 상황에서 풀을 하면 어떻게 될까요? **git pull** 명령은 **git fetch + git merge** 이기때문에 가지를 병합하기 위해서 병합 커밋이 생기고 괜히 커밋 히스토리가 지저분해집니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git pull
+Merge made by the 'ort' strategy.
+ main1.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 main1.txt
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git log --oneline --graph --all -n4
+*   78f4bc0 (HEAD -> main) Merge branch 'main' of https://github.com/Ludobico/hello-git-cli
+|\  
+| * edcbbc8 (origin/main, origin/HEAD) main 커밋 1
+* | 637bfee main2 커밋
+|/  
+* 26928fc hotfix 실습
+```
+
+1. **git pull** 명령을 수행합니다. 자동으로 병합 커밋이 생성됩니다. 
+2. 로그를 확인해 보면 병합 커밋이 생성된 것을 알 수 있습니다.
+
+병합 커밋이 생성되면 그때 hard reset 모드를 이용해 커밋을 되돌리고 재배치하면 됩니다. 이제 병합 커밋을 되돌린 후에 **git rebase** 명령으로 가지를 없애 보겠습니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git reset --hard HEAD~
+HEAD is now at 637bfee main2 커밋
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git rebase origin/main
+Successfully rebased and updated refs/heads/main.
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git log --oneline --all --graph -n3
+* cb7ddd8 (HEAD -> main) main2 커밋
+* edcbbc8 (origin/main, origin/HEAD) main 커밋 1
+* 26928fc hotfix 실습
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git push
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 314 bytes | 314.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Ludobico/hello-git-cli.git
+   edcbbc8..cb7ddd8  main -> main
+```
+
+1. **reset --hard HEAD~** 명령을 이용해서 커밋을 하나 되돌립니다. 이 경우 마지막 커밋은 병합 커밋이었으므로 병합되기 전 커밋 `637bfee` 으로 돌아가게 됩니다. 이제 HEAD는 가지로 튀어나온커밋을 가리키고 있으므로 이 커밋을 재배치해야 합니다.
+2. **git rebase origin/main** 명령을 수행하면 로컬 \[main\] 브랜치의 가지 커밋이 \[origin/main\] 브랜치 위로 재배치됩니다.
+3. 로그를 확인하고 원격 저장소에 푸시합니다.
+
+### Rebase cautions
+
+리베이스할 때 중요한 주의사항이 있습니다. <font color="#ffff00">원격 저장소에 푸시한 브랜치는 리베이스하지 않는 것이 원칙</font>입니다. 예를 들어 C1 커밋을 원격에 풋하고 리베이스하게 되면 원격에는 C1이 존재하고 로컬에는 다른 커밋이 C1\` 이 생성됩니다. 이때 내가 아닌 다른 사용자는 원격에 있던 C1을 병합할 수 있습니다. 그런데 변경된 C1\` 도 언젠가는 원격에 푸시되고 그럼 원격에는 실상 같은 커밋이었던 C1과 C1\`이 동시에 존재하게 됩니다.
+

@@ -98,7 +98,8 @@
     "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/Tensors",
     "Spaces/Home//",
     "Spaces/Home///Temp",
-    "Spaces/Home///Git"
+    "Spaces/Home///Git",
+    "Spaces/Home///Docker"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
