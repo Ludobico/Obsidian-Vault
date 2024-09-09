@@ -1,3 +1,10 @@
+- [[#emergency bug handling procedure|emergency bug handling procedure]]
+- [[#Clean up the tree by rebasing commits|Clean up the tree by rebasing commits]]
+- [[#Tree prune|Tree prune]]
+- [[#Rebase cautions|Rebase cautions]]
+- [[#Test work on the temporal branch|Test work on the temporal branch]]
+
+
 > 3-way merge
 > 두 개의 브랜치를 병합할 때 사용되는 방식 중 하나로, 세 개의 커밋을 참조하여 병합을 수행하는 방법을 의미합니다.
 
@@ -467,5 +474,61 @@ To https://github.com/Ludobico/hello-git-cli.git
 
 ### Rebase cautions
 
-리베이스할 때 중요한 주의사항이 있습니다. <font color="#ffff00">원격 저장소에 푸시한 브랜치는 리베이스하지 않는 것이 원칙</font>입니다. 예를 들어 C1 커밋을 원격에 풋하고 리베이스하게 되면 원격에는 C1이 존재하고 로컬에는 다른 커밋이 C1\` 이 생성됩니다. 이때 내가 아닌 다른 사용자는 원격에 있던 C1을 병합할 수 있습니다. 그런데 변경된 C1\` 도 언젠가는 원격에 푸시되고 그럼 원격에는 실상 같은 커밋이었던 C1과 C1\`이 동시에 존재하게 됩니다.
+리베이스할 때 중요한 주의사항이 있습니다. <font color="#ffff00">원격 저장소에 푸시한 브랜치는 리베이스하지 않는 것이 원칙</font>입니다. 예를 들어 C1 커밋을 원격에 풋하고 리베이스하게 되면 원격에는 C1이 존재하고 로컬에는 다른 커밋이 C1\` 이 생성됩니다. 이때 내가 아닌 다른 사용자는 원격에 있던 C1을 병합할 수 있습니다. 그런데 변경된 C1\` 도 언젠가는 원격에 푸시되고 그럼 원격에는 실상 같은 커밋이었던 C1과 C1\`이 동시에 존재하게 됩니다. 동일한 커밋의 사본도 여러개 존재하고, 충돌도 발생하고, 히스토리는 꼬여만 갑니다.
+
+![[Pasted image 20240909130109.png]]
+<중복 커밋이 존재하는 저장소 상태>
+
+따라서 리베이스와 [[Git]] 의 동작 원리를 잘 이해하기 전까지는 가급적 <font color="#ffff00">리베이스 기능은 아직 원격에 존재하지 않는 로컬의 브랜치들만 적용하기를 권장</font>합니다.
+
+### Test work on the temporal branch
+
+많은 입문자가 충돌 해결, 병합, 리베이스 등을 할 때 막연히 걱정부터 합니다. 소스가 깨지거나 열심히 한 작업의 내용이 사라지는 두려움, 그리고 Git의 커밋 히스토리가 꼬일 것 같은 느낌이 동시에 들기 때문이죠
+
+이럴 때 걱정을 덜 수 있는 아주 쉬운 방법이 있습니다. <font color="#ffff00">임시 브랜치를 활용</font>하는 것입니다. 원래 작업하려고 했던 브랜치의 커밋으로 임시 브랜치를 만들고 나면 해당 브랜치에서는 아무 작업이나 막해도 전혀 상관이 없습니다. 나중에 브랜치를 삭제하기만 하면 모든 내용이 원상 복구됩니다. 임시 브랜치가 필요 없어지는 시점에 **git branch -d <브랜치 이름>** 명령으로 삭제할 수 있습니다.
+
+```bash
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git branch test main
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git switch test
+Switched to branch 'test'
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (test)
+$ echo "아무말" > test.txt
+
+$ git add .
+warning: in the working copy of 'test.txt', LF will be replaced by CRLF the next time Git touches it
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (test)
+$ git commit -m "임시 커밋"
+[test aa1f0ac] 임시 커밋
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.txt
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (test)
+$ git log --oneline --graph --all -n4
+* aa1f0ac (HEAD -> test) 임시 커밋
+* cb7ddd8 (origin/main, origin/HEAD, main) main2 커밋
+* edcbbc8 main 커밋 1
+* 26928fc hotfix 실습
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (test)
+$ git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git branch -D test
+Deleted branch test (was aa1f0ac).
+
+Ludobico@Ludobico MINGW64 ~/OneDrive/Desktop/repoSub/hello-git-cli (main)
+$ git log --oneline --all --graph -n3
+* cb7ddd8 (HEAD -> main, origin/main, origin/HEAD) main2 커밋
+* edcbbc8 main 커밋 1
+* 26928fc hotfix 실습
+```
+
+위의 예제는 임시 브랜치인 \[test\] 브랜치를 생성하고 커밋한 후에 다시 \[main\] 브랜치로 돌아가서 \[test\] 브랜치를 삭제한 결과입니다. 최종적으로 보이는 것처럼 아무 작업도 남지 않았습니다. 커밋, 병합, 리베이스 등 다양한 작업을 미리 테스트해 보고 싶을 때 간단하게 임시 브랜치를 만들어서 사용하고 불필요해지면 삭제하는 것은 좋은 Git 활용 팁입니다.
 
