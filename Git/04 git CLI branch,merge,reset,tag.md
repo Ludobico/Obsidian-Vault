@@ -400,5 +400,5 @@ To https://github.com/Ludobico/hello-git-cli.git
 > switch 명령어와 restore 명령어
 > Git을 공부하다 보면 checkout 명령어를 볼 수 있습니다. 이 명령어는 이전까지 자주 사용하던 명령인데 최근에는 잘 사용하지 않게 되었습니다. checkout 명령어의 기능을 크게 두 가지로 나누면 브랜치의 변경과 워킹트리의 파일 내용 복구입니다.
 > 브랜치를 변경하는 명령은 switch 명령으로 대체되었고, 파일을 복구하는 명령은 restore 명령어로 대치되었습니다. 드물에 checkout 명령어가 필요한 경우도 있긴 하지만, 거의 사용할 필요가 없는 명령어가 되었습니다.
-> restore 명령어는 유용한 기능을 많이 담고 있습ㄴ디ㅏ. 이 책에서 따로 다루지는 않지만, Git Bash 창에 git restore --help 명령을 입력해 한번 살펴보세요
+> restore 명령어는 유용한 기능을 많이 담고 있습니다. 이 책에서 따로 다루지는 않지만, Git Bash 창에 git restore --help 명령을 입력해 한번 살펴보세요
 
