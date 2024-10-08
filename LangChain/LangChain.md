@@ -7,3 +7,22 @@
 랭체인은 stable 버전을 출시하면서, 두 가지 주요 아키텍처를 변경했습니다. `langchain-core`를 별도로 분리하여 추상화, 인터페이스, 핵심 기능을 `langchain-core`에 포함시켰습니다.
 
 또한 `langchain` 에서 파트너 패키지를 분리하여 `langchain-community` 와 독립적인 파트너 패키지(`langchain-openai` 등)을 구분하여 제공합니다.
+
+## Installation
+---
+
+```bash
+pip install langchain
+```
+
+```
+pip install langchain-openai
+```
+
+```
+pip install langchain-huggingface
+```
+
+```
+pip install -U langchain-chroma
+```

@@ -89,15 +89,11 @@
     "//Pytorch/Pytorch/torch.Tensor",
     "//Pytorch/Pytorch/torch.Tensor",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/PreTrained",
-    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/chat",
-    "Spaces/Home///LangChain/LangChain/langchain",
-    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory",
-    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/memory/LangChain/langchain/memory/buffer",
     "Spaces/Home///Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Dropout Layers",
-    "Spaces/Home///Pytorch/Pytorch/torch.Tensor",
-    "Spaces/Home///Pytorch/Pytorch/torch.Tensor/Pytorch/torch.Tensor/Tensors",
     "Spaces/Home///Temp",
-    "Spaces/Home//"
+    "Spaces/Home//",
+    "Spaces/Home///LangChain",
+    "Spaces/Home///LangChain/LangChain/langchain"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
