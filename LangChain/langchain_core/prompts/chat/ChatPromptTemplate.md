@@ -1,110 +1,97 @@
-- [[#example code|example code]]
-- [[#Implement|Implement]]
+`ChatPromptTemplate` 은 [[LangChain/LangChain|LangChain]] 에서 **대화형 프롬프트를 생성하고 관리**하는데 사용되는 클래스입니다.
 
+각 메시지는 `튜플(tuple)` 형식으로 표현되며, 다음과 같은 구조를 가집니다.
 
-`ChatPromptTemplate` 은 [[LangChain/LangChain|LangChain]] 에서 chat model을 위한 프롬프트 템플릿을 정의하는데 사용되는 클래스입니다. 기존의 [[PromptTemplate]] 과는 다르게 **채팅 모델의 특성을 고려하여 설계**되었습니다.
+```python
+(role, content)
+```
 
-주요 특징은 다음과 같습니다.
+> role
+- 메시지의 역할을 나타내는 문자열입니다.
 
-1. 채팅 모델은 일반적으로 유저와 AI간의 대화 형식으로 입력을 받습니다. `ChatPromptTemplate` 은 이러한 대화 형식을 지원하여 프롬프트를 구성할 수 있습니다.
+> content
+- 실제 메시지 내용입니다.
 
-2. 프롬프트는 [[AIMessage]] 와 [[HumanMessage]] 객체로 구성됩니다. 이를 통해 AI와 사용자의 메시지를 명확하게 구분할 수 있습니다.
+`ChatPromptTemplate` 에서 사용되는 주요 역할은 다음과 같습니다.
 
-3. 각 메시지 객체에는 `role` 속성이 있어, AI 또는 사용자의 역할을 지정할 수 있습니다. 이를 통해 프롬프트에 맥락 정보를 추가할 수 있습니다.
+> system
+- 대화의 전반적인 맥락이나 AI의 행동 지침을 설정합니다.
 
-4. `ChatPromptTemplate` 은 여러 개의 메시지 객체를 조합하여 하나의 프롬프트를 만들 수 있습니다.
+- 주로 대화 시작 시 한 번 사용됩니다.
+
+> human
+- 사용자가 AI에게 전달하는 질문이나 명령을 나타냅니다.
+
+> ai
+- AI가 생성한 응답 메시지입니다.
 
 ## example code
 
 ```python
 from langchain_core.prompts import ChatPromptTemplate
 
-template = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful AI bot. Your name is {name}."),
-    ("human", "Hello, how are you doing?"),
-    ("ai", "I'm doing well, thanks!"),
-    ("human", "{user_input}"),
-])
+messages = [
+    ("system", "당신은 친절하고 도움이 되는 AI 어시스턴트입니다."),
+    ("human", "안녕하세요, 오늘의 날씨는 어떤가요?"),
+    ("ai", "안녕하세요! 제가 실시간 날씨 정보를 제공하지는 못하지만, 일반적인 날씨 정보에 대해 답변드릴 수 있습니다. 특정 지역의 날씨를 알고 싶으시다면 말씀해 주세요."),
+    ("human", "{location}의 {season} 날씨는 어떤가요?")
+]
 
-prompt_value = template.invoke(
-    {
-        "name": "Bob",
-        "user_input": "What is your name?"
-    }
-)
+chat_prompt = ChatPromptTemplate.from_messages(messages).format_messages(location = "서울", season = "봄")
+
+print(chat_prompt)
+
 ```
 
 ```
-# Output:
-# ChatPromptValue(
-#    messages=[
-#        SystemMessage(content='You are a helpful AI bot. Your name is Bob.'),
-#        HumanMessage(content='Hello, how are you doing?'),
-#        AIMessage(content="I'm doing well, thanks!"),
-#        HumanMessage(content='What is your name?')
-#    ]
-#)
+[SystemMessage(content='당신은 친절하고 도움이 되는 AI 어시스턴트입니다.', additional_kwargs={}, response_metadata={}), HumanMessage(content='안녕하세요, 오늘의 날씨는 어떤가요?', additional_kwargs={}, response_metadata={}), AIMessage(content='안녕하세요! 제가 실시간 날씨 정보를 제공하지는 못하지만, 일반적인 날씨 정보에 대해 답변드릴 수 
+있습니다. 특정 지역의 날씨를 알고 싶으시다면 말씀해 주세요.', additional_kwargs={}, response_metadata={}), HumanMessage(content='서울의 봄 날씨는 어떤가요?', additional_kwargs={}, response_metadata={})]
 ```
 
-
-## Implement
----
+생성한 메시지를 LLM과 연결하여 다음과 같은 결과를 출력할 수 있습니다.
 
 ```python
-from langchain_core.prompts import SystemMessagePromptTemplate,  HumanMessagePromptTemplate
+import os, sys
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.append(project_root)
 
-chat_prompt = ChatPromptTemplate.from_messages(
-    [
-        SystemMessagePromptTemplate.from_template("이 시스템은 천문학 질문에 답변할 수 있습니다."),
-        HumanMessagePromptTemplate.from_template("{user_input}"),
-    ]
-)
+from langchain.prompts.chat import ChatPromptTemplate
+from langchain_openai import ChatOpenAI
+from langchain_core.output_parsers import StrOutputParser
 
-messages = chat_prompt.format_messages(user_input="태양계에서 가장 큰 행성은 무엇인가요?")
-messages
+from config.getenv import GetEnv
+
+env = GetEnv()
+apikey = env.get_openai_api_key
+
+prompt = [
+    ("system", "당신은 친절하고 도움이 되는 AI 어시스턴트입니다."),
+    ("human", "안녕하세요, 오늘의 날씨는 어떤가요?"),
+    ("ai", "안녕하세요! 제가 실시간 날씨 정보를 제공하지는 못하지만, 일반적인 날씨 정보에 대해 답변드릴 수 있습니다. 특정 지역의 날씨를 알고 싶으시다면 말씀해 주세요."),
+    ("human", "{location}의 {season} 날씨는 어떤가요?")
+]
+chat_prompt = ChatPromptTemplate.from_messages(prompt)
+
+llm = ChatOpenAI(temperature=0.1, api_key=apikey, model='gpt-4o-mini')
+
+parser = StrOutputParser()
+
+chain = chat_prompt | llm | parser
+
+print(chain.invoke({"location" : "대한민국", "season" : "봄"}))
 ```
 
 ```
-[SystemMessage(content='이 시스템은 천문학 질문에 답변할 수 있습니다.'),
- HumanMessage(content='태양계에서 가장 큰 행성은 무엇인가요?')]
-```
+대한민국의 봄 날씨는 대체로 온화하고 쾌적합니다. 보통 3월부터 5월까지 이어지며, 다음과 같은 특징이 있습니다:
 
-이렇게 생성된 메시지 리스트는 대화형 인터페이스나 언어 모델과의 상호작용을 위한 입력으로 사용될 수 있습니다. 각 메시지는 `role` (메시지를 말하는 주체, system 또는 user) 과 `content` (메시지 내용) 속성을 포함합니다. 이 구조는 시스템과 사용자 간의 대화 흐름을 명확하게 표현하며, 언어 모델이 이를 기반으로 적절한 응답을 생성할 수 있도록 돕습니다.
+1. **3월**: 겨울의 추위가 점차 풀리기 시작하지만, 여전히 쌀쌀한 날씨가 많습니다. 평균 기온은 5도에서 15도 사이로 변동합니다. 이 시기에는 꽃이 피기 시작하며, 특히 벚꽃이 
+유명합니다.
 
-```python
-chain = chat_prompt | llm | StrOutputParser()
+2. **4월**: 기온이 더 따뜻해지며, 평균 기온은 10도에서 20도 사이입니다. 벚꽃이 만개하고, 다양한 꽃들이 피어나는 시기입니다. 날씨가 맑고 화창한 날이 많아 야외 활동에 적합
+합니다.
 
-chain.invoke({"user_input": "태양계에서 가장 큰 행성은 무엇인가요?"})
-```
+3. **5월**: 봄의 마지막 달로, 기온이 더욱 올라 평균 15도에서 25도 사이입니다. 날씨가 매우 쾌적하고, 많은 사람들이 야외 활동을 즐깁니다. 이 시기에는 초여름의 기운도 느껴지기 시작합니다.
 
-```
-태양계에서 가장 큰 행성은 목성입니다. 목성은 태양 주위를 도는 행성 중에서 가장 크고 질량도 가장 많이 가지고 있습니다.
-```
-
-```python
-  def prompt_chat_template():
-    chat_prompt = ChatPromptTemplate.from_messages([
-      SystemMessagePromptTemplate.from_template("이 시스템은 주어진 질문에 답변할 수 있습니다."),
-      HumanMessagePromptTemplate.from_template("{user_input}, {test_input}")
-    ])
-    return chat_prompt
-```
-
-```python
-    prompt = GemmaWithLangchain.prompt_chat_template()
-	question = "태양계에서 가장 큰 행성은 무엇인가요?"
-    chains = LLMChain(llm=langchain_pipeline, prompt=prompt, verbose=True, output_parser=StrOutputParser())
-    print(chains.invoke({"user_input" : question, "test_input" : "이 문장은 테스트문장입니다."}))
-
-```
-
-```
-# verbose
-Prompt after formatting:
-System: 이 시스템은 주어진 질문에 답변할 수 있습니다.
-Human: 태양계에서 가장 큰 행성은 무엇인가요?, 이 문장은 테스트문장입니다.
-
-# result
-{'user_input': '태양계에서 가장 큰 행성은 무엇인가요?', 'test_input': '이 문장은 테스트문장입니다.', 'text': 'System: 이 시스템은 주어진 질문에 답변할 수 있습니다.\nHuman: 태양계에서 가장 큰 행성은 무엇인가요?, 이 문장은 테스트문장입니다.'}
+봄철에는 비가 오는 날도 있지만, 대체로 맑고 화창한 날이 많아 여행이나 소풍에 적합한 계절입니다.
 ```
 

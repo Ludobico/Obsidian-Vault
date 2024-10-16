@@ -93,8 +93,9 @@
     "Spaces/Home///Temp",
     "Spaces/Home//",
     "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/langchain",
-    "Spaces/Home///Python"
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/prompt",
+    "Spaces/Home///LangChain/LangChain/langchain_core",
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",

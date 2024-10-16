@@ -46,6 +46,74 @@ prompt = PromptTemplate(input_variables=["foo"], template="Say {foo}")
 > validate_template -> bool
 - 템플릿의 유효성을 검사할지 여부를 결정하는 불리언 값입니다. 이를 `True` 로 설정하면, 템플릿이 유요한 형식인지 검사합니다.
 
+## from \_template() method
+
+```
+본 저작물은 2024년 테디노트에 의해 작성되었습니다. 모든 권리는 저작권자에게 있으며, 본 저작물은 Creative Commons Attribution-NonCommercial-NoDerivs 2.0 Korea 라이선스에 따라 배포됩니다. 본 저작물의 무단 전재 및 재배포를 금지하며, 전체 혹은 일부를 인용할 경우 출처를 명확히 밝혀주시기 바랍니다. 본 문서는 다른 문서의 내용을 참고하여 작성되었을 수 있습니다. 참고 자료는 본 문서 하단의 출처 목록에서 확인하실 수 있습니다. Copyright (c) 테디노트.
+```
+
+치환될 변수를 `{변수}` 로 묶어서 템플릿을 정의합니다.
+
+```python
+from langchain_core.prompts import PromptTemplate
+
+template = "{country} 의 수도는 어디인가요?"
+
+prompt = PromptTemplate.from_template(template)
+print(prompt)
+```
+
+```
+input_variables=['country'] input_types={} partial_variables={} template='{country} 의 수도는 어디인가요?'
+```
+
+`country` 변수에 값을 넣어서 문장을 생성할 수 있습니다.
+
+```python
+from langchain_core.prompts import PromptTemplate
+
+template = "{country} 의 수도는 어디인가요?"
+
+prompt = PromptTemplate.from_template(template)
+prompt = prompt.format(country = "대한민국")
+print(prompt)
+```
+
+```
+대한민국 의 수도는 어디인가요?
+```
+
+### from_template() with llm
+
+```python
+import os, sys
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.append(project_root)
+
+from langchain.prompts import PromptTemplate
+from langchain_openai import ChatOpenAI
+from langchain_core.output_parsers import StrOutputParser
+
+from config.getenv import GetEnv
+
+env = GetEnv()
+apikey = env.get_openai_api_key
+
+template = "{country}의 수도는 어디인가요?"
+prompt = PromptTemplate.from_template(template)
+llm = ChatOpenAI(temperature=0.1, api_key=apikey, model='gpt-4o-mini')
+
+chain = prompt | llm
+
+print(chain.invoke("대한민국").content)
+```
+
+```
+대한민국의 수도는 서울입니다.
+```
+
+
+
 ## Partial prompt templates
 ---
 
