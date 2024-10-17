@@ -1,3 +1,12 @@
+- [[#Installation|Installation]]
+	- [[#Installation#Linux|Linux]]
+	- [[#Installation#Windows|Windows]]
+- [[#Configuration of docker-compose|Configuration of docker-compose]]
+- [[#Volumes vs COPY|Volumes vs COPY]]
+	- [[#Volumes vs COPY#volumes|volumes]]
+	- [[#Volumes vs COPY#COPY|COPY]]
+
+
 도커 컴포즈(docker compose) 는 도커를 활용해 <font color="#ffff00">다수의 컨테이너 형태의 애플리케이션을 실행할 수 있는 도구</font>입니다. 실행하고자 하는 애플리케이션의 설정 내용들을 `YAML` 파일로 작성하는 방법으로 도커 컴포즈를 활용할 수 있습니다. YAML 파일 작성을 완료하면 간단한 명령어만으로도 YAML에 포함되어 있는 모든 서비스를 한번에 실행할 수 있습니다.
 
 ## Installation
@@ -199,4 +208,27 @@ time="2024-09-02T15:37:40+09:00" level=warning msg="G:\\st002\\Docker-test\\dock
 ```
 
 *docker compose down* 명령어를 활용하면 도커 컴포즈를 활용해 실행했던 컨테이너를 정지시킬 수 있습니다.
+
+## Volumes vs COPY
+
+`volumes` 옵션과 `COPY` 명령어는 [[Docker]]에서 파일을 컨테이너에 복사하는 방식에 있어서 차이점이 있습니다.
+
+### volumes
+
+- `volumes` 는 호스트 시스템의 파일이나 디렉터리를 컨테이너 내의 특정 경로에 **마운트하는 방식**입니다.
+
+- 이 방식은 **호스트 시스템에서 파일을 수정하면, 수정된 내용이 컨테이너 내에서도 반영**됩니다.
+
+```dockerfile
+volumes:
+  - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+```
+
+여기서는 호스트의 `./nginx/default.conf` 파일을 컨테이너의 `/etc/nginx/conf.d/default.conf` 경로에 마운트하게 됩니다. 호스트에서 해당 파일을 수정하면 컨테이너 안에서도 즉시 반영됩니다.
+
+### COPY
+
+- `COPY` 는 빌드할 때 호스트 시스템의 파일을 컨테이너 이미지 안에 복사하는 명령어입니다.
+
+- 이 방식은 도커 이미지가 빌드될 때 파일을 컨테이너로 복사하며, 이미지가 빌드된 후에는 호스의 파일과는 연결되지 않습니다. 즉, 파일을 수정하면 컨테이너에는 반영되지 않으며, 이미지를 새로 빌드해야 합니다.
 
