@@ -6,8 +6,13 @@
 - [[#Execute into exited container|Execute into exited container]]
 - [[#Remove the container|Remove the container]]
 - [[#Remove the image|Remove the image]]
+- [[#Modify docker image|Modify docker image]]
 - [[#docker image command list|docker image command list]]
 - [[#docker container command list|docker container command list]]
+- [[#Copy files host to container|Copy files host to container]]
+- [[#Copy files container to host|Copy files container to host]]
+- [[#Modify files in a running docker container|Modify files in a running docker container]]
+
 
 ## image list
 
@@ -395,4 +400,27 @@ admin@BGR_AI C:\Users\admin\Desktop\repo>dir
                2개 파일                  12 바이트
                3개 디렉터리  280,882,434,048 바이트 남음
 ```
+
+## Modify files in a running docker container
+
+**docker container exec** 명령어를 통해 실행 중인 컨테이너에 접속하여 직접 파일을 수정할 수 있습니다. 예시로 `nginx` 의 `default.conf` 파일을 수정하려면
+
+```bash
+docker container exec -it <컨테이너 이름 또는 ID> /bin/bash
+```
+
+```bash
+cd /etc/nginx/conf.d
+```
+
+```bash
+vim default.conf
+```
+
+```bash
+# 수정한 후 다시 로드
+nginx -s reload
+```
+
+위와 같은 방법으로 수정할 수 있습니다.
 
