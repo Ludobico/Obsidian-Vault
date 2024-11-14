@@ -93,9 +93,10 @@
     "Spaces/Home///Temp",
     "Spaces/Home//",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/prompt",
+    "Spaces/Home///LangChain",
     "Spaces/Home///LangChain/LangChain/langchain_core",
-    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts",
-    "Spaces/Home///https"
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/chat",
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/runnables"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
