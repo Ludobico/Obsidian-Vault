@@ -1,4 +1,19 @@
-`MessagesPlaceholder` 는 **채팅 기록(chat history)** 을 저장하고 관리하는데 사용되는 컴포넌트입니다.
+`MessagesPlaceholder` 는 주로 **채팅 기록(chat history)** 을 저장하고 관리하는데 사용되는 컴포넌트입니다.
+
+핵심 기능은 유연한 메시지 삽입으로 주요 특징으로는 **대화 이력 저장, 에이전트의 중간 추론 과정(scratchpad) 저장, 동적으로 메시지 리스트를 프롬프트에 삽입** 등이 있습니다.
+
+
+```python
+# 대화 이력 저장
+chat_prompt = ChatPromptTemplate.from_messages([
+    MessagesPlaceholder(variable_name="chat_history")
+])
+
+# 에이전트 스크래치패드 저장 
+agent_prompt = ChatPromptTemplate.from_messages([ MessagesPlaceholder(variable_name="agent_scratchpad")
+])
+
+```
 
 ### Message Placeholder with buffer memory
 

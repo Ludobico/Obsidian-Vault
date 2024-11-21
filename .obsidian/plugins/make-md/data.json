@@ -94,10 +94,11 @@
     "Spaces/Home//",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/prompt",
     "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/langchain_core",
-    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/messages",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/messages/LangChain/langchain_core/messages/ai",
-    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/messages/LangChain/langchain_core/messages/human"
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/messages/LangChain/langchain_core/messages/human",
+    "Spaces/Home///LangChain/LangChain/langchain_core",
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts",
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/chat"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
