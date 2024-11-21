@@ -96,9 +96,9 @@
     "Spaces/Home///LangChain",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/messages/LangChain/langchain_core/messages/ai",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/messages/LangChain/langchain_core/messages/human",
-    "Spaces/Home///LangChain/LangChain/langchain",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agent",
-    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agents"
+    "Spaces/Home///LangChain/LangChain/langchain_core",
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/tools"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
