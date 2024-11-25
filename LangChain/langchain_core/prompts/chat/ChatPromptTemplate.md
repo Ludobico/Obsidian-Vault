@@ -221,3 +221,56 @@ When a response contains highly specific details about rare or obscure topics th
 {question}
 ```
 
+## Methods
+
+- async
+> abatch()
+> 	- input -> List[input]
+> 	- config -> optional, RunnableConfig = None
+> 	- return_exceptions -> bool, Default : False
+> 	- \*\*kwargs
+
+[[Asyncio]]의 gather를 사용해서 병렬로 ainoke()를 실행하는 기본 메서드입니다.
+이 메서드의 각 배치는 입출력(IO) 중심의 실행 가능 작업과 호환됩니다.
+
+- async
+> abatch_as_completed()
+> 	- inputs -> Sequence[input]
+> 	- config -> optional, RunnableConfig
+> 	- return_exceptions -> bool, Default : False
+> 	- \*\*kwargs
+
+병렬로 리스트 input값을 받고 ainovke()를 실행하는 메서드입니다.  작업이 완료되는 대로 결과를 반환합니다.
+
+- async
+> aformat()
+> 	- \*\*kwargs
+
+chat template을 문자열 형식으로 비동기적으로 포맷합니다.
+
+
+- async
+> aformat_messages()
+> 	- \*\*kwargs
+
+chat template을 메시지 형식으로 비동기적으로 포맷합니다.
+
+- async
+> aformat_prompt()
+> 	- \*\*kwargs
+
+비동기적으로 프롬프트를 포맷하고 [[PromptValue]] 를 반환합니다.
+
+- async
+> ainvoke
+> 	- input -> Dict
+> 	- config -> RunnableConfig
+> 	- \*\*kwargs
+
+비동기적으로 프롬프트를 호출합니다.
+
+> append
+> 	- message : Union[[[BaseMessage]]]
+
+chat template 의 끝부분에 메시지를 추가합니다.
+
