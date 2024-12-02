@@ -269,7 +269,7 @@ chat template을 메시지 형식으로 비동기적으로 포맷합니다.
 
 비동기적으로 프롬프트를 호출합니다.
 
-> append
+-  append
 > 	- message : Union[[[BaseMessage]]]
 
 chat template 의 끝부분에 메시지를 추가합니다.
