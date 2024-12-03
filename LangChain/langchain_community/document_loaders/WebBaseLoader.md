@@ -26,6 +26,35 @@ loader = WebBaseLoader(
 
 ## Example
 
+```python
+from langchain_community.document_loaders import WebBaseLoader
+
+def load_document(url):
+    """
+    Load document from the specified URL
+    """
+    loader = WebBaseLoader(url)
+    return loader.load()
+    
+
+if __name__ == "__main__":
+    result = load_document("https://example.com")
+    print(result[0].page_content)
+```
+
+```python
+docs = []
+docs_lazy = loader.lazy_load()
+
+# async variant:
+# docs_lazy = await loader.alazy_load()
+
+for doc in docs_lazy:
+    docs.append(doc)
+print(docs[0].page_content[:100])
+print(docs[0].metadata)
+```
+
 
 ## Parameters
 
