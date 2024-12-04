@@ -98,8 +98,8 @@
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agent",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agents/LangChain/langchain/agents/tool_calling_agent",
     "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/langchain_community",
-    "Spaces/Home///LangChain/LangChain/langchain_community/LangChain/langchain_community/document_loaders"
+    "Spaces/Home///LangChain/LangChain/langchain",
+    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/text_splitter"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
