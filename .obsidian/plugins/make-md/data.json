@@ -98,8 +98,7 @@
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agent",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agents/LangChain/langchain/agents/tool_calling_agent",
     "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/langchain",
-    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/text_splitter"
+    "Spaces/Home///LangChain/LangChain/langchain_community"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
