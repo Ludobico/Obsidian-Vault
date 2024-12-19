@@ -25,3 +25,19 @@ Hellow world
 ```
 
 
+
+## Memory implementation
+
+```python
+RunnablePassthrough.assign(
+    chat_history=lambda x: memory.chat_memory.messages
+)
+```
+
+- `RunnablePassthrough`  는 입력 데이터를 그대로 출력으로 전달하는 [[LangChain/langchain/langchain|langchain]] 의 기본 컴포넌트입니다.
+
+- `assgin()` 메서드는 입력데이터를 수정하거나 새 키를 추가할 때 사용합니다.
+- 여기서는 `lambda x: memory.chat_memory.messages` 를 통해 `chat_history` 의 값을 동적으로 설정합니다.
+
+### Data stream of memory
+

@@ -91,14 +91,13 @@
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/PreTrained",
     "Spaces/Home///Pytorch/Pytorch/torch.nn/Pytorch/torch.nn/Dropout Layers",
     "Spaces/Home///Temp",
-    "Spaces/Home//",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/prompts/LangChain/langchain_core/prompts/prompt",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/messages/LangChain/langchain_core/messages/ai",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/messages/LangChain/langchain_core/messages/human",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agent",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agents/LangChain/langchain/agents/tool_calling_agent",
-    "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/langchain_community"
+    "Spaces/Home//",
+    "Spaces/Home///LangChain"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
