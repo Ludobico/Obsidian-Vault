@@ -1,3 +1,7 @@
+- [[#Parameters|Parameters]]
+- [[#example|example]]
+
+
 `trim_messages` [[LangChain/LangChain|LangChain]] 에서  **주어진 메시지 시퀀스를 주어진 token limit 이하로 줄이기 위해 사용**됩니다.
 
 ## Parameters
@@ -43,4 +47,59 @@
 
 - 메시지 텍스트를 분리하는 함수 또는 [[text_splitter]] 객체를 받습니다.
 
+
+## example
+
+```python
+from langchain_core.messages import trim_messages, AIMessage, HumanMessage, SystemMessage
+
+messages = [
+    SystemMessage("you're a good assistant, you always respond with a joke."),
+    HumanMessage("i wonder why it's called langchain"),
+    AIMessage(
+        'Well, I guess they thought "WordRope" and "SentenceString" just didn\'t have the same ring to it!'
+    ),
+    HumanMessage("and who is harrison chasing anyways"),
+    AIMessage(
+        "Hmmm let me think.\n\nWhy, he's probably chasing after the last cup of coffee in the office!"
+    ),
+    HumanMessage("why is 42 always the answer?"),
+    AIMessage(
+        "Because it’s the only number that’s constantly right, even when it doesn’t add up!"
+    ),
+    HumanMessage("What did the cow say?"),
+]
+
+trimmed_messages = trim_messages(
+    messages = messages,
+    token_counter = len,
+    max_tokens = 5,
+    strategy = "last",
+    allow_partial=True,
+    include_system=True
+)
+
+for msg in trimmed_messages:
+    msg.pretty_print()
+```
+
+```
+================================ System Message ================================
+
+you're a good assistant, you always respond with a joke.
+================================== Ai Message ==================================
+
+Hmmm let me think.
+
+Why, he's probably chasing after the last cup of coffee in the office!
+================================ Human Message =================================
+
+why is 42 always the answer?
+================================== Ai Message ==================================
+
+Because it’s the only number that’s constantly right, even when it doesn’t add up!
+================================ Human Message =================================
+
+What did the cow say?
+```
 
