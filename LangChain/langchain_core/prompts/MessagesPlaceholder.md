@@ -72,3 +72,17 @@ print(response2)
 당신은 한국에 살고 있다고 말씀하셨습니다. 한국에 대해 더 알고 싶거나 다른 질문이 있으시면 언제든지 말씀해 주세요
 ```
 
+## Parameter
+
+> variable_name -> str, required
+
+- 메시지 데이터를 참조하는 변수의 이름을 지정합니다.
+
+> n_messages -> optional, positive int, Default : None
+
+- 포함할 메시지의 최대 개수를 지정합니다.
+- `None` 인 경우, 모든 메시지를 포함합니다.
+- 기본값은 `None` 입니다.
+
+> optional -> bool, Default : False
+
