@@ -96,8 +96,10 @@
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/messages/LangChain/langchain_core/messages/human",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agent",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agents/LangChain/langchain/agents/tool_calling_agent",
+    "Spaces/Home///LangChain",
     "Spaces/Home//",
-    "Spaces/Home///LangChain"
+    "Spaces/Home///LangChain/LangChain/langchain_core",
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/messages"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
