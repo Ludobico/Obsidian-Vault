@@ -1,6 +1,7 @@
 - [[#Parameters|Parameters]]
 - [[#example code ( using method )|example code ( using method )]]
 - [[#deep dive to ChatPromptTemplate|deep dive to ChatPromptTemplate]]
+- [[#Methods|Methods]]
 
 
 `ChatPromptTemplate` 은 [[LangChain/LangChain|LangChain]] 에서 **대화형 프롬프트를 생성하고 관리**하는데 사용되는 클래스입니다.
@@ -223,8 +224,7 @@ When a response contains highly specific details about rare or obscure topics th
 
 ## Methods
 
-- async
-> abatch()
+- <font color="#ffff00">abatch()</font>
 > 	- input -> List[input]
 > 	- config -> optional, RunnableConfig = None
 > 	- return_exceptions -> bool, Default : False
@@ -233,8 +233,8 @@ When a response contains highly specific details about rare or obscure topics th
 [[Asyncio]]의 gather를 사용해서 병렬로 ainoke()를 실행하는 기본 메서드입니다.
 이 메서드의 각 배치는 입출력(IO) 중심의 실행 가능 작업과 호환됩니다.
 
-- async
-> abatch_as_completed()
+
+- <font color="#ffff00">abatch_as_completed()</font>
 > 	- inputs -> Sequence[input]
 > 	- config -> optional, RunnableConfig
 > 	- return_exceptions -> bool, Default : False
@@ -242,35 +242,109 @@ When a response contains highly specific details about rare or obscure topics th
 
 병렬로 리스트 input값을 받고 ainovke()를 실행하는 메서드입니다.  작업이 완료되는 대로 결과를 반환합니다.
 
-- async
-> aformat()
+- <font color="#ffff00">aformat()</font>
 > 	- \*\*kwargs
 
 chat template을 문자열 형식으로 비동기적으로 포맷합니다.
 
 
-- async
-> aformat_messages()
+- <font color="#ffff00">aformat_messages()</font>
 > 	- \*\*kwargs
 
 chat template을 메시지 형식으로 비동기적으로 포맷합니다.
 
-- async
-> aformat_prompt()
+
+-  <font color="#ffff00">aformat_prompt()</font>
 > 	- \*\*kwargs
 
 비동기적으로 프롬프트를 포맷하고 [[PromptValue]] 를 반환합니다.
 
-- async
-> ainvoke
+
+- <font color="#ffff00">ainvoke()</font>
 > 	- input -> Dict
 > 	- config -> RunnableConfig
 > 	- \*\*kwargs
 
 비동기적으로 프롬프트를 호출합니다.
 
--  append
+-  <font color="#ffff00">append()</font>
 > 	- message : Union[[[BaseMessage]]]
 
 chat template 의 끝부분에 메시지를 추가합니다.
+
+
+- <font color="#ffff00">astream()</font>
+> 	- input -> input
+> 	- config -> [[RunnableConfig]], default : None
+> 	- kwargs -> Any
+
+비동기 스트리밍 출력을 지원하는 Runnable 인터페이스입니다. 위 메서드를 호출하면 내부적으로 `ainvoke()` 메서드를 호출하며 스트리밍 출력을 제공하려면 서브 클래스에서 이 메서드를 재정의해야합니다.
+
+```python
+async def main():
+    async for output in my_runnable.astream(input_data, config=my_config):
+        print(output)
+```
+
+```python
+class MyRunnable(Runnable):
+    async def astream(self, input, config=None, **kwargs):
+        for chunk in self.custom_stream_generator(input):
+            yield chunk
+```
+
+- <font color="#ffff00">batch()</font>
+> 	- inputs -> List[\input\]
+> 	- config -> [[RunnableConfig]] | List\[[[RunnableConfig]]\] | None
+> 	- return_exceptions -> bool, Default : False
+> 	- kwargs -> Any | None
+
+여러 개의 입력(`inputs`) 를 병렬로 처리하여 출력(`outputs`)의 리스트를 반환합니다.
+
+- batch_as_completed()
+> 	- inputs -> Sequence\[input\]
+> 	- config -> [[RunnableConfig]] | Sequence\[[[RunnableConfig]]\] | None
+> 	- return_exceptions -> bool
+> 	- kwargs -> Any | None
+
+여러 개의 입력을 병렬로 처리하되, 작업이 완료되는 순서대로 결과를 즉시 반환합니다.
+
+- <font color="#ffff00">bind()</font>
+>	- kwargs -> Any
+
+특정 파라미터를 미리 고정(바인딩)한 새로운 Runnable 객체를 생성합니다.
+체인에서 이전 Runnable 의 출력 또는 사용자의 입력과 관계없이 고정된 값을 전달하고 싶을때 사용됩니다.
+
+```python
+import os, sys
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+    
+from Module.base_LLM import chat_gpt
+from langchain_core.output_parsers import StrOutputParser
+from Utils import highlight_print
+
+llm = chat_gpt()
+parser = StrOutputParser()
+
+chain_without_bind = llm | parser
+
+result = chain_without_bind.invoke("Repeat quoted words exactly : 'one two three four five'")
+highlight_print(result)
+
+chain_with_bind = llm.bind(stop=["three"]) | parser
+
+result = chain_with_bind.invoke("Repeat quoted words exactly : 'one two three four five'")
+highlight_print(result)
+```
+
+```
+--------------------------------------------------------------------------------
+'one two three four five'
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+'one two 
+--------------------------------------------------------------------------------
+```
 

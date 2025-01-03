@@ -98,8 +98,8 @@
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agents/LangChain/langchain/agents/tool_calling_agent",
     "Spaces/Home//",
     "Spaces/Home///LangChain/LangChain/langchain_core",
-    "Spaces/Home///Python/Python/Decorator",
-    "Spaces/Home///Python"
+    "Spaces/Home///LangChain",
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/runnables"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
