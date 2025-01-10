@@ -19,6 +19,9 @@ typing은 다양한 타입 어노테이션을 위해 사용하는 모듈입니�
 - [[#AsyncIterable|AsyncIterable]]
 - [[#AsyncIterator|AsyncIterator]]
 - [[#AsyncGenerator|AsyncGenerator]]
+- [[#Annotated|Annotated]]
+- [[#TypedDict|TypedDict]]
+
 
 
 ## Simple example (List)
@@ -468,3 +471,101 @@ if __name__ == "__main__":
   <class 'str'>
 
 위의 코드에서 `AsyncGenerator[int, str]` 는 비동기 제너레이터가 생성하는 값의 타입이 `int` 이고, 완료되면 `str` 을 반환함을 나타냅니다. 이러한 타입 힌팅을 통해 코드를 작성할 때 타입 검사를 할 수 있으며, 가독성을 향상시킬 수 있습니다.
+
+## Annotated
+
+[[Python]] 의 `Annotated` 는 **타입 힌트에 추가적인 메타데이터를 포함**할 수 있도록 해줍니다. 이를 통해 기본적인 타입 정보 외에, 유효성 검증, 제약 조건, 문서화 등의 추가 정보를 제공할 수 있습니다.
+
+<font color="#00b050">Usage</font>
+
+```python
+from typing import Annotated
+
+Annotated[원래_타입, 메타데이터1, 메타데이터2, ...]
+```
+
+<font color="#00b050">example</font>
+
+```python
+from typing import Annotated
+
+positiveInt = Annotated[int, "Must be a positive interger"]
+
+def process_number(value : positiveInt):
+    print(f"Processing positive number : {value}")
+
+process_number(5)
+print("-"*80)
+process_number(-1)
+```
+
+```
+Processing positive number : 5
+--------------------------------------------------------------------------------
+Processing positive number : -1
+```
+
+`Annotated` 는 **런타인 동작에 영향을 미치지 않습니다.** 대신 타입 검사나 문서화, 유효성 검증 라이브러리에서 활용됩니다.
+
+## TypedDict
+
+`TypedDict` 는 [[Python]] 에서 **딕셔너리의 키와 값의 타입을 명시적으로 정의**할 수 있도록 해줍니다. 이는 JSON 같은 구조의 데이터를 다룰 때 유용하며, 타입 검사기가 데이터의 구조를 확인할 수 있도록 도와줍니다.
+
+<font color="#00b050">Usage</font>
+
+```python
+from typing import TypedDict
+
+class MyDictName(TypedDict):
+    key1 : ValueType1
+    key2 : ValveType2
+
+```
+
+<font color="#00b050">Example1 : Basic TypedDict</font>
+
+```python
+from typing import TypedDict
+
+class User(TypedDict):
+    id : int
+    name : str
+
+def get_user_info(user : User) -> str:
+    return f"User {user['id']} is named {user['name']}"
+
+user_data = {"id" : 1, "name" : "Alice"}
+print(get_user_info(user_data))
+```
+
+```
+User 1 is named Alice
+```
+
+<font color="#00b050">Example 2 : Define optional key</font>
+
+```python
+from typing import TypedDict
+
+class PartialUser(TypedDict, total = False):
+    id: int
+    name : str
+
+def display_user_info(user : PartialUser):
+    if 'id' in user:
+        print(f"ID : {user['id']}")
+    if 'name' in user:
+        print(f"Name : {user['name']}")
+
+partial_user_data = {"name": "Bob"}  # 'id'는 없어도 허용
+display_user_info(partial_user_data)
+```
+
+```
+Name : Bob
+```
+
+이 모듈은 JSON 또는 딕셔너리 기반 데이터를 다룰 때 가독성과 안정성을 높입니다.
+
+**런타임에는 강제성이 없으며**, 정적 타입 검사 도구와 함께 사용합니다.
+
