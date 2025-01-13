@@ -97,7 +97,9 @@
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agent",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agents/LangChain/langchain/agents/tool_calling_agent",
     "Spaces/Home//",
-    "Spaces/Home///Pytorch/Pytorch/torchaudio"
+    "Spaces/Home///Pytorch/Pytorch/torchaudio",
+    "Spaces/Home///LangChain",
+    "Spaces/Home///LangChain/LangChain/langgraph"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
