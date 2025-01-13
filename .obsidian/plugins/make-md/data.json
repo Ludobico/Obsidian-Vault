@@ -99,7 +99,8 @@
     "Spaces/Home//",
     "Spaces/Home///Pytorch/Pytorch/torchaudio",
     "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/langgraph"
+    "Spaces/Home///LangChain/LangChain/langgraph",
+    "Spaces/Home///LangChain/LangChain/langgraph/LangChain/langgraph/Tutorial"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
