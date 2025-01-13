@@ -101,3 +101,50 @@ graph_img.show()
 
 ![[tmpbr_9cevh.png]]
 
+이제 챗봇을 실행해볼 차례입니다.
+
+아래 코드에서는 `quit` `exit`, `q` 등의 키워드를 통해 챗봇을 종료하는 코드를 작성했습니다.
+
+```python
+def stream_graph_updates(user_input : str):
+    for event in graph.stream({"messages" : [("user" , user_input)]}):
+        for value in event.values():
+            print("Assistant: ", value["messages"][-1].content)
+
+while True:
+    try:
+        user_input = input("User: ")
+        if user_input.lower() in ['quit', 'exit', 'q']:
+            print("You have exited")
+            break
+        stream_graph_updates(user_input)
+
+    except:
+        user_input = "What do you know about LangGraph?"
+        print("User : " + user_input)
+        stream_graph_updates(user_input)
+        break
+```
+
+```markdown
+User: Hi, tell me about LLM which was developed by google
+
+Assistant:  Google has developed several large language models (LLMs), with one of the most notable being the **BERT** (Bidirectional Encoder Representations from Transformers) model, introduced in 2018. BERT was groundbreaking because it allowed for a better understanding of the context of words in search queries, significantly improving the performance of natural language processing tasks.
+
+Following BERT, Google introduced other models, including:
+
+1. **T5 (Text-to-Text Transfer Transformer)**: This model treats every NLP task as a text-to-text problem, allowing it to be fine-tuned for various applications, such as translation, summarization, and question answering.
+
+2. **LaMDA (Language Model for Dialogue Applications)**: LaMDA is designed specifically for dialogue applications, enabling more natural and open-ended conversations with AI.
+
+3. **PaLM (Pathways Language Model)**: Announced in 2022, PaLM is a large-scale model that focuses on few-shot and zero-shot learning capabilities, allowing it to perform tasks with minimal examples.
+
+4. **Gemini**: This is a more recent model that builds on the capabilities of previous models and aims to enhance performance across various tasks, including reasoning and understanding complex queries.
+
+These models leverage advanced architectures based on transformers and are trained on vast datasets to improve their understanding of language and context. Google continues to innovate in the field of AI and NLP, contributing to advancements in how machines understand and generate human language.
+```
+
+축하합니다! LangGraph를 사용하여 첫 번째 챗봇을 성공적으로 만들었습니다. 이 봇은 사용자 입력을 받아 LLM을 사용해 응답을 생성하며 기본적인 대화를 나눌 수 있습니다.
+
+다음 단계에서는 Web Search Tool을 추가하여 지식을 확장하고 더욱 강력한 기능을 갖추도록 할 것입니다.
+
