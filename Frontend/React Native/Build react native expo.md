@@ -1,3 +1,8 @@
+- [[#Step1. Sing up to Expo|Step1. Sing up to Expo]]
+- [[#Step2. Install expo package|Step2. Install expo package]]
+- [[#Step3. Create expo project|Step3. Create expo project]]
+- [[#Step4. Deploy to Expo|Step4. Deploy to Expo]]
+- [[#Caution|Caution]]
 
 ## Step1. Sing up to Expo
 
