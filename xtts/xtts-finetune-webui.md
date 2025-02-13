@@ -96,3 +96,12 @@ paths to metadata for training and evaluation.
 
 I recommend referring to [[XTTS Model Finetuning Guide (Advanced Version)]]
 
+
+#### Training and optimization
+
+![[Pasted image 20250123133637.png]]
+you will see these buttons at the bottom.
+Click the `Run the training` button for training model using your processed data.
+Once the training is done, click the `Optimize the model` for optimization your pretrained model.
+
+
