@@ -22,7 +22,7 @@ Expo Bare Workflow 로 전환하여 개발
 라이브러리를 설치합니다.
 
 ```
-expo install @react-native-voice/voice expo-dev-client
+yarn add expo-dev-client expo-speech-recognition
 ```
 
 `app.json` 파일에 다음 구문을 추가로 작성합니다.
