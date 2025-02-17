@@ -98,8 +98,8 @@
     "Spaces/Home///xtts/xtts/TTS/xtts/TTS/tts/xtts/TTS/tts/configs",
     "Spaces/Home///xtts/xtts/TTS/xtts/TTS/tts/xtts/TTS/tts/configs/xtts/TTS/tts/configs/xtts_config",
     "Spaces/Home///xtts/xtts/TTS",
-    "Spaces/Home///Frontend",
-    "Spaces/Home///Frontend/Frontend/React Native"
+    "Spaces/Home///Frontend/Frontend/React Native",
+    "Spaces/Home///Ollama"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
