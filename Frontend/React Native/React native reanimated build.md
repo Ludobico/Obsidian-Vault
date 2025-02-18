@@ -4,13 +4,13 @@ Windows 환경에서 `React Native Reanimated` 라이브러리를 설치하고 �
 ## Build command
 
 ```bash
-yarn android
+npx expo prebuild -p android
 ```
 
 or
 
 ```bash
-expo run:android
+npx expo prebuild -p android --clean
 ```
 
 
