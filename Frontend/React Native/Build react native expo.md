@@ -3,6 +3,7 @@
 - [[#Step3. Create expo project|Step3. Create expo project]]
 - [[#Step4. Deploy to Expo|Step4. Deploy to Expo]]
 - [[#Caution|Caution]]
+- [[#Step5. Download apk|Step5. Download apk]]
 
 ## Step1. Sing up to Expo
 
@@ -97,5 +98,15 @@ npx expo install expo-build-properties
         }
       ]
     ]
+```
+
+## Step5. Download apk
+
+![[Pasted image 20250324132344.png]]
+
+`Download build` 버튼으로 다운로드를 진행하면 **tar.gz** 파일이 다운받아지는데 이는 윈도우 cmd에서 다음과 같은 명령어로 압축해제가 가능합니다.
+
+```bash
+tar -zxvf [압축파일이름] -C [해제폴더이름]
 ```
 
