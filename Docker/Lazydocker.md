@@ -28,3 +28,8 @@ Chocolatey v2.2.2
 Please run 'choco -?' or 'choco <command> -?' for help menu.
 ```
 
+
+```shell
+choco install lazydocker
+```
+

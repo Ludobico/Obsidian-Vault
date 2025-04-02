@@ -99,7 +99,8 @@
     "Spaces/Home///xtts/xtts/TTS/xtts/TTS/tts/xtts/TTS/tts/configs/xtts/TTS/tts/configs/xtts_config",
     "Spaces/Home///xtts/xtts/TTS",
     "Spaces/Home///AI Concepts/AI Concepts/Math/AI Concepts/Math/Math with torch",
-    "Spaces/Home///Docker"
+    "Spaces/Home///Triton Inference server",
+    "Spaces/Home///Triton Inference server/Triton Inference server/Tutorial"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
