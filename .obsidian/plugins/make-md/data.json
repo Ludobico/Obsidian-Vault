@@ -87,7 +87,6 @@
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/messages/LangChain/langchain_core/messages/human",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agent",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/agents/LangChain/langchain/agents/tool_calling_agent",
-    "Spaces/Home//",
     "Spaces/Home///Pytorch/Pytorch/torchaudio",
     "Spaces/Home///xtts/xtts/xtts-finetune-webui",
     "Spaces/Home///xtts/xtts/TTS/xtts/TTS/tts",
@@ -98,8 +97,9 @@
     "Spaces/Home///xtts/xtts/TTS",
     "Spaces/Home///AI Concepts/AI Concepts/Math/AI Concepts/Math/Math with torch",
     "Spaces/Home///Triton Inference server/Triton Inference server/Tutorial",
-    "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/MCP"
+    "Spaces/Home//",
+    "Spaces/Home/Spaces/Home/MCP",
+    "Spaces/Home///MCP"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
