@@ -10,7 +10,7 @@ Cursor는 AI를 활용한 코드 편집기(에디터)로, 개발자의 생산성
 
 ## Cursor MCP
 
-Cursor는 [[MCP]]를 기본적으로 지원합니다. 이를 통해 AI와 다양한 서비스를 신속하고 간편하게 연동할 수 있습니다.
+Cursor는 [[MCP(Model Context Protocol)]]를 기본적으로 지원합니다. 이를 통해 AI와 다양한 서비스를 신속하고 간편하게 연동할 수 있습니다.
 
 1. `Open Cursor Settings` 버튼 클릭
 2. `MCP` 탭 선택

@@ -97,9 +97,11 @@
     "Spaces/Home///MCP",
     "Spaces/Home///MCP/MCP/MCP List",
     "/",
-    "//MCP/MCP/MCP List",
     "//Frontend",
-    "//MCP"
+    "//MCP",
+    "//MCP/MCP/MCP Function",
+    "//MCP(Model Context Protocol)",
+    "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",

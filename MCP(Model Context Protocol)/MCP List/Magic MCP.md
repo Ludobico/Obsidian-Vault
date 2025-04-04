@@ -49,7 +49,7 @@
 
 ### How does Magic AI Agent handle my codebase?
 
-[[MCP]] 의 Magic AI Agent 는 프로젝트 내에서 컴포넌트와 관련된 파일만 생성하거나 수정합니다. 기존 코드 스타일을 유지하며, 프로젝트의 구조를 따릅니다.
+[[MCP(Model Context Protocol)]] 의 Magic AI Agent 는 프로젝트 내에서 컴포넌트와 관련된 파일만 생성하거나 수정합니다. 기존 코드 스타일을 유지하며, 프로젝트의 구조를 따릅니다.
 
 ### Can i Customize the generated components?
 
