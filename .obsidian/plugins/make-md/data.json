@@ -41,9 +41,7 @@
     "//Python/Python/Class",
     "//Frontend/Frontend/Three/Frontend/Three/Hooks",
     "//Frontend/Frontend/Three/Frontend/Three/ThreeJS",
-    "//Frontend/Frontend/GLSL",
     "//Pytorch/Pytorch/Model example",
-    "//Frontend/Frontend/GLSL",
     "//ComfyUI/ComfyUI/Nodes",
     "//ComfyUI/ComfyUI/Nodes",
     "//ComfyUI/ComfyUI/Nodes",
@@ -99,8 +97,9 @@
     "Spaces/Home///MCP",
     "Spaces/Home///MCP/MCP/MCP List",
     "/",
-    "//MCP",
-    "//MCP/MCP/MCP List"
+    "//MCP/MCP/MCP List",
+    "//Frontend",
+    "//MCP"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
