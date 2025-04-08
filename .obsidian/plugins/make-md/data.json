@@ -99,10 +99,9 @@
     "/",
     "//MCP",
     "//MCP/MCP/MCP Function",
-    "//MCP(Model Context Protocol)",
-    "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function",
-    "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function/MCP(Model Context Protocol)/MCP Function/server",
-    "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function/MCP(Model Context Protocol)/MCP Function/server/MCP(Model Context Protocol)/MCP Function/server/fastmcp"
+    "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function/MCP(Model Context Protocol)/MCP Function/server/MCP(Model Context Protocol)/MCP Function/server/fastmcp",
+    "//LangChain",
+    "//LangChain/LangChain/langgraph"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",

@@ -26,7 +26,7 @@ def get_config() -> str:
     return "App configuration here"
 ```
 
-- `@mcp.resource("config://app")` 리소스의 식별자로 "config://app" 을 사용, 이는 **URL 형식으로, 리소스의 경 로 또는 이름**을 나타냄
+- `@mcp.resource("config://app")` 리소스의 식별자로 "config://app" 을 사용, 이는 **URL 형식으로, 리소스의 경로 또는 이름**을 나타냄
 
 ```python
 @mcp.resource("users://{user_id}/profile")
