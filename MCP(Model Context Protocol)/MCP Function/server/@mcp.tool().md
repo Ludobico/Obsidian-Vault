@@ -1,3 +1,8 @@
+- [[#Similiarities with langchain tool|Similiarities with langchain tool]]
+- [[#Differences with langchain tool|Differences with langchain tool]]
+- [[#Example code|Example code]]
+
+
 <font color="#ffff00">@tool()</font> 데코레이터는 [[FastMCP]] 서버에서 제공하는 기능으로, LLM과 같은 외부 시스템이 서버를 통해 특정 작업을 수행할 수 있도록 설계된 매커니즘입니다. 이를 통해 계산을 수행하거나 외부 API 호출과 같은 동작을 정의할 수 있습니다.
 
 [[LangChain/LangChain|LangChain]] 의 [[@tool]] 과 유사한 점이 많습니다.
@@ -36,4 +41,19 @@
 		- Langchain의 도구는 주로 로컬 또는 LLM 실행환경에서 동작하며, **별도의 서버가 필요하지 않습니다.**
 		- [[Tool]] 객체로 변환되어 LLM의 에이전트가 직접 호출하며, 컨텍스트는 Langchain의 [[AgentExecutor]] 나 Chain에서 관리됩니다.
 		- 비동기 지원은 있지만, 주로 동기 함수에 초점이 맞춰져 있습니다.
+
+
+## Example code
+
+```python
+from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP("My App")
+
+@mcp.tool()
+async def fetch_weather(city: str) -> str:
+    async with httpx.AsyncClient() as client:
+        response = await client.get(f"https://api.weather.com/{city}")
+        return response.text
+```
 
