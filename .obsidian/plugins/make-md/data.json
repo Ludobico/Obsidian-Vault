@@ -97,11 +97,12 @@
     "Spaces/Home///MCP",
     "Spaces/Home///MCP/MCP/MCP List",
     "/",
-    "//Frontend",
     "//MCP",
     "//MCP/MCP/MCP Function",
     "//MCP(Model Context Protocol)",
-    "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function"
+    "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function",
+    "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function/MCP(Model Context Protocol)/MCP Function/server",
+    "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function/MCP(Model Context Protocol)/MCP Function/server/MCP(Model Context Protocol)/MCP Function/server/fastmcp"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
