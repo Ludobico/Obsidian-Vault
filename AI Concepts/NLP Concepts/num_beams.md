@@ -25,7 +25,7 @@ $$
 \text{Score}(w_1, w_2, ..., w_t) = \Sigma^t_{i=1} \log p(w_i | w_1, ..., w_{i-1}, \text{context})
 $$
 
-## Understanding through example
+## Understanding through visuals
 
 빔 서치는 트리 구조로 시각화할 수 있습니다. 각 노드는 토큰, 각 경로는 시퀀스를 나타냅니다.
 
