@@ -38,7 +38,6 @@
     null,
     "Obsidian-Vault",
     null,
-    "//Python/Python/Class",
     "//Frontend/Frontend/Three/Frontend/Three/Hooks",
     "//Frontend/Frontend/Three/Frontend/Three/ThreeJS",
     "//Pytorch/Pytorch/Model example",
@@ -101,8 +100,7 @@
     "//MCP/MCP/MCP Function",
     "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function/MCP(Model Context Protocol)/MCP Function/server/MCP(Model Context Protocol)/MCP Function/server/fastmcp",
     "//LangChain/LangChain/langgraph",
-    "//AI Concepts",
-    "//AI Concepts/AI Concepts/NLP Concepts"
+    "//Python"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",

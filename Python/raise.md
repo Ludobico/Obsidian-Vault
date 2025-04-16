@@ -1,6 +1,13 @@
 ---
 Created: 2024-07-29
 ---
+- [[#ValueError|ValueError]]
+- [[#TypeError|TypeError]]
+- [[#IndexError|IndexError]]
+- [[#KeyError|KeyError]]
+- [[#FileNotFoundError|FileNotFoundError]]
+- [[#Custom Error|Custom Error]]
+
 
 `raise` 는 [[Python]] 에서 **예외를 발생시키는 데 사용되는 키워드**입니다. 예외를 발생시키면 프로그램의 실행이 중단되고, 해당 예외를 처리하기 위한 코드가 실행됩니다. 대표적인 예외처리로는 다음과 같습니다.
 
