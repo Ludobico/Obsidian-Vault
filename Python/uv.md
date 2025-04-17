@@ -81,6 +81,7 @@ dependencies = []
 ```bash
 uv venv --name uv_venv
 ```
+
 ### Install packages
 
 ```
@@ -104,15 +105,13 @@ uv add "numpy>=1.21.0"  # 특정 버전 지정
 dependencies = ["requests", "numpy>=1.21.0"]
 ```
 
-- 대응하는 pip 워크플로우
+### Install packages 2
 
-```bash
-pip install requests
+```
+uv pip intall [패키지명] [옵션]
 ```
 
-```bash
-pip install "numpy>=1.21.0"
-```
+`uv pip install` 은 `pip intall` 의 `uv` 버전으로, 가상환경에 패키지를 직접 설치하는 데 초점을 맞춘 명령어입니다. **pyproject.toml 이나 uv.lock 과 직접 연동되지 않으며**, 프로젝트의 의존성 관리보다는 독립적인 패키지 설치에 적합합니다.
 
 ### Remove packages
 
@@ -126,11 +125,6 @@ uv remove [패키지명]
 uv remove requests
 ```
 
-- 대응하는 pip 워크플로우
-
-```bash
-pip uninstall requests
-```
 
 ### Synchronize dependencies
 
@@ -150,3 +144,48 @@ uv run python script.py
 uv run pytest
 ```
 
+## Install pytorch on uv
+
+1. `uv pip install` 은 `uv add` 와 달리 `pyproject.toml` 이나 `uv.lock` 에 의존하지 않고, **직접 지정한 인덱스에서 패키지를 설치**합니다.
+
+#### cuda 11.8
+
+```bash
+uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+#### cuda 12.4
+
+```
+uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+```
+
+#### cuda 12.6
+
+```
+uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+```
+
+2. `uv add` 명령어를 통해 `pyproject.toml` 에 패키지를 추가하고, `uv.lock` 파일을 업데이트해 의존성을 관리합니다. 
+
+```bash
+uv add torch torchvision torchaudio
+```
+
+3. [[Pytorch/CUDA/CUDA|CUDA]] 가 정상적으로 작동하는지 확인합니다.
+
+```python
+import torch
+
+def main():
+    print(torch.cuda.is_available())
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+```
+True
+```
