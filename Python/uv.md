@@ -52,7 +52,14 @@ uv --version
 uv init [프로젝트명] [옵션]
 ```
 
-새 Python 프로젝트를 생성하고 `pyproject.toml` 을 설정합니다. 기본 디렉토리 구조와 가상환경을 생성합니다.
+새로운 **Python 프로젝트를 초기화**합니다. 프로젝트 구조를 설정하고, 필요한 구성 파일을 생성합니다.
+
+- `pyproject.toml` : 프로젝트 메타데이터와 의존성을 정의하는 설정 파일을 생성합니다.
+- `.gitignore` : Python 프로젝트에 적합한 기본 .gitignore 파일을 생성합니다.
+- `README.md` : 프로젝트 설명을 위한 기본 파일을 생성합니다.
+- `.python-version` : 프로젝트에서 사용할 Python 버전을 지정할 수 있습니다.
+
+가상환경을 **자동으로 생성되지 않지만**, 이후 `uv add` 나 `uv sync` 같은 명령어를 실행하면 `.venv` 디렉토리에 가상환경이 생성됩니다.
 
 생성된 `pyproject.toml` 파일은 아래와 같은 구조로 이루어져있습니다.
 
@@ -63,6 +70,17 @@ version = "0.1.0"
 dependencies = []
 ```
 
+### Create virual environment
+
+독립적인 **Python 가상환경을 생성**합니다. 프로젝트 초기화 없이 가상환경만 필요할 때 사용됩니다.
+
+- 저장된 디렉토리(기본값 `.venv`)에 가상환경을 생성합니다.
+- Python 인터프리터와 기본 패키지만 포함하며, `pyproject.toml` 이나 기타 프로젝트 파일은 생성하지 않습니다.
+- `--name` 옵션을 사용하면 `.venv` 대신 원하는 이름의 디렉토리로 가상환경을 생성할 수 있습니다.
+
+```bash
+uv venv --name uv_venv
+```
 ### Install packages
 
 ```
