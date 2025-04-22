@@ -1,4 +1,12 @@
 
+- [[#Core Concept|Core Concept]]
+- [[#Formula|Formula]]
+		- [[#n-gram 정밀도|n-gram 정밀도]]
+- [[#Examples|Examples]]
+	- [[#Examples#Bleu-1 (1-gram)|Bleu-1 (1-gram)]]
+	- [[#Examples#Bleu-2 (2-gram)|Bleu-2 (2-gram)]]
+
+
 BLEU(Billingual Evaluation Understudy)는 **기계 번역 및  텍스트 생성 모델의 품질을 평가하기 위한 n-gram 기반 지표**입니다. BLEU는 모델이 생성한 텍스트와 참조 텍스트 간의 <font color="#ffff00">정밀도(precision)</font>를 중심으로 유사성을 측정하며, 주로 기계 번역에서 사용됩니다. [[ROUGE]] 가 <font color="#ffff00">리콜(Recall)</font> 중심인 것과 달리, BLEU는 정밀도(precision)에 초점을 맞춥니다.
 
 ## Core Concept
@@ -28,3 +36,40 @@ BLEU 점수는 다음과 같이 계산됩니다.
 $$
 p_n = \frac{\Sigma_{C \in \text{candidate}} \Sigma_{g_n \in C}\text{Count}_{\text{match}}(g_n)}{\Sigma_{C \in \text{candidate}} \Sigma_{g_n \in C}\text{Count}(g_n)}
 $$
+
+## Examples
+
+ROUGE와 비슷한 방식으로, BLEU는 n-gram 단위로 정밀도를 계산합니다. 예를 들어, 1-gram, 2-gram 등을 계산하며, 최종 점수는 이드르이 가중 평균으로 구합니다.
+
+- 참조 텍스트(rs) : "인공지능은 컴퓨터가 학습하고 문제를 해결할 수 있게 합니다."
+- 생성 텍스트(c) : "인공지능은 컴퓨터가 학습을 통해 발전합니다."
+
+### Bleu-1 (1-gram)
+
+- 참조 텍스트
+	- 인공지능,은,컴퓨터가,학습하고,문제를,해결할,수,있게,합니다 = 9개
+
+- 생성 텍스트의 1-gram:
+    - 인공지능, 은, 컴퓨터가, 학습을, 통해, 발전합니다. = 6개
+- 일치하는 1-gram:
+    - 인공지능, 은, 컴퓨터가 = 3개
+
+$$
+P_1 = \frac{\text{Count}_{\text{match}}(g_1)}{\text{Count}(g_1)} = \frac{3}{6} = 0.5
+$$
+
+### Bleu-2 (2-gram)
+
+- 참조 텍스트
+	- 인공지능은, 은컴퓨터가, 컴퓨터가학습하고, 학습하고문제를, 문제를해결할, 해결할수, 수있게, 있게합니다. = 8개
+- 생성 텍스트
+	- 인공지능은, 은컴퓨터가, 컴퓨터가학습을, 학습을통해, 통해발전합니다. = 5개
+- 일치하는 2-gram
+	- 인공지능은, 은컴퓨터가 = 2개
+
+$$
+P_2 = \frac{\text{Count}_{\text{match}}(g_2)}{\text{Count}(g_2)} = \frac{2}{5} = 0.5
+$$
+
+위의 예시는<font color="#ffff00"> Brevity Penalty를 계산하지 않은 값</font>입니다.
+
