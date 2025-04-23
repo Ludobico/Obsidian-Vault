@@ -68,7 +68,7 @@ $$
 	- 인공지능은, 은컴퓨터가 = 2개
 
 $$
-P_2 = \frac{\text{Count}_{\text{match}}(g_2)}{\text{Count}(g_2)} = \frac{2}{5} = 0.5
+P_2 = \frac{\text{Count}_{\text{match}}(g_2)}{\text{Count}(g_2)} = \frac{2}{5} = 0.4
 $$
 
 위의 예시는<font color="#ffff00"> Brevity Penalty를 계산하지 않은 값</font>입니다.

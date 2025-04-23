@@ -32,24 +32,3 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if project_root not in sys.path:
     sys.path.append(project_root)
 ```
-
-### set .env in vscode
-
-먼저 루트 프로젝트에 `.env` 파일을 생성하고 아래와 같이 작성합니다.
-
-```
-PYTHONPATH=.
-```
-
-그런다음 루트 프로젝트에 `.vscode` 폴더를 생성하고, `settings.json` 파일을 만들고 아래와 같이 작성합니다.
-
-```json
-{
-    "python.envFile": "${workspaceFolder}/.env",
-}
-```
-
-vs 코드를 재시작하여 코드를 적용합니다.
-
-이러면 이제 env에 등록된 .(현재 env 폴더경로)를 기준으로 터미널 실행시 system path에 등록됩니다.
-
