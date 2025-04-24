@@ -106,7 +106,9 @@
     "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function",
     "//Spaces/Spaces/Home",
     "//Spaces/Spaces/Home//",
-    "//Python"
+    "//streamlit",
+    "//streamlit/streamlit/Documentation",
+    "//streamlit/streamlit/Documentation/streamlit/Documentation/01_Get started"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
