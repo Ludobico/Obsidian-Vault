@@ -10,7 +10,7 @@ create_react_agent(model: Union[str, LanguageModelLike], tools: Union[Sequence[U
 
 ## Main Features
 
-- [[langgraph]] 에서 복잡한 노드와 엣지를 직접 설계하지 않고도 ReAct 에이전트 생성
+- [[LangGraph]] 에서 복잡한 노드와 엣지를 직접 설계하지 않고도 ReAct 에이전트 생성
 - LLM이 도구를 호출하도록 자동으로 관리
 - 메시지 히스토리와 같은 상태를 유지하며 반복적인 추론-행동 루프를 실행
 
