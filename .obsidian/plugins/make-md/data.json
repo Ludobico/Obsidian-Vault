@@ -102,13 +102,13 @@
     "//MCP",
     "//MCP/MCP/MCP Function",
     "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function/MCP(Model Context Protocol)/MCP Function/server/MCP(Model Context Protocol)/MCP Function/server/fastmcp",
-    "//LangChain/LangChain/langgraph",
     "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function",
     "//Spaces/Spaces/Home",
     "//Spaces/Spaces/Home//",
-    "//streamlit",
     "//streamlit/streamlit/Documentation",
-    "//streamlit/streamlit/Documentation/streamlit/Documentation/01_Get started"
+    "//streamlit/streamlit/Documentation/streamlit/Documentation/01_Get started",
+    "//Python",
+    "//Python/Python/Pydantic V2"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
