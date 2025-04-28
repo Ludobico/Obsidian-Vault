@@ -1,6 +1,25 @@
 ---
 Created: 2025-04-16
 ---
+- [[#Overview|Overview]]
+- [[#Installation|Installation]]
+		- [[#windows|windows]]
+		- [[#macOS and Linux|macOS and Linux]]
+		- [[#pip|pip]]
+- [[#Commands|Commands]]
+	- [[#Commands#initialize project|initialize project]]
+	- [[#Commands#Create virual environment|Create virual environment]]
+	- [[#Commands#Install packages|Install packages]]
+	- [[#Commands#Install packages 2|Install packages 2]]
+	- [[#Commands#Remove packages|Remove packages]]
+	- [[#Commands#Synchronize dependencies|Synchronize dependencies]]
+	- [[#Commands#Run script|Run script]]
+- [[#Install pytorch on uv|Install pytorch on uv]]
+		- [[#Run script#cuda 11.8|cuda 11.8]]
+		- [[#Run script#cuda 12.4|cuda 12.4]]
+		- [[#Run script#cuda 12.6|cuda 12.6]]
+
+
 ## Overview
 ---
 
