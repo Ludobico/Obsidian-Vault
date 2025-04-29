@@ -114,7 +114,7 @@
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph",
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph/LangChain/LangGraph/graph/message",
     "//Frontend/Frontend/React Native",
-    "//Python"
+    "//Frontend"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",

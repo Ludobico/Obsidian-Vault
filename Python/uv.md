@@ -208,3 +208,12 @@ if __name__ == "__main__":
 ```
 True
 ```
+
+만약
+
+```
+uv add torch torchvision torchaudio
+```
+
+위의 커맨드를 통해 CUDA가 다시 CPU로 설치된다면, uv cache 를 통해 출력된 캐시디렉토리를 삭제 후 다시 시도해보시길 바랍니다.
+
