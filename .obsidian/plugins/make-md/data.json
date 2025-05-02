@@ -113,8 +113,8 @@
     "//LangChain/LangChain/LangGraph",
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph",
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph/LangChain/LangGraph/graph/message",
-    "//Frontend/Frontend/React Native",
-    "//Frontend"
+    "//AI Concepts",
+    "//AI Concepts/AI Concepts/NLP Concepts"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
