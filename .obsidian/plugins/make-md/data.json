@@ -113,8 +113,7 @@
     "//LangChain/LangChain/LangGraph",
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph",
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph/LangChain/LangGraph/graph/message",
-    "//AI Concepts",
-    "//AI Concepts/AI Concepts/NLP Concepts"
+    "//Docker"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
