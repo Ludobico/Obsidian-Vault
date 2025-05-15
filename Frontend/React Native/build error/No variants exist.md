@@ -1,3 +1,5 @@
+- [[#How to solve|How to solve]]
+
 
 이 에러는 [[Build react native expo]] 에서 <font color="#ffff00">eas build</font> 를 실행하는 과정에서 프로젝트의 빌드가 실패했을때 발생하며, 전체 에러 로그는 다음과 같습니다.
 
@@ -56,6 +58,8 @@ Error: Gradle build failed with unknown error. See logs for the "Run gradlew" ph
 https://stackoverflow.com/questions/79261247/build-failed-gradle-build-failed-with-unknown-error-see-logs-for-the-run-grad
 
 ```
-I fixed my issue by first running npx expo prebuild --clean and then running the build command (eas build -p android --profile preview in my case).
+npx expo prebuild --clean
 ```
+
+명령어를 실행하여 프로젝트의 네이티브 빌드 파일(android 및 ios)을 새로 생성하고 기존 캐시나 잘못된 설정을 정리합니다.
 

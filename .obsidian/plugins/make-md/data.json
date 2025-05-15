@@ -114,8 +114,7 @@
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph",
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph/LangChain/LangGraph/graph/message",
     "//Frontend",
-    "//Frontend/Frontend/React Native",
-    "//Frontend/Frontend/React Native/Frontend/React Native/build error"
+    "//Frontend/Frontend/React Native"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
