@@ -4,6 +4,9 @@
 - [[#Step4. Deploy to Expo|Step4. Deploy to Expo]]
 - [[#Caution|Caution]]
 - [[#Step5. Download apk|Step5. Download apk]]
+- [[#ETC|ETC]]
+	- [[#ETC#Check Gradle version|Check Gradle version]]
+
 
 ## Step1. Sing up to Expo
 
@@ -108,5 +111,32 @@ npx expo install expo-build-properties
 
 ```bash
 tar -zxvf [압축파일이름] -C [해제폴더이름]
+```
+
+
+## ETC
+
+### Check Gradle version
+
+`android` 폴더에서 cmd 창을 열어 아래 커맨드를 입력합니다.
+
+```
+gradlew buildEnvironment
+```
+
+이 명령어를 통해 gradle 버전 및 AGP(Android Gradle Plugin) 버전을 확인할 수 있습니다.
+
+```
+> Configure project :react-native-reanimated
+Android gradle plugin: 8.6.0
+Gradle: 8.10.2
+
+> Task :buildEnvironment
+Daemon JVM: Oracle JDK 19.0.2+7-44
+  | Location:           C:\Program Files\Java\jdk-19
+  | Language Version:   19
+  | Vendor:             Oracle
+  | Architecture:       amd64
+  | Is JDK:             true
 ```
 
