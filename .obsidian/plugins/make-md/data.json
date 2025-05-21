@@ -110,7 +110,8 @@
     "//LangChain/LangChain/langgraph",
     "//LangChain/LangChain/langgraph/LangChain/langgraph/graph",
     "//LangChain/LangChain/langgraph/LangChain/langgraph/graph/LangChain/langgraph/graph/message",
-    "//temp"
+    "//temp",
+    "//AI Concepts"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
