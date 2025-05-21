@@ -110,11 +110,7 @@
     "//LangChain/LangChain/langgraph",
     "//LangChain/LangChain/langgraph/LangChain/langgraph/graph",
     "//LangChain/LangChain/langgraph/LangChain/langgraph/graph/LangChain/langgraph/graph/message",
-    "//LangChain/LangChain/LangGraph",
-    "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph",
-    "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph/LangChain/LangGraph/graph/message",
-    "//Frontend",
-    "//Frontend/Frontend/React Native"
+    "//temp"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
