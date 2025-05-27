@@ -111,7 +111,8 @@
     "//LangChain/LangChain/langgraph/LangChain/langgraph/graph",
     "//LangChain/LangChain/langgraph/LangChain/langgraph/graph/LangChain/langgraph/graph/message",
     "//temp",
-    "//Computer Algorithm"
+    "//Computer Algorithm",
+    "//Excalidraw"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
