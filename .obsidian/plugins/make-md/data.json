@@ -110,12 +110,11 @@
     "//LangChain/LangChain/langgraph",
     "//LangChain/LangChain/langgraph/LangChain/langgraph/graph",
     "//LangChain/LangChain/langgraph/LangChain/langgraph/graph/LangChain/langgraph/graph/message",
-    "//temp",
     "//Computer Algorithm",
-    "//LangChain",
     "//LangChain/LangChain/LangGraph",
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph",
-    "//LangChain/LangChain/LangGraph/LangChain/LangGraph/prebuilt"
+    "//LangChain/LangChain/LangGraph/LangChain/LangGraph/prebuilt",
+    "//xtts/xtts/TTS/xtts/TTS/tts"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
