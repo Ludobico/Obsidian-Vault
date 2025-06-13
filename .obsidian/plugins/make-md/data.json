@@ -114,7 +114,10 @@
     "//LangChain/LangChain/LangGraph",
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph",
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/prebuilt",
-    "//xtts/xtts/TTS/xtts/TTS/tts"
+    "//xtts/xtts/TTS/xtts/TTS/tts",
+    "//Frontend",
+    "//Frontend/Frontend/React Native",
+    "//Linux"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
