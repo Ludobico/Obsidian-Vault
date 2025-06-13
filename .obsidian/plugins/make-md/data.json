@@ -117,7 +117,8 @@
     "//xtts/xtts/TTS/xtts/TTS/tts",
     "//Frontend",
     "//Frontend/Frontend/React Native",
-    "//Linux"
+    "//Linux",
+    "//Linux/Linux/kali linux"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",

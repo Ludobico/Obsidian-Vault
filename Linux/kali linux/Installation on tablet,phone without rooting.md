@@ -4,6 +4,9 @@
 - [[#Installation|Installation]]
 
 
+```
+gox
+```
 ## 설치하기전
 
 안드로이드 버전이 12이상인 태블릿&핸드폰에는 백그라운드 프로세스 수를 제한하여 프로세스를 죽이는 <font color="#ffff00">Phantom Process Killer</font> 문제가 발생합니다.
