@@ -115,10 +115,8 @@
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/graph",
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/prebuilt",
     "//xtts/xtts/TTS/xtts/TTS/tts",
-    "//Frontend",
-    "//Frontend/Frontend/React Native",
-    "//Linux",
-    "//Linux/Linux/kali linux"
+    "//Linux/Linux/kali linux",
+    "//Docker"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
