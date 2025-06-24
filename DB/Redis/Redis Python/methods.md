@@ -1,3 +1,13 @@
+- [[#set|set]]
+- [[#get|get]]
+- [[#lpush|lpush]]
+- [[#lrange|lrange]]
+- [[#hset|hset]]
+- [[#hgetall|hgetall]]
+- [[#del|del]]
+- [[#expire|expire]]
+
+
 
 [[Redis]] 는 인메모리 데이터베이스로, **빠른 속도와 다양한 데이터 구조를 지원**하여 세션 관리, 캐싱, 실시간 데이터처리 등에 널리 사용됩니다. 특히, [[Python]] 에서 [[Redis Python]] 을 통해 Redis의 기능을 쉽게 활요알 수 있습니다.
 
