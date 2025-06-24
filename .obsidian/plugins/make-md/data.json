@@ -116,7 +116,9 @@
     "//LangChain/LangChain/LangGraph/LangChain/LangGraph/prebuilt",
     "//xtts/xtts/TTS/xtts/TTS/tts",
     "//Linux/Linux/kali linux",
-    "//Docker"
+    "//DB",
+    "//DB/DB/Redis",
+    "//DB/DB/Redis/DB/Redis/Redis Python"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
