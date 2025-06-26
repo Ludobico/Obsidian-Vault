@@ -5,6 +5,7 @@
 - [[#Volumes vs COPY|Volumes vs COPY]]
 	- [[#Volumes vs COPY#volumes|volumes]]
 	- [[#Volumes vs COPY#COPY|COPY]]
+- [[#compose up --build  -d vs compose up -d|compose up --build  -d vs compose up -d]]
 
 
 도커 컴포즈(docker compose) 는 도커를 활용해 <font color="#ffff00">다수의 컨테이너 형태의 애플리케이션을 실행할 수 있는 도구</font>입니다. 실행하고자 하는 애플리케이션의 설정 내용들을 `YAML` 파일로 작성하는 방법으로 도커 컴포즈를 활용할 수 있습니다. YAML 파일 작성을 완료하면 간단한 명령어만으로도 YAML에 포함되어 있는 모든 서비스를 한번에 실행할 수 있습니다.
@@ -232,3 +233,29 @@ volumes:
 
 - 이 방식은 도커 이미지가 빌드될 때 파일을 컨테이너로 복사하며, 이미지가 빌드된 후에는 호스의 파일과는 연결되지 않습니다. 즉, 파일을 수정하면 컨테이너에는 반영되지 않으며, 이미지를 새로 빌드해야 합니다.
 
+
+## compose up --build  -d vs compose up -d
+
+`docker compose up --build -d` 와 `docker compose up -d`는 비슷해 보이지만, **빌드 단계의 차이**가 명확합니다.
+
+|명령어|설명|
+|---|---|
+|`docker compose up -d`|기존에 **이미 빌드된 이미지가 있으면 그것을 사용**해서 컨테이너 실행|
+|`docker compose up --build -d`|먼저 **이미지를 새로 빌드한 뒤**, 그 이미지로 컨테이너 실행|
+🔸 docker compose up -d
+Dockerfile이나 코드에 변경 사항이 없을 때
+
+컨테이너만 다시 띄우고 싶을 때
+
+🔸 docker compose up --build -d
+Dockerfile이나 COPY한 파일들에 변경이 있었을 때
+예: nginx 설정(default.conf), FastAPI 코드, requirements.txt 등
+
+이미지를 다시 만들어야 할 때 반드시 필요
+
+|명령어|설명|
+|---|---|
+|`docker compose build`|이미지 빌드만 수행 (컨테이너 실행 안 함)|
+|`docker compose up -d`|기존 이미지로 컨테이너만 실행|
+|`docker compose up --build -d`|이미지 새로 빌드하고 컨테이너 실행|
+|`docker compose down`|모든 컨테이너 종료 및 삭제 (volume 제외)|
