@@ -63,3 +63,4 @@ npx expo prebuild --clean
 
 명령어를 실행하여 프로젝트의 네이티브 빌드 파일(android 및 ios)을 새로 생성하고 기존 캐시나 잘못된 설정을 정리합니다.
 
+

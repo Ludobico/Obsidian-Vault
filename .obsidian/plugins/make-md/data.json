@@ -22,7 +22,7 @@
   "spacesEnabled": true,
   "syncFormulaToFrontmatter": true,
   "spacesPerformance": false,
-  "currentWaypoint": 1,
+  "currentWaypoint": 0,
   "enableFolderNote": true,
   "folderIndentationLines": true,
   "revealActiveFile": false,
@@ -118,7 +118,10 @@
     "//Linux/Linux/kali linux",
     "//DB/DB/Redis",
     "//DB/DB/Redis/DB/Redis/Redis Python",
-    "//Docker"
+    "Spaces/Home//",
+    "Spaces/Home///TTSSTT",
+    "Spaces/Home///TTS&STT",
+    "Spaces/Home///TTS&STT/TTS&STT/MeloTTS"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",

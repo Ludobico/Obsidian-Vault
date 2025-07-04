@@ -1,5 +1,5 @@
 
-`XttsConfig` 는 [[xtts]] 의 [[xtts/TTS/TTS|TTS]] 모델 config를 정의하는데 사용되는 클래스입니다. 이 클래스는 **text to speech 과정에서 다양한 파라미터를 조정** 할 수 있도록 설계되었습니다. 아래는 주어진 파라미터들에 대한 설명입니다.
+`XttsConfig` 는 [[TTS&STT/xtts/xtts]] 의 [[TTS&STT/xtts/TTS/TTS|TTS]] 모델 config를 정의하는데 사용되는 클래스입니다. 이 클래스는 **text to speech 과정에서 다양한 파라미터를 조정** 할 수 있도록 설계되었습니다. 아래는 주어진 파라미터들에 대한 설명입니다.
 
 ## Parameters
 
