@@ -9,8 +9,8 @@ CKPT받으시면 여기서 KR에 있는거 받으시고 그걸 G_0.pth로 이름
 # 위 의견을 반영하여 download_utils.py 에서 필요한 부분만 가져와서 전처리
 
 import os, sys
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-project_melo = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'melo'))
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+project_melo = os.path.abspath(os.path.join(os.path.dirname(__file__), 'melo'))
 
 if project_root not in sys.path:
     sys.path.append(project_root)
