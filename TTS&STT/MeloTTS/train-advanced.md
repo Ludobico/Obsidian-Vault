@@ -75,3 +75,130 @@ if __name__ == "__main__":
 
 - 데이터셋의 정보를 출력할지 여부를 결정합니다.
 
+
+#### result
+
+`__main__` 구문의 커맨드를 실행시키면, 아래와 같은 결과가 출력됩니다.
+
+```
+DatasetDict({
+    train: Dataset({
+        features: ['audio', 'speaker', 'language', 'transcription'],
+        num_rows: 1476
+    })
+})
+1476it [01:32, 15.95it/s]
+Please run the following command manually:
+cd path\MeloTTS\melo 
+python preprocess_text.py --metadata path\MeloTTS\train\dataset\genshin-nahida-korean\metadata.list
+```
+
+```
+train
+	dataset
+		repo_without_id
+			korean_0.wav
+			korean_1.wav
+			...
+			metadata.list
+		repo_id
+	models
+	output
+```
+
+커맨드에 출력된 아래 명령어를 순서대로 입력합니다.
+
+```
+cd path\MeloTTS\melo 
+python preprocess_text.py --metadata path\MeloTTS\train\dataset\genshin-nahida-korean\metadata.list
+```
+
+`train/dataset` 디렉토리에 아래와 같은 추가파일이 생성되었는지 확인합니다.
+
+```
+config.json
+train.list
+val.list
+각 korea_{number} 에 대응하는 pt 파일
+```
+
+`config.json` 에서 학습할 파라미터를 지정합니다.
+
+```json
+{
+  "train": {
+    "log_interval": 200,
+    "eval_interval": 1000,
+    "seed": 52,
+    "epochs": 10000,
+    "learning_rate": 0.0003,
+    "betas": [
+      0.8,
+      0.99
+    ],
+    "eps": 1e-09,
+    "batch_size": 6,
+    "fp16_run": false,
+    "lr_decay": 0.999875,
+    "segment_size": 16384,
+    "init_lr_ratio": 1,
+    "warmup_epochs": 0,
+    "c_mel": 45,
+    "c_kl": 1.0,
+    "skip_optimizer": true
+  },
+  ...
+  
+```
+
+### train_preprocess.py
+
+`if __name__ == "__main__"` 구문에서 `train/dataset/repo_without_id` 를 `target_dir` 로지정한 뒤, 실행합니다.
+
+```python
+if __name__ == "__main__":
+    target_dir = r"path\genshin-nahida-korean"
+    prepare_pretrained_models(target_dir)
+```
+
+```
+  ✓ config.json exists
+  ✓ D.pth exists
+  ✓ DUR.pth exists
+  ✓ G_0.pth exists
+  ✓ metadata.list exists
+  ✓ metadata.list.cleaned exists
+  ✓ train.list exists
+  ✓ val.list exists
+Please run the following command manually:
+cd path\MeloTTS\melo 
+bash train.sh path\MeloTTS\train\dataset\genshin-nahida-korean/config.json <num_of_gpus>
+```
+
+
+## Important
+
+맨 아래 커맨드
+
+```
+bash train.sh path\MeloTTS\train\dataset\genshin-nahida-korean/config.json <num_of_gpus>
+```
+
+를 실행시키면 meloTTS 루트프로젝트에 **logs** 라는 폴더가 생성되면서 추가적으로
+
+학습이 시작되면 **D_0.pth**, **DUR_0.pth**, **G_0.pth** 파일이 생성됩니다.  
+세 파일이 모두 생성되고 첫 번째 epoch가 시작되면 학습을 중단한 뒤, 기존에 `prepare_pretrained_models.py`를 통해 다운로드한 **G_0.pth** 파일로 `logs` 디렉토리에 있는 해당 파일을 덮어씌웁니다.
+
+
+![[모델 복사.png|512]]
+
+![[모델 붙여넣기.png]]
+
+덮어씌우는게 완료되었다면, `train.log` 파일을 삭제하고 다시한 번
+
+```
+bash train.sh path\MeloTTS\train\dataset\genshin-nahida-korean/config.json <num_of_gpus>
+```
+
+아래 커맨드를 통해 학습을 진행합니다.
+
