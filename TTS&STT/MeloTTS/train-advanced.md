@@ -16,7 +16,11 @@ pip install python-mecab-ko
 ```
 
 
-## Step 1
+## Step 1 : prepare files
 
-옵시디언의 [[MeloTTS]] 내에 동봉된 `train_preprocess.py` 파일과 `dataset_preprocess.py` 파일을 MeloTTS 루트프로젝트로 복사합니다.
+옵시디언의 [[MeloTTS]] 문서에 첨부된 `train_preprocess.py`와 `dataset_preprocess.py`, `getenv.py` 파일을 MeloTTS 루트 디렉토리로 복사합니다.
+
+![[Pasted image 20250708114810.png]]
+
+
 
