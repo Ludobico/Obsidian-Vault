@@ -15,3 +15,8 @@ apt-get update && apt-get install -y mecab libmecab-dev mecab-ipadic-utf8
 pip install python-mecab-ko
 ```
 
+
+## Step 1
+
+옵시디언의 [[MeloTTS]] 내에 동봉된 `train_preprocess.py` 파일과 `dataset_preprocess.py` 파일을 MeloTTS 루트프로젝트로 복사합니다.
+
