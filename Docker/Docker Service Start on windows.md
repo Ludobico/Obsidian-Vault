@@ -11,13 +11,8 @@ Status   Name               DisplayName
 Stopped  com.docker.service Docker Desktop Service
 ```
 
-## wsl 재시작
 
-```
-wsl -d docker-desktop
-```
-
-### wsl 상태 확인
+## wsl 상태 확인
 
 ```
 wsl --list --verbose
@@ -27,6 +22,14 @@ wsl --list --verbose
 * Ubuntu            Stopped         2
   docker-desktop    Running         2
 ```
+
+## wsl 재시작
+
+```
+wsl -d docker-desktop
+```
+
+
 ## 도커 서비스 재시작
 
 ```
