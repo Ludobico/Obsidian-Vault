@@ -121,7 +121,11 @@
     "Spaces/Home//",
     "Spaces/Home///TTSSTT",
     "Spaces/Home///TTS&STT/TTS&STT/MeloTTS",
-    "Spaces/Home///TTS&STT"
+    "Spaces/Home///LangChain/LangChain/langchain",
+    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/chains",
+    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/chains/LangChain/langchain/chains/sql_database",
+    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/chains/LangChain/langchain/chains/sql_database/LangChain/langchain/chains/sql_database/query",
+    "Spaces/Home///Docker"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
