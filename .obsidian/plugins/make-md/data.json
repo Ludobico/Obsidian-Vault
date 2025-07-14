@@ -121,11 +121,11 @@
     "Spaces/Home//",
     "Spaces/Home///TTSSTT",
     "Spaces/Home///TTS&STT/TTS&STT/MeloTTS",
-    "Spaces/Home///LangChain/LangChain/langchain",
-    "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/chains",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/chains/LangChain/langchain/chains/sql_database",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/chains/LangChain/langchain/chains/sql_database/LangChain/langchain/chains/sql_database/query",
-    "Spaces/Home///AI Concepts"
+    "Spaces/Home///LangChain",
+    "Spaces/Home///LangChain/LangChain/langchain_community",
+    "Spaces/Home///LangChain/LangChain/langchain_community/LangChain/langchain_community/llms"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
