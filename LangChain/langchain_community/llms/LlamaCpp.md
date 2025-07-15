@@ -1,3 +1,12 @@
+- [[#Llamap.cpp|Llamap.cpp]]
+- [[#Installation|Installation]]
+	- [[#Installation#CPU-Only|CPU-Only]]
+	- [[#Installation#GPU (cuBLAS, OpenBLAS)|GPU (cuBLAS, OpenBLAS)]]
+- [[#Installation on Windows|Installation on Windows]]
+- [[#Error handle|Error handle]]
+	- [[#Error handle#TypeError: 'NoneType' object is not callable|TypeError: 'NoneType' object is not callable]]
+		- [[#TypeError: 'NoneType' object is not callable#langchain|langchain]]
+		- [[#TypeError: 'NoneType' object is not callable#llama-cpp-python|llama-cpp-python]]
 
 ## Llamap.cpp 
 
@@ -61,7 +70,7 @@ cd llama-cpp-python
 
 ```
 set FORCE_CMAKE=1  
-set CMAKE_ARGS=-DGGML_CUDA=OFF  # GPU 사용 시 ON으로 변경
+set CMAKE_ARGS=-DGGML_CUDA=ON
 ```
 
 설치 명령
@@ -76,3 +85,39 @@ python -m pip install -e .
 python -m pip install -e . --force-reinstall --no-cache-dir
 ```
 
+
+## Error handle
+
+### TypeError: 'NoneType' object is not callable
+
+[관련 깃허브 이슈](https://github.com/abetlen/llama-cpp-python/issues/1610)
+
+[[Python]] 인터프리터가 종료될 때, 객체와 모듈의 삭제 순서는 보장되지 않습니다. 따라서 `_LlamaModel.__del__()` 이 실행될 때 `llama_cpp` 모듈이 이미 사라졌다면 `llma_cpp.llama_free.model()` 호출이 실패하게 됩니다.
+
+이를 해결하려면 `__del__()` 에 의존하지 않고, <font color="#ffff00">atexit</font> 모듈을 사용해 명시적으로 `model.close()` 를 호출해야합니다.
+
+#### langchain
+
+```python
+import atexit
+from langchain_community.llms import LlamaCpp
+
+model = LlamaCpp(...)
+
+@atexit.register
+def free_model():
+    model.client.close()
+```
+
+#### llama-cpp-python
+
+```python
+import atexit
+from llama_cpp import Llama
+
+model = Llama(...)
+
+@atexit.register
+def free_model():
+    model.close()
+```
