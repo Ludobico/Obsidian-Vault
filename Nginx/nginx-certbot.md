@@ -1,5 +1,12 @@
+- [[#init-letsencrypt.sh|init-letsencrypt.sh]]
+- [[#스크립트 전체 구조|스크립트 전체 구조]]
+	- [[#스크립트 전체 구조#각 단계 설명|각 단계 설명]]
+		- [[#각 단계 설명#staging|staging]]
+- [[#Docker-compose|Docker-compose]]
+- [[#전체 구조|전체 구조]]
+	- [[#전체 구조#certbot renew|certbot renew]]
 
-# init-letsencrypt.sh
+## init-letsencrypt.sh
 
 ## 스크립트 전체 구조
 
@@ -248,4 +255,45 @@ docker-compose exec nginx nginx -s reload
 ```
 
 - nginx 프로세스를 재시작하여 발급된 인증서를 반영합니다.
+
+## Docker-compose
+
+## 전체 구조
+
+```
+1. nginx 리버스 프록시 + TLS 종료
+2. certbot : Let's Encrypt 인증서 발급 및 자동 갱신
+```
+
+```yaml
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.15-alpine
+    restart: unless-stopped
+    volumes:
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+```
+
+### certbot renew
+
+```yaml
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+```
+
+Let's Encrypt 인증서는 기본적으로 90일(3개월) 마다 만료됩니다. 그런데 certbot이 `certbot renew` 명령을 실행할 때는 **항상 바로 갱신하지 않고, 만료일이 30일 이내로 다가온 인증서만 갱신**합니다.
 
