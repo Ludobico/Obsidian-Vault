@@ -123,9 +123,8 @@
     "Spaces/Home///TTS&STT/TTS&STT/MeloTTS",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/chains/LangChain/langchain/chains/sql_database",
     "Spaces/Home///LangChain/LangChain/langchain/LangChain/langchain/chains/LangChain/langchain/chains/sql_database/LangChain/langchain/chains/sql_database/query",
-    "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/langchain_core",
-    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/documents"
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/documents",
+    "Spaces/Home///Nginx"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
