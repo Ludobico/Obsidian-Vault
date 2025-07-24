@@ -163,7 +163,171 @@ uv run python script.py
 uv run pytest
 ```
 
-## Install pytorch on uv
+
+## Install ptorch on uv (option 1)
+
+[[Pytorch]] 는 딥러닝 연구와 개발에서 널리 사용되는 프레임워크입니다. `uv` 를 사용하면 다양한 [[Python]] 버전과 환경에서 Pytorch 프로젝트와 의존성을 관리할 수 있으며, <font color="#ffff00">CPU 전용이나 CUDA 등 가속기 종류로 제어</font>할 수 있습니다.
+
+### 1. basic installation example
+
+다음은 `uv init --python 3.12` 이후 `uv add torch torchvision` 명령으로 생성되는 구조입니다.
+
+```toml
+[project]
+name = "project"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "torch>=2.7.0",
+  "torchvision>=0.22.0",
+]
+```
+
+### 2. Using pytorch index
+
+특정 플랫폼에서 `CPU-Only` 빌드를 사용하고 싶을 경우, 예를 들어 [[Linux]] 에서도 CPU 빌드를 사용하려면 다음 설정을 사용합니다.
+
+```toml
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+```
+
+`expliciit = true` 설정은 torch, torchvision 등 **Pytorch 관련 패키지에만 이 인덱스를 사용하도록 제한**하며, 다른 일반 의존성 (e.g jinja2) 는 기본 PyPI에서 가져오도록 합니다.
+
+#### cuda 11.8
+
+```toml
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+```
+
+#### cuda 12.6
+
+```toml
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+```
+
+#### cuda 12.8
+
+```toml
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+```
+
+
+### 3. Set index based on Platform conditions
+
+예시로, CUDA 12.6을 Windows 와 Linux 에서만 사용하려면 다음과 같이 구성합니다.
+
+```toml
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+torchvision = [
+  { index = "pytorch-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+```
+
+### 4. Complete example
+
+```toml
+[project]
+name = "project"
+version = "0.1.0"
+requires-python = ">=3.12.0"
+dependencies = [
+  "torch>=2.7.0",
+  "torchvision>=0.22.0",
+]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu" },
+]
+torchvision = [
+    { index = "pytorch-cpu" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+```
+
+Linux 에서는 CUDA 빌드, 나머지 플랫폼에서는 CPU 빌드를 사용하고 싶다면 아래와 같이 설정합니다.
+
+```toml
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu", marker = "sys_platform != 'linux'" },
+  { index = "pytorch-cu128", marker = "sys_platform == 'linux'" },
+]
+```
+
+이후 <font color="#ffff00">uv sync</font> 명령어로 동기화를 진행합니다.
+
+### extra option
+
+사용자가 <font color="#ffff00">uv sync --extra cpu</font> 또는 <font color="#ffff00">uv sync --extra cu128</font> 명령어로 빌드 종류를 서낵할 수 있도록 하려면 다음처럼 구성합니다. 
+
+```toml
+[project]
+name = "project"
+version = "0.1.0"
+requires-python = ">=3.12.0"
+dependencies = []
+
+[project.optional-dependencies]
+cpu = [
+  "torch>=2.7.0",
+  "torchvision>=0.22.0",
+]
+cu128 = [
+  "torch>=2.7.0",
+  "torchvision>=0.22.0",
+]
+
+[tool.uv]
+conflicts = [
+  [
+    { extra = "cpu" },
+    { extra = "cu128" },
+  ],
+]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu", extra = "cpu" },
+  { index = "pytorch-cu128", extra = "cu128" },
+]
+torchvision = [
+  { index = "pytorch-cpu", extra = "cpu" },
+  { index = "pytorch-cu128", extra = "cu128" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+```
+
+
+## Install pytorch on uv ( option 2)
 
 1. `uv pip install` 은 `uv add` 와 달리 `pyproject.toml` 이나 `uv.lock` 에 의존하지 않고, **직접 지정한 인덱스에서 패키지를 설치**합니다.
 
