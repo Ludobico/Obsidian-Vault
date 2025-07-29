@@ -13,6 +13,7 @@ apt-get update && apt-get install -y mecab libmecab-dev mecab-ipadic-utf8
 
 ```
 pip install python-mecab-ko
+pip install matplotlib==3.7.0
 ```
 
 
@@ -184,7 +185,7 @@ bash train.sh path\MeloTTS\train\dataset\genshin-nahida-korean/config.json <num_
 bash train.sh path\MeloTTS\train\dataset\genshin-nahida-korean/config.json <num_of_gpus>
 ```
 
-를 실행시키면 meloTTS 루트프로젝트에 **logs** 라는 폴더가 생성되면서 추가적으로
+를 실행시키면 meloTTS/melo에  **logs** 라는 폴더가 생성되면서 추가적으로
 
 학습이 시작되면 **D_0.pth**, **DUR_0.pth**, **G_0.pth** 파일이 생성됩니다.  
 세 파일이 모두 생성되고 첫 번째 epoch가 시작되면 학습을 중단한 뒤, 기존에 `prepare_pretrained_models.py`를 통해 다운로드한 **G_0.pth** 파일로 `logs` 디렉토리에 있는 해당 파일을 덮어씌웁니다.
