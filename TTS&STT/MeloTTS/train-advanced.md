@@ -58,11 +58,11 @@ if __name__ == "__main__":
 
 > speaker_name -> str, default : "KR-default"
 
-- [[MeloTTS]] 학습에 사용되는 메타데이터입니다. [[train]] 에서 확인할 수 있습니다.
+- [[MeloTTS]] 학습에 사용되는 메타데이터입니다. [[train_from_github]] 에서 확인할 수 있습니다.
 
 > language_code -> str, default : "KR"
 
-- [[MeloTTS]] 학습에 사용되는 메타데이터입니다. [[train]] 에서 확인할 수 있습니다.
+- [[MeloTTS]] 학습에 사용되는 메타데이터입니다. [[train_from_github]] 에서 확인할 수 있습니다.
 
 > apply_re -> bool, default : True
 
@@ -203,7 +203,7 @@ bash train.sh path\MeloTTS\train\dataset\genshin-nahida-korean/config.json <num_
 
 아래 커맨드를 통해 학습을 진행합니다.
 
-## 만약 train이 시작되도 모델파일이 보이지 않는다면
+## train이 시작되도 모델파일이 보이지 않는다면 또는 모델파일을 직접 지정하고 싶다면
 
 - `train.sh` 스크립트가 이제 `--pretrain_G`, `--pretrain_D`, `--pretrain_dur`까지 받도록 수정됨.
     
