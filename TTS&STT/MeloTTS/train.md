@@ -5,6 +5,7 @@
 
 ```python
 pip install -e .
+python -m unidic download
 cd melo
 ```
 
