@@ -203,3 +203,65 @@ bash train.sh path\MeloTTS\train\dataset\genshin-nahida-korean/config.json <num_
 
 아래 커맨드를 통해 학습을 진행합니다.
 
+## 만약 train이 시작되도 모델파일이 보이지 않는다면
+
+- `train.sh` 스크립트가 이제 `--pretrain_G`, `--pretrain_D`, `--pretrain_dur`까지 받도록 수정됨.
+    
+- 그런데 이 인자들이 _빈 문자열일 경우_, `torchrun` 명령어에서는 **해당 옵션들을 생략하고 싶음**.
+    
+- 따라서 `train.sh`를 실행할 때는 **선택적 인자**를 허용하는 방식이 필요함.
+
+```bash
+CONFIG=$1
+GPUS=$2
+PRETRAIN_G=$3
+PRETRAIN_D=$4
+PRETRAIN_DUR=$5
+
+MODEL_NAME=$(basename "$(dirname "$CONFIG")")
+PORT=10902
+
+# 인자 조건부 처리
+PRETRAIN_ARGS=""
+[ -n "$PRETRAIN_G" ] && PRETRAIN_ARGS="$PRETRAIN_ARGS --pretrain_G $PRETRAIN_G"
+[ -n "$PRETRAIN_D" ] && PRETRAIN_ARGS="$PRETRAIN_ARGS --pretrain_D $PRETRAIN_D"
+[ -n "$PRETRAIN_DUR" ] && PRETRAIN_ARGS="$PRETRAIN_ARGS --pretrain_dur $PRETRAIN_DUR"
+
+while :
+do
+  torchrun --nproc_per_node=$GPUS \
+           --master_port=$PORT \
+           train.py --config "$CONFIG" \
+                    --model "$MODEL_NAME" \
+                    $PRETRAIN_ARGS
+
+  for PID in $(ps -aux | grep "$CONFIG" | grep python | awk '{print $2}')
+  do
+    echo $PID
+    kill -9 $PID
+  done
+  sleep 30
+done
+```
+
+### 사용법
+
+**기존처럼 pretrain 없이 실행하려면:**
+
+
+```bash
+bash train.sh path/to/config.json 2
+```
+
+
+- `$3`, `$4`, `$5`가 비어 있기 때문에 `--pretrain_*` 인자들은 자동으로 생략됩니다.
+    
+
+**pretrain 모델 경로를 지정하려면:**
+
+```bash
+bash train.sh path/to/config.json 2 path/to/G.pth path/to/D.pth path/to/DUR.pth
+```
+
+- 경로가 비어 있지 않으므로 자동으로 인자들이 붙게 됩니다.
+
