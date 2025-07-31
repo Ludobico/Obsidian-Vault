@@ -14,10 +14,20 @@ Created: 2025-04-16
 	- [[#Commands#Remove packages|Remove packages]]
 	- [[#Commands#Synchronize dependencies|Synchronize dependencies]]
 	- [[#Commands#Run script|Run script]]
-- [[#Install pytorch on uv|Install pytorch on uv]]
-		- [[#Run script#cuda 11.8|cuda 11.8]]
-		- [[#Run script#cuda 12.4|cuda 12.4]]
-		- [[#Run script#cuda 12.6|cuda 12.6]]
+- [[#Install ptorch on uv (option 1)|Install ptorch on uv (option 1)]]
+	- [[#Install ptorch on uv (option 1)#1. basic installation example|1. basic installation example]]
+	- [[#Install ptorch on uv (option 1)#2. Using pytorch index|2. Using pytorch index]]
+		- [[#2. Using pytorch index#cuda 11.8|cuda 11.8]]
+		- [[#2. Using pytorch index#cuda 12.6|cuda 12.6]]
+		- [[#2. Using pytorch index#cuda 12.8|cuda 12.8]]
+	- [[#Install ptorch on uv (option 1)#3. Set index based on Platform conditions|3. Set index based on Platform conditions]]
+	- [[#Install ptorch on uv (option 1)#4. Complete example|4. Complete example]]
+	- [[#Install ptorch on uv (option 1)#extra option|extra option]]
+- [[#Install pytorch on uv ( option 2)|Install pytorch on uv ( option 2)]]
+		- [[#extra option#cuda 11.8|cuda 11.8]]
+		- [[#extra option#cuda 12.4|cuda 12.4]]
+		- [[#extra option#cuda 12.6|cuda 12.6]]
+
 
 
 ## Overview
