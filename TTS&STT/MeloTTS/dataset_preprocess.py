@@ -321,7 +321,6 @@ def replace_audio_path_in_metadata_file(metadata_path : str, old_path_prefix : s
 
 
 
-
 if __name__ == "__main__":
     # 첫번째 데이터셋, 자동
     # repo_id = "habapchan/genshin-nahida-korean"
@@ -339,9 +338,5 @@ if __name__ == "__main__":
     # make_simon3000_dataset()
     
     # metadata.list의 transcription 에서 영어 대/소문자 제거
-    # path = r"E:\st002\repo\generative\audio\MeloTTS\train\dataset\starrail-voice"
-    # remove_english_from_metadata(path)
-
-    old_path = r"E:\st002\repo\generative\audio\MeloTTS\train\dataset\starrail-voice"
-    new_path = r"E:\st002\repo\generative\audio\MeloTTS\train\dataset\starrail-voice_test"
-    replace_audio_path_in_metadata(old_path, new_path, old_path)
+    path = r"D:\audio_train"
+    remove_english_from_metadata(path)
