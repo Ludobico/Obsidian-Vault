@@ -1,3 +1,8 @@
+- [[#사용 조건|사용 조건]]
+- [[#대표적인 사용 예시|대표적인 사용 예시]]
+- [[#Python 예시 코드|Python 예시 코드]]
+
+
 ![[Pasted image 20250804103703.png]]
 
 <font color="#ffff00">위상정렬(Topological Sort)</font> 은 **비순환 방향 그래프에서 노드들을 선형 순서로 정렬하는 알고리즘**입니다.  이 선형 순서는 모든 간선 `u -> v` 에 대해 `u` 가 `v` 보다 앞서도록 정렬됩니다.
@@ -9,7 +14,13 @@
 - 그래프는 방향성을 가져야 함
 - 그래프는 **순환(cycle)이 없어야 함** (DAG : Directed Acyclic Graph)
 
+## 대표적인 사용 예시
 
+- 작업 스케줄링
+- 컴파일러의 빌드 순서
+- [[ComfyUI]]의 데이터 워크플로우
+
+## Python 예시 코드
 
 ```python
 from collections import deque, defaultdict
