@@ -125,9 +125,10 @@
     "Spaces/Home//",
     "Spaces/Home///MCP(Model Context Protocol)/MCP(Model Context Protocol)/FastMCP/MCP(Model Context Protocol)/FastMCP/FastMCP Server",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/tools",
-    "Spaces/Home///LangChain",
     "Spaces/Home///LangChain/LangChain/LangGraph",
-    "Spaces/Home///LangChain/LangChain/LangGraph/LangChain/LangGraph/prebuilt"
+    "Spaces/Home///LangChain/LangChain/LangGraph/LangChain/LangGraph/prebuilt",
+    "Spaces/Home///Frontend/Frontend/React Native",
+    "Spaces/Home///Docker"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
