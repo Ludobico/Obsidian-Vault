@@ -27,6 +27,11 @@ Created: 2025-04-16
 		- [[#extra option#cuda 11.8|cuda 11.8]]
 		- [[#extra option#cuda 12.4|cuda 12.4]]
 		- [[#extra option#cuda 12.6|cuda 12.6]]
+- [[#library upgrade|library upgrade]]
+	- [[#library upgrade#특정 라이브러리 업그레이드|특정 라이브러리 업그레이드]]
+	- [[#library upgrade#모든 라이브러리 업그레이드|모든 라이브러리 업그레이드]]
+	- [[#library upgrade#uv lock|uv lock]]
+- [[#uv tree|uv tree]]
 
 
 
@@ -390,4 +395,68 @@ uv add torch torchvision torchaudio
 ```
 
 위의 커맨드를 통해 CUDA가 다시 CPU로 설치된다면, uv cache 를 통해 출력된 캐시디렉토리를 삭제 후 다시 시도해보시길 바랍니다.
+
+## library upgrade
+
+uv로 특정 라이브러리를 업그레이드하려면 <font color="#ffff00">uv sync</font> 나 <font color="#ffff00">uv lock</font> 커맨드에 `--upgrade` 나 `--upgrade-package` 플래그를 붙여서 업그레이드할 수 있습니다.
+
+### 특정 라이브러리 업그레이드
+
+```bash
+uv sync --upgrade-package <package-name>
+```
+
+`requests` 라이브러리를 최신버전으로 업그레이드하려면 아래와 같이 커맨드를 입력합니다.
+
+```bash
+uv sync --upgrade-package requests
+```
+
+### 모든 라이브러리 업그레이드
+
+uv lock에 설치된 모든 라이브러리를 최신으로 업그레이드하려면 아래의 커맨드를 입력합니다.
+
+```bash
+uv sync --upgrade
+```
+
+### uv lock
+
+uv sync 뿐만 아니라 uv lock 으로도 동일하게 라이브러리 업그레이드가 가능합니다.
+
+```bash
+uv lock --upgrade
+```
+
+```bash
+uv lock --upgrade-package <package-name>
+```
+
+## uv tree
+
+<font color="#ffff00">uv tree</font> 로 프로젝트의 의존성 구조를 확인할 수 있습니다.
+
+```bash
+uv tree
+```
+
+```bash
+my-app v0.1.0
+└── fastapi v0.115.12
+    ├── pydantic v2.11.3
+    │   ├── annotated-types v0.7.0
+    │   ├── pydantic-core v2.33.1
+    │   │   └── typing-extensions v4.13.1
+    │   ├── typing-extensions v4.13.1
+    │   └── typing-inspection v0.4.0
+    │       └── typing-extensions v4.13.1
+    ├── starlette v0.46.1
+    │   └── anyio v4.9.0
+    │       ├── exceptiongroup v1.2.2
+    │       ├── idna v3.10
+    │       ├── sniffio v1.3.1
+    │       └── typing-extensions v4.13.1
+    └── typing-extensions v4.13.1
+
+```
 
