@@ -1,6 +1,13 @@
 ---
 Created: 2025-04-18
 ---
+- [[#Overview|Overview]]
+- [[#How to solve it?|How to solve it?]]
+	- [[#How to solve it?#Regist root project in system path|Regist root project in system path]]
+	- [[#How to solve it?#install -e .|install -e .]]
+		- [[#install -e .#pyproject.toml|pyproject.toml]]
+		- [[#install -e .#uv|uv]]
+		- [[#install -e .#pip|pip]]
 
 ## Overview
 
