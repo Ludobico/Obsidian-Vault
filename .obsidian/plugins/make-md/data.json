@@ -125,10 +125,10 @@
     "Spaces/Home///MCP(Model Context Protocol)/MCP(Model Context Protocol)/FastMCP/MCP(Model Context Protocol)/FastMCP/FastMCP Server",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/tools",
     "Spaces/Home///LangChain/LangChain/LangGraph",
-    "Spaces/Home///LangChain/LangChain/LangGraph/LangChain/LangGraph/prebuilt",
     "Spaces/Home//",
-    "Spaces/Home///Vector Store",
-    "Spaces/Home///Vector Store/Vector Store/Qdrant"
+    "Spaces/Home///Vector Store/Vector Store/Qdrant",
+    "Spaces/Home///LangChain",
+    "Spaces/Home///LangChain/LangChain/LangGraph/LangChain/LangGraph/graph"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
