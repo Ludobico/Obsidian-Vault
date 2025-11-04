@@ -14,3 +14,8 @@ tensor([0.2144, 0.0891, 0.0189, 0.6655, 0.0121])
 ```
 tensor([0.2144, 0.6655])
 ```
+
+$$
+P_{\text{topk}}(x_i) = \frac{P(x_i)}{\Sigma_{x_j \in V_k}P(x_j)}, V_k = \text{arg}(\text{topk}_{x_i \in V})P(x_i)
+$$
+
