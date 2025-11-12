@@ -127,8 +127,8 @@
     "Spaces/Home///LangChain/LangChain/LangGraph",
     "Spaces/Home//",
     "Spaces/Home///Vector Store/Vector Store/Qdrant",
-    "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/LangGraph/LangChain/LangGraph/graph"
+    "Spaces/Home///LangChain/LangChain/LangGraph/LangChain/LangGraph/graph",
+    "Spaces/Home///Docker"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
