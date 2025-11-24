@@ -14,15 +14,15 @@ Created: 2025-04-16
 	- [[#Commands#Remove packages|Remove packages]]
 	- [[#Commands#Synchronize dependencies|Synchronize dependencies]]
 	- [[#Commands#Run script|Run script]]
-- [[#Install ptorch on uv (option 1)|Install ptorch on uv (option 1)]]
-	- [[#Install ptorch on uv (option 1)#1. basic installation example|1. basic installation example]]
-	- [[#Install ptorch on uv (option 1)#2. Using pytorch index|2. Using pytorch index]]
+- [[#Install pytorch on uv (option 1)|Install pytorch on uv (option 1)]]
+	- [[#Install pytorch on uv (option 1)#1. basic installation example|1. basic installation example]]
+	- [[#Install pytorch on uv (option 1)#2. Using pytorch index|2. Using pytorch index]]
 		- [[#2. Using pytorch index#cuda 11.8|cuda 11.8]]
 		- [[#2. Using pytorch index#cuda 12.6|cuda 12.6]]
 		- [[#2. Using pytorch index#cuda 12.8|cuda 12.8]]
-	- [[#Install ptorch on uv (option 1)#3. Set index based on Platform conditions|3. Set index based on Platform conditions]]
-	- [[#Install ptorch on uv (option 1)#4. Complete example|4. Complete example]]
-	- [[#Install ptorch on uv (option 1)#extra option|extra option]]
+	- [[#Install pytorch on uv (option 1)#3. Set index based on Platform conditions|3. Set index based on Platform conditions]]
+	- [[#Install pytorch on uv (option 1)#4. Complete example|4. Complete example]]
+	- [[#Install pytorch on uv (option 1)#extra option|extra option]]
 - [[#Install pytorch on uv ( option 2)|Install pytorch on uv ( option 2)]]
 		- [[#extra option#cuda 11.8|cuda 11.8]]
 		- [[#extra option#cuda 12.4|cuda 12.4]]
@@ -179,7 +179,7 @@ uv run pytest
 ```
 
 
-## Install ptorch on uv (option 1)
+## Install pytorch on uv (option 1)
 
 [[Pytorch]] 는 딥러닝 연구와 개발에서 널리 사용되는 프레임워크입니다. `uv` 를 사용하면 다양한 [[Python]] 버전과 환경에서 Pytorch 프로젝트와 의존성을 관리할 수 있으며, <font color="#ffff00">CPU 전용이나 CUDA 등 가속기 종류로 제어</font>할 수 있습니다.
 

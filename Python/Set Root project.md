@@ -57,6 +57,8 @@ if project_root not in sys.path:
 
 ```toml
 # pyproject.toml
+[tool.setuptools.packages.find]
+# 비워두면 현재 폴더(루트)를 기준으로 자동으로 모든 패키지를 찾습니다.
 
 [build-system]
 requires = ["setuptools>=61.0"]
@@ -65,9 +67,6 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "my-project"  # 프로젝트 이름으로 변경하세요
 version = "0.1.0"
-
-[tool.setuptools.packages.find]
-# 비워두면 현재 폴더(루트)를 기준으로 자동으로 모든 패키지를 찾습니다.
 ```
 
 위 설계도를 바탕으로, 현재 가상 환경에 프로젝트를 <font color="#ffff00">편집 가능 모드</font> 로 설치합니다. 이 과정은 **프로젝트당 한 번**만 하면 됩니다. 이 명령은 실제 파일을 복사하는 대신, 소스 코드를 직접 가리키는 링크를 생성하여 변경이 즉시 반영되게 합니다.
