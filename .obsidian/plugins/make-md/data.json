@@ -128,7 +128,8 @@
     "Spaces/Home//",
     "Spaces/Home///Vector Store/Vector Store/Qdrant",
     "Spaces/Home///LangChain/LangChain/LangGraph/LangChain/LangGraph/graph",
-    "Spaces/Home///temp"
+    "Spaces/Home///Frontend/Frontend/React Native",
+    "Spaces/Home///Git"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
