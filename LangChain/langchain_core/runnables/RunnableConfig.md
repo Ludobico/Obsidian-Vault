@@ -1,37 +1,62 @@
+- [[#RunnableConfig 가 필요한 이유|RunnableConfig 가 필요한 이유]]
+- [[#configurable|configurable]]
+- [[#왜 Configurable을 쓰는 것이 좋은가|왜 Configurable을 쓰는 것이 좋은가]]
 
-`RunnableConfig` 는 [[LangChain/LangChain|LangChain]] 의 [[runnables]] 를 설정하기 위한 구성 클래스입니다. 이를 통해 실행 중에 **태그, 메타데이터, 콜백 및 기타 실행 환경** 속성을 정의할 수 있습니다.
 
-각각의 속성은 실행 중의 tracing, data management와 관련된 기능을 제공합니다. 아래는 각 속성에 대한 설명입니다.
+`RunnableConfig`  는 [[LangChain/LangChain]] 에서 [[Runnable]] 을 실행할때 함께 전달되는 config 정보 입니다.
 
-## Parameters
+Runnable이 무엇을 할지 정의한다면, `RunnableConfig` 는 **그 일을 어떤 조건에서 수행**할지를 정합니다.
 
-> tags -> List\[str\]
+langchain 에서는 [[prompts]] , [[output_parsers]] , [[chains]] 등 거의 모든 실행 단위가 Runnable 로 표현됩니다.
+이떄 각 Runnable은 입력을 받아 출력을 만드는 로직에만 집중하고,
+실행과 관련된 부가 정보는 <font color="#ffff00">RunnableConfig</font> 를 통해 외부에서 전달받도록 설계되어 있습니다.
 
-- [[runnables]] 와 모든 하위(체인이 LLM을 호출할 경우)를 위한 tag list 입니다.
+## RunnableConfig 가 필요한 이유
 
-> metadata -> Dict\[str, any\]
+일반적인 [[Python]] 코드에서는 함수 실행 시점에 다음과 같은 정보를 함께 다루기 어렵습니다.
 
-- 메타데이터를 정의합니다. 주로 <font color="#ffff00">시작 또는 완료 이벤트에서 컨텍스트 정보를 전달</font>하는데 사용됩니다.
+- 이 실행이 어떤 목적을 가지는지
+- 실행 과정을 어떻게 기록할지
+- 동시에 몇 개까지 실행할 수 있는지
+- 실행 중에 사용할 LLM이나 외부 객체는 무엇인지
 
-> callbakcs -> Optional\[Union\[List, Any\]\]
+이런 정보들을 모두 함수 인자로 넘기기 시작하면, 코드는 금방 복잡해지고 재사용하기 어려워집니다.
 
-- 콜백을 정의합니다. 실행 상태 추적, 로깅, 또는 특정 이벤트 발생 시 동작을 정의하는 데 사용됩니다.
+LangChain은 이런 문제를 해결하기 위해, **실행에 필요한 설정들을 하나의 객체로 모아서 전달하는 방식**을 선택했습니다.
 
-> run_name -> str
+이 역할을 하는 것이 `RunnableConfig` 입니다.
 
-- 이 호출에 대한 이름입니다. 기본값은 클래스의 이름으로 설정됩니다.
+RunnableConfig의 중요한 특징 중 하나는, 한 번 전달되면 **체인 내부의 모든 단계로 자동으로 전달된다는 점**입니다.
 
-> max_concurrency -> Optional\[int\]
+```python
+prompt | llm | parser
+```
 
-- 병렬로 실행할 수 있는 최대 호출 수를 지정합니다.
-- 동시 실행 제한을 통해 리소스 사용량을 관리합니다.
+이 체인을 실행할 때 RunnableConfig를 함께 넘기면 prompt, llm, parser 모두 동일한 설정을 공유하게 됩니다.
 
-> recursion_limit -> int
+그래서 태그, 콜백, LLM 설정 등을 한 곳에서만 지정해도 전체 실행에 일관되게 적용할 수 있습니다.
 
-- 호출이 재귀적(recursive)으로 호출할 수 있는 최대 수를 지정합니다.
-- 기본값은 25입니다.
+## configurable
 
-> configurable -> Dict\[str, Any\]
+`configurable` 은 RunnableConfig 에서 **가장 자주 사용되는 영역**입니다. 실무에서는 거의 항상 이 항목을 사용하게 됩니다.
 
-- 실행 중에 구성 가능한 속성값을 지정합니다.
+`configurable` 은 **실행 중에 사용할 외부 객체를 전달하는 공간** 입니다. 대표적으로 LLM, Retriever, Tool 같은 객체들이 여기에 들어갑니다.
+
+```python
+config = {
+    "configurable": {
+        "llm": selected_llm
+    }
+}
+```
+
+```python
+llm: LLM = config["configurable"]["llm"]
+```
+
+## 왜 Configurable을 쓰는 것이 좋은가
+
+- 전역 변수에 의존하지 않아도 됩니다.
+- Runnable 코드를 수정하지 않고도 LLM을 교체할 수 있습니다.
+- 테스트, 실험, 운영 환경을 쉽게 나눌 수 있습니다.
 
