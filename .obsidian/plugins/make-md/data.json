@@ -130,8 +130,8 @@
     "Spaces/Home///Frontend/Frontend/React Native",
     "Spaces/Home///VLLM",
     "Spaces/Home///LangChain",
-    "Spaces/Home///LangChain/LangChain/langchain_core",
-    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/runnables"
+    "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/runnables",
+    "Spaces/Home///LangChain/LangChain/LangGraph"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",

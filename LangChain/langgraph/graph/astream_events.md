@@ -1,12 +1,22 @@
+- [[#Overview|Overview]]
 - [[#Parameters|Parameters]]
 - [[#Returns|Returns]]
-- [[#Examples|Examples]]
+- [[#Event 값|Event 값]]
+- [[#Example : Tool calling이 포함된 그래프 실행|Example : Tool calling이 포함된 그래프 실행]]
+	- [[#Example : Tool calling이 포함된 그래프 실행#`on_chain_start`|`on_chain_start`]]
+	- [[#Example : Tool calling이 포함된 그래프 실행#`on_chain_start`|`on_chain_start`]]
+	- [[#Example : Tool calling이 포함된 그래프 실행#`on_chat_model_start`|`on_chat_model_start`]]
+	- [[#Example : Tool calling이 포함된 그래프 실행#`on_chat_model_stream`|`on_chat_model_stream`]]
+	- [[#Example : Tool calling이 포함된 그래프 실행#`on_chain_end`|`on_chain_end`]]
+- [[#example 2 : 값을 스트리밍으로 출력|example 2 : 값을 스트리밍으로 출력]]
 
 
-<font color="#ffff00">astream_events()</font> 는 [[LangGraph]] 실행 중 발생하는 중간 이벤트(노드 실행 시작, 모델 응답 스트림, 실행 종료 등)을 실시간으로 받아볼 수 있게 해줍니다.
 
-- `graph.invoke()` : 실행 결과만 반환
-- `graph.astream_events()` : 실행 과정을 스트림으로 하나씩 반환
+## Overview
+
+`astream_events()` 는 단순한 스트리밍 API가 아니라 [[LangGraph]] 에서 **실행 엔진이 발생시키는 모든 내부신호를 외부에서 관찰하기 위한 인터페이스** 입니다.
+
+`graph.invoke()` 가 최종 결과만 반환하는 고수준 API 라면, `graph.astream_events()` 는 그래프가 실행되는 동안 **무슨 일이 일어나고 있는지**를 단계별로 전달하는 메서드입니다.
 
 ## Parameters
 
@@ -62,6 +72,8 @@ async for event in graph.astream_events(...):
 }
 ```
 
+## Event 값
+
 | event 값              | 설명                     |
 | -------------------- | ---------------------- |
 | on_chain_start       | 그래프(혹은 특정 노드)의 실행이 시작됨 |
@@ -72,19 +84,187 @@ async for event in graph.astream_events(...):
 | on_chat_model_end    | 모델 출력이 끝남              |
 | on_error             | 오류 발생시                 |
 
-## Examples
+## Example : Tool calling이 포함된 그래프 실행
+
+이 예제는 사용자의 질문을 받고, 필요 시 도구를 호출하며, LLM이 답변을 생성하는 과정을 추적합니다.
 
 ```python
-async for event in graph.astream_events(input_data, version="v2"):
-    # 모델 출력 중간 스트림을 실시간으로 출력
-    if event["event"] == "on_chat_model_stream":
-        chunk = event["data"]["chunk"].content
-        if chunk:
-            print(chunk, end="", flush=True)
+import asyncio
+from typing import Annotated, TypedDict
+from langgraph.graph import StateGraph, START, END
+from langchain_core.tools import tool
+from LLM.LLMs import gpt
 
-    # 전체 그래프 완료 시점
-    elif event["event"] == "on_chain_end":
-        print("\n[Graph execution completed]")
+# 간단한 도구 정의
+@tool
+def get_weather(city : str):
+    """특정 지역의 날씨를 알려줍니다."""
+    return f"{city}는 현재 25도입니다."
+
+class State(TypedDict):
+    messages : list
+
+llm = gpt(temperature=0.7)
+llm.bind_tools([get_weather])
+
+async def call_model_node(state : State) -> State:
+    response = llm.ainvoke(state['messages'])
+    return {"messages" : response}
+
+workflow = StateGraph(State)
+workflow.add_node("agent", call_model_node)
+workflow.add_edge(START, "agent")
+workflow.add_edge("agent", END)
+graph = workflow.compile()
+
+async def main():
+    inputs = {"messages" : [
+        {
+            "role" : "user",
+            "content" : "서울 날씨 알려줘"
+        }
+    ]}
+
+    async for event in graph.astream_events(inputs, version='v2'):
+        kind = event['event']
+        data = event['data']
+        metadata = event['metadata']
+        name = event["name"]
+        tags = event['tags']
+
+        print(f"\n[이벤트]: {kind}")
+        print(f"\n[메타데이터]: {metadata}")
+        print(f"\n[이름]: {name}")
+        print(f"\n[태그]: {tags}")
+        print("-"*80)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
 
 ```
+[이벤트]: on_chain_start
+
+[메타데이터]: {}
+
+[이름]: LangGraph
+
+[태그]: []
+--------------------------------------------------------------------------------
+
+[이벤트]: on_chain_start
+
+[메타데이터]: {'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:45547dfb-1a42-85a4-4b18-d2d149a76f79'}
+
+[이름]: agent
+
+[태그]: ['graph:step:1']
+--------------------------------------------------------------------------------
+
+[이벤트]: on_chain_stream
+
+[메타데이터]: {'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:45547dfb-1a42-85a4-4b18-d2d149a76f79'}
+
+[이름]: agent
+
+[태그]: ['graph:step:1']
+--------------------------------------------------------------------------------
+
+[이벤트]: on_chain_end
+
+[메타데이터]: {'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:45547dfb-1a42-85a4-4b18-d2d149a76f79'}
+
+[이름]: agent
+
+[태그]: ['graph:step:1']
+--------------------------------------------------------------------------------
+
+[이벤트]: on_chain_stream
+
+[메타데이터]: {}
+
+[이름]: LangGraph
+
+[태그]: []
+--------------------------------------------------------------------------------
+
+[이벤트]: on_chain_end
+
+[메타데이터]: {}
+
+[이름]: LangGraph
+
+[태그]: []
+--------------------------------------------------------------------------------
+```
+
+
+### `on_chain_start`
+
+전체 그래프 실행이 시작될 때 발생합니다.
+
+### `on_chain_start`
+
+특정 노드가 실행될 때 발생합니다.
+
+
+### `on_chat_model_start`
+
+노드 내부에서 LLM 호출이 시작될 때 발생합니다.
+    
+
+### `on_chat_model_stream`
+
+**가장 중요한 이벤트입니다.** 모델이 답변을 생성할 때마다 발생합니다.
+
+
+### `on_chain_end`
+
+그래프의 모든 처리가 끝나고 최종 상태(State)를 반환할 때 발생합니다.
+
+
+## example 2 : 값을 스트리밍으로 출력
+
+```python
+import asyncio
+from typing import Annotated, TypedDict
+from langgraph.graph import StateGraph, START, END
+from LLM.LLMs import gpt
+
+
+class State(TypedDict):
+    messages : list
+
+llm = gpt(temperature=0.7)
+
+async def call_model_node(state : State) -> State:
+    response = await llm.ainvoke(state['messages'])
+    return {"messages" : response}
+
+workflow = StateGraph(State)
+workflow.add_node("agent", call_model_node)
+workflow.add_edge(START, "agent")
+workflow.add_edge("agent", END)
+graph = workflow.compile()
+
+async def main():
+    inputs = {"messages" : [
+        {
+            "role" : "user",
+            "content" : "서울 날씨 알려줘"
+        }
+    ]}
+
+    async for event in graph.astream_events(inputs, version='v2'):
+        kind = event['event']
+        data = event['data']
+
+        if kind == 'on_chat_model_stream':
+            print(data['chunk'].content, end="", flush=True)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+이 예제는 LangGraph에서 **LLM의 토큰 스트리밍을 테스트하는 가장 단순한 형태**의 그래프 구성입니다. 그래프는 단 하나의 노드만을 가지며, 해당 노드는 LLM을 호출한 뒤 바로 종료됩니다.
 
