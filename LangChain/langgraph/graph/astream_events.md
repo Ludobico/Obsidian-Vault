@@ -2,6 +2,8 @@
 - [[#Parameters|Parameters]]
 - [[#Returns|Returns]]
 - [[#Event 값|Event 값]]
+- [[#이벤트의 계층 구조 이해|이벤트의 계층 구조 이해]]
+- [[#실무 활용 팁|실무 활용 팁]]
 - [[#Example : Tool calling이 포함된 그래프 실행|Example : Tool calling이 포함된 그래프 실행]]
 	- [[#Example : Tool calling이 포함된 그래프 실행#`on_chain_start`|`on_chain_start`]]
 	- [[#Example : Tool calling이 포함된 그래프 실행#`on_chain_start`|`on_chain_start`]]
@@ -89,6 +91,41 @@ async for event in graph.astream_events(...):
 | **Parser**    | `on_parser_start`      | OutputParser가 해석을 시작함 | `PydanticOutputParser`     | `{"input": "..."}` (LLM의 원문 텍스트)          |
 |               | `on_parser_end`        | 해석 완료 후 구조화된 데이터 반환   | `PydanticOutputParser`     | `{"output": IntentAnalysis(..)}`          |
 | **Error**     | `on_error`             | 실행 중 예외 발생 시          | (에러 발생 컴포넌트 이름)            | `{"exception": "ValueError: ..."}`        |
+
+## 이벤트의 계층 구조 이해
+
+`astream_events`는 마치 양파 껍질처럼 **상위 체인이 하위 컴포넌트를 감싸는 구조**로 발생합니다. 이를 시각화하면 다음과 같습니다.
+
+1. **`on_chain_start` (LangGraph)**: 전체 그래프의 시작
+    
+2. **`on_chain_start` (agent_node)**: 특정 노드의 시작
+    
+3. **`on_chat_model_start` (LLM)**: 노드 내부에서 모델 호출
+    
+4. **`on_chat_model_stream` (LLM)**: 실시간 토큰 생성 (반복)
+    
+5. **`on_chat_model_end` (LLM)**: 모델 답변 완료
+    
+6. **`on_chain_end` (agent_node)**: 노드 작업 종료
+    
+7. **`on_chain_end` (LangGraph)**: 전체 프로세스 종료
+    
+
+---
+
+## 실무 활용 팁
+
+- **`on_chain_stream` vs `on_chat_model_stream`**:
+    - 파서가 적용된 깔끔한 텍스트만 원하면 `on_chain_stream` (단, 파서가 스트리밍을 지원해야 함)을 보세요.
+        
+    - 가장 빠른 반응성과 모델의 메타데이터(토큰 사용량 등)까지 원하면 `on_chat_model_stream`을 보세요.
+        
+- **`name` 필드의 활용**:
+    - 동일한 노드 안에서 LLM을 두 번 호출한다면, `name`을 통해 어떤 LLM의 신호인지 구분할 수 있습니다. (예: `fast_llm` vs `main_llm`)
+        
+- **`tags` 필드 활용**:
+    - 사용자님이 직접 체인에 `.with_config(tags=["my-tag"])`를 붙이면, 이벤트 발생 시 `tags` 컬럼에 해당 값이 포함되어 필터링이 훨씬 쉬워집니다.
+
 
 ## Example : Tool calling이 포함된 그래프 실행
 
