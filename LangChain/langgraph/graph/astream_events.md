@@ -74,15 +74,21 @@ async for event in graph.astream_events(...):
 
 ## Event 값
 
-| event 값              | 설명                     |
-| -------------------- | ---------------------- |
-| on_chain_start       | 그래프(혹은 특정 노드)의 실행이 시작됨 |
-| on_chain_end         | 그래프(혹은 특정 노드)의 실행이 끝남  |
-| on_tool_start        | 도구(tool) 호출 시작         |
-| on_tool_end          | 도구 호출 종료               |
-| on_chat_model_stream | LLM의 토큰 스트리밍 출력        |
-| on_chat_model_end    | 모델 출력이 끝남              |
-| on_error             | 오류 발생시                 |
+| 이벤트 그룹        | event 값                | 설명                    | name 예시                    | data 예시 (주요 키)                            |
+| ------------- | ---------------------- | --------------------- | -------------------------- | ----------------------------------------- |
+| **Chain**     | `on_chain_start`       | 그래프, 노드, 혹은 파이프라인 시작  | `LangGraph`, `agent`       | `{"input": {...}}`                        |
+|               | `on_chain_stream`      | 노드나 파서가 중간 결과를 출력할 때  | `agent`, `StrOutputParser` | `{"chunk": "문자열"}` 혹은 `{"chunk": {...}}`  |
+|               | `on_chain_end`         | 그래프나 노드의 실행 완료        | `agent`, `LangGraph`       | `{"output": {"answer": "..."}}`           |
+| **Model**     | `on_chat_model_start`  | LLM(채트 모델) 호출 시작      | `ChatOpenAI`, `ChatGemini` | `{"input": {"messages": [...]}}`          |
+|               | `on_chat_model_stream` | **LLM의 실시간 토큰 출력**    | `ChatOpenAI`               | `{"chunk": AIMessageChunk(content="..")}` |
+|               | `on_chat_model_end`    | LLM 응답 생성 완료          | `ChatOpenAI`               | `{"output": AIMessage(content="...")}`    |
+| **Tool**      | `on_tool_start`        | `@tool`로 정의된 함수 호출 시작 | `get_weather`              | `{"input": {"city": "Seoul"}}`            |
+|               | `on_tool_end`          | 도구 함수 실행 완료           | `get_weather`              | `{"output": "서울은 현재 25도..."}`             |
+| **Retriever** | `on_retriever_start`   | 벡터스토어 등에서 검색 시작       | `Retriever`                | `{"query": "서울 날씨"}`                      |
+|               | `on_retriever_end`     | 검색 완료 및 문서 반환         | `Retriever`                | `{"documents": [Document(...)]}`          |
+| **Parser**    | `on_parser_start`      | OutputParser가 해석을 시작함 | `PydanticOutputParser`     | `{"input": "..."}` (LLM의 원문 텍스트)          |
+|               | `on_parser_end`        | 해석 완료 후 구조화된 데이터 반환   | `PydanticOutputParser`     | `{"output": IntentAnalysis(..)}`          |
+| **Error**     | `on_error`             | 실행 중 예외 발생 시          | (에러 발생 컴포넌트 이름)            | `{"exception": "ValueError: ..."}`        |
 
 ## Example : Tool calling이 포함된 그래프 실행
 
