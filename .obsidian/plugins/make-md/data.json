@@ -129,9 +129,9 @@
     "Spaces/Home///LangChain/LangChain/LangGraph/LangChain/LangGraph/graph",
     "Spaces/Home///Frontend/Frontend/React Native",
     "Spaces/Home///VLLM",
-    "Spaces/Home///LangChain",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/runnables",
-    "Spaces/Home///LangChain/LangChain/LangGraph"
+    "Spaces/Home///LangChain/LangChain/LangGraph",
+    "Spaces/Home///Linux"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
