@@ -197,6 +197,24 @@ docker compose logs -f openclaw-gateway
 
 > `Ctrl + C`로 로그 보기 종료
 
+
+여기에서
+
+```bash
+ateway failed to start: Error: non-loopback Control UI requires gateway.controlUi.allowedOrigins (set explicit origins), or set gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback=true to use Host-header origin fallback mode
+```
+
+이런 에러가 발생하여 컨테이너가 실행되지 않는다면 `.openclaw/openclaw.json` 에서 다음 구문을 추가합니다.
+
+```json
+    "gateway": {
+        "controlUi": {
+            "allowedOrigins": ["http://127.0.0.1:18789", "http://localhost:18789"]
+        },
+        ...
+```
+
+
 ---
 
 ## 🚀 STEP 8: 웹 대시보드 접속 및 디바이스 페어링
