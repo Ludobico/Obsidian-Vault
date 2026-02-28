@@ -256,6 +256,8 @@ Sessions OK: ~/.openclaw/agents/main/sessions
 
 OpenClaw 대시보드(웹 UI)에 안전하게 접속하기 위해서는 보안 토큰(Token)을 환경 변수 파일(`.env`)에 등록해 주어야 합니다.
 
+<font color="#ffff00">1) 토큰 발급 및 확인 명령어 실행</font>
+
 Git Bash(또는 cmd) 터미널에서 아래 명령어를 입력하여 내 OpenClaw 전용 대시보드 URL과 토큰을 생성합니다.
 
 ```bash
@@ -263,6 +265,8 @@ docker compose run --rm openclaw-cli dashboard --no-open
 ```
 
 명령어를 실행하면 터미널에 아래와 비슷한 결과가 출력됩니다.
+
+<font color="#ffff00">2) 터미널 출력 결과 확인</font>
 
 ```
 Dashboard URL: http://127.0.0.1:18789/#token=MYTOKEN12345abcdef
@@ -276,24 +280,187 @@ Browser launch disabled (--no-open). Use the URL above.
 
 - _Tip: 터미널에서 `notepad .env`를 입력하면 윈도우 메모장으로 바로 열 수 있습니다._
 
-파일을 열면 아래와 같은 항목들이 있습니다.
+<font color="#ffff00">3) .env 파일 수정 및 경로 이해하기</font>
 
-```
-OPENCLAW_CONFIG_DIR=
-OPENCLAW_WORKSPACE_DIR=
-OPENCLAW_GATEWAY_PORT=18789
-OPENCLAW_BRIDGE_PORT=18790
-OPENCLAW_GATEWAY_BIND=lan
-OPENCLAW_GATEWAY_TOKEN=
-OPENCLAW_IMAGE=openclaw:local
-OPENCLAW_EXTRA_MOUNTS=
-OPENCLAW_HOME_VOLUME=
-OPENCLAW_DOCKER_APT_PACKAGES=
-```
+`openclaw` 폴더 안에 있는 `.env` 파일을 메모장이나 코드 에디터(VS Code 등)로 엽니다.
+
+파일을 열면 설치 시 자동으로 채워진 값들이 있습니다. 여기서 주목해야 할 부분은 `OPENCLAW_CONFIG_DIR`과 `OPENCLAW_WORKSPACE_DIR`입니다. 이 두 경로는 사용 중인 **운영체제(OS)에 따라 형태가 다릅니다.**
+
+- **Windows (Git Bash 환경 기본값):** `C:\` 드라이브가 `/c/` 형태로 표기됩니다.
+    - `OPENCLAW_CONFIG_DIR=/c/Users/사용자명/.openclaw`
+    - `OPENCLAW_WORKSPACE_DIR=/c/Users/사용자명/.openclaw/workspace`
+        
+- **Linux 기본값:** 리눅스는 드라이브 개념 대신 `/home` 폴더를 사용합니다.
+    - `OPENCLAW_CONFIG_DIR=/home/사용자명/.openclaw`
+    - `OPENCLAW_WORKSPACE_DIR=/home/사용자명/.openclaw/workspace`
+        
+    - _(참고: macOS의 경우 `/Users/사용자명/.openclaw` 형태가 됩니다.)_
 
 방금 복사한 토큰 값을 `OPENCLAW_GATEWAY_TOKEN=` 뒤에 붙여넣고 **저장**합니다.
 
 ```
+# 수정 후 예시 (.env 파일 내부)
+OPENCLAW_CONFIG_DIR=/c/Users/사용자명/.openclaw
+OPENCLAW_WORKSPACE_DIR=/c/Users/사용자명/.openclaw/workspace
+OPENCLAW_GATEWAY_PORT=18789
+OPENCLAW_BRIDGE_PORT=18790
+OPENCLAW_GATEWAY_BIND=lan
 OPENCLAW_GATEWAY_TOKEN=MYTOKEN12345abcdef
+# ... (이하 생략)
 ```
+
+<font color="#00b050">Config 및 Workspace 폴더 위치를 다른 곳으로 옮기고 싶다면?</font>
+
+기본적으로 `C 드라이브` (또는 홈 디렉터리)에 저장되는 설정 파일과 워크스페이스(작업 공간) 용량이 커질 것을 대비해, `D 드라이브`나 다른 외장 폴더로 위치를 옮기고 싶을 수 있습니다. 이럴 때는 **실제 폴더를 복사/이동한 뒤, `.env` 파일의 경로만 수정해 주면 됩니다.**
+
+## Gateway 시작 및 로그 확인
+
+토큰과 경로 설정이 모두 끝났으니, 이제 게이트웨이 컨테이너를 실행할 차례입니다
+
+<font color="#ffff00">1) Gateway 컨테이너 백그라운드 실행</font>
+
+```bash
+docker compose up -d openclaw-gateway
+```
+
+`-d` (detached) 옵션은 컨테이너를 백그라운드에서 실행하라는 뜻입니다. 이 옵션을 빼면 터미널 창을 끄는 순간 OpenClaw도 같이 꺼집니다.
+
+<font color="#ffff00">2) 도커 로그 확인 (선택사항)</font>
+
+컨테이너가 정상적으로 켜졌는지, 에러가 발생하지 않았는지 확인하려면 아래 명령어로 로그를 봅니다.
+
+```bash
+docker compose logs -f openclaw-gateway
+```
+
+`-f` (follow) 옵션을 넣으면 로그가 실시간으로 출력됩니다. 로그 보기를 종료하고 싶을 때는 **`Ctrl + C`** 를 누르면 다시 명령어 입력창으로 빠져나옵니다.
+
+### 트러블슈팅: Control UI 권한 에러 해결법
+
+로그를 확인했을 때, 컨테이너가 정상적으로 실행되지 않고 아래와 같은 에러 메시지가 출력될 수 있습니다.
+
+```bash
+gateway failed to start: Error: non-loopback Control UI requires gateway.controlUi.allowedOrigins (set explicit origins), or set gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback=true to use Host-header origin fallback mode
+```
+
+OpenClaw의 보안 정책상, 명시적으로 허용된 주소(Origin)가 아니면 웹 대시보드 접근을 차단하기 때문에 발생하는 에러입니다.
+
+**해결 방법:**
+
+1. 이전에 설정한 `OPENCLAW_CONFIG_DIR` 경로 안에 있는 `.openclaw/openclaw.json` 설정 파일을 메모장이나 코드 에디터로 엽니다.
+    
+2. 파일 내용 중 `"gateway": { ... }` 부분을 찾아서, 아래와 같이 `"controlUi"` 항목과 허용할 주소(`allowedOrigins`)를 추가해 줍니다.
+
+```json
+{
+    // ... (다른 설정들) ...
+    "gateway": {
+        "controlUi": {
+            "allowedOrigins": ["http://127.0.0.1:18789", "http://localhost:18789"]
+        },
+        // ... (기존 gateway 내부 설정들) ...
+    }
+}
+```
+
+3. 파일을 저장한 후, 터미널로 돌아가 **게이트웨이를 재시작**하여 변경된 설정을 적용합니다.
+
+```bash
+docker compose restart openclaw-gateway
+```
+
+
+## 웹 대시보드 접속 및 디바이스 페어링
+
+게이트웨이 컨테이너가 정상적으로 실행되었다면, 브라우저를 열고 설정한 포트로 대시보드에 접속합니다.
+
+<font color="#ffff00">1) 웹 대시보드 접속</font>
+브라우저 주소창에 아래 URL을 입력하여 OpenClaw 대시보드로 이동합니다.
+
+```
+http://localhost:18789
+```
+
+![[Pasted image 20260228150217.png]]
+
+<font color="#ffff00">2) Gateway Token 일치 여부 확인</font>
+
+대시보드 화면의 **Overview** 탭에서 현재 웹 페이지가 인식하고 있는 **Gateway Token** 값이, 우리가 앞서 `.env` 파일의 `OPENCLAW_GATEWAY_TOKEN`에 입력했던 값과 일치하는지 확인합니다.
+
+![[스크린샷 2026-02-28 150511.png]]
+
+<font color="#00b050">토큰이 일치하지 않거나 연결이 안 될 때 해결법</font>
+
+- **방법 A (웹에서 새로고침):** 우리가 `.env`에 적었던 토큰 값을 복사한 뒤, 웹 브라우저의 Token 입력 칸에 직접 붙여넣고 `Refresh` 또는 `Save` 버튼을 클릭합니다.
+
+- **방법 B (도커 컨테이너 재생성):** `.env` 파일의 내용을 수정했다면 단순한 `restart` 명령어로는 변경된 값이 적용되지 않습니다. 도커가 수정된 환경 변수를 새로 읽어들일 수 있도록 컨테이너를 완전히 내렸다가 다시 올려야 합니다.
+
+```
+docker compose down openclaw-gateway
+```
+
+```
+docker compose up -d openclaw-gateway
+```
+
+### 디바이스 페어링 승인
+
+웹 대시보드에서 게이트웨이를 제어하려면, 현재 접속한 브라우저(디바이스)를 신뢰할 수 있도록 터미널에서 직접 **승인(Approve)** 을 해줘야 합니다.
+
+도커 환경에서는 이 작업을 할 때 `docker compose run`이 아닌 **`docker compose exec`** 를 사용해야 합니다.
+
+- `run`: 완전히 새로운 컨테이너를 임시로 하나 더 띄워서 명령어를 실행합니다. (여기서는 페어링 정보가 엇갈릴 수 있음)
+    
+- `exec`: **현재 실행 중인** `openclaw-gateway` 컨테이너 내부로 들어가서 명령어를 실행합니다. (이 방식을 써야 정확히 페어링됩니다.)
+
+웹 대시보드에서 페어링 요청을 보낸 상태로 두고, 터미널(Git Bash 또는 PowerShell)에 아래 명령어를 입력하여 대기 중인 요청 목록을 확인합니다.
+
+```
+docker compose exec openclaw-gateway node dist/index.js devices list	
+```
+
+![[스크린샷 2026-02-28 150939.png]]
+
+명령어를 치면 터미널에 표 형태로 기기 목록이 뜹니다. 그중 방금 웹에서 요청한 항목을 찾아, **`Request` 열(Column) 아래에 있는 고유 ID 값 (예: `fb9d...` 로 시작하는 문자열)** 을 드래그해서 복사합니다.
+
+```
+docker compose exec openclaw-gateway node dist/index.js devices approve fb9dxxx-xxxx-xx
+```
+
+명령어가 성공적으로 실행되면 터미널에 아래와 같은 승인 완료 메시지가 뜹니다.
+
+```
+│
+◇
+Approved a4379xxxxxxxxx (fb9dxxx-xxxx-xxxx)
+```
+
+이제 다시 웹 브라우저 대시보드로 돌아가 보면, 화면이 새로고침 되면서 게이트웨이와 정상적으로 **페어링(Connected)** 이 완료된 화면을 보실 수 있습니다
+
+![[Pasted image 20260228151329.png]]
+
+## 설정 변경 (lan 모드로 전환)
+
+페어링이 성공적으로 완료되었다면, 이제 CLI 명령어를 편하게 사용하고 외부 봇(카카오톡 등)과 원활하게 통신하기 위해 설정을 변경합니다.
+
+1. `.openclaw/openclaw.json` 원본 파일을 메모장으로 엽니다.
+2. `gateway` 섹션의 `"bind": "loopback"` 부분을 찾아서 **`"bind": "lan"`** 으로 변경하고 저장합니다. (약 10~20번째 줄)
+
+```json
+"gateway": {
+  "mode": "local",
+  "bind": "lan",  // ← loopback에서 lan으로 변경!
+  ...
+}
+```
+
+3. **Docker 재시작:**
+   ```powershell
+   docker compose restart openclaw-gateway
+   ```
+
+> **왜 바꾸나요?**  
+> 페어링은 보안 문제로 `loopback` 상태에서 해야 잘 되지만, 이후 다른 명령어(`openclaw-cli`)나 카카오톡 연동은 `lan` 모드에서 훨씬 간편하게 작동하기 때문입니다. 이미 페어링된 정보는 사라지지 않으니 안심하세요
+
+
 
