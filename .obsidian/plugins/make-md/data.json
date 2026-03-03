@@ -98,7 +98,6 @@
     "Spaces/Home/Spaces/Home/MCP",
     "Spaces/Home///MCP",
     "Spaces/Home///MCP/MCP/MCP List",
-    "/",
     "//MCP",
     "//MCP/MCP/MCP Function",
     "//MCP(Model Context Protocol)/MCP(Model Context Protocol)/MCP Function/MCP(Model Context Protocol)/MCP Function/server/MCP(Model Context Protocol)/MCP Function/server/fastmcp",
@@ -131,7 +130,9 @@
     "Spaces/Home///VLLM",
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/runnables",
     "Spaces/Home///LangChain/LangChain/LangGraph",
-    "Spaces/Home///Oracle Cloud"
+    "Spaces/Home///openclaw",
+    "/",
+    "//Static"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",

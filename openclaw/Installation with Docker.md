@@ -381,7 +381,7 @@ docker compose restart openclaw-gateway
 http://localhost:18789
 ```
 
-![[Pasted image 20260228150217.png]]
+![[Pasted image 20260228150217.png|697]]
 
 <font color="#ffff00">2) Gateway Token 일치 여부 확인</font>
 
@@ -434,6 +434,32 @@ docker compose exec openclaw-gateway node dist/index.js devices approve fb9dxxx-
 ◇
 Approved a4379xxxxxxxxx (fb9dxxx-xxxx-xxxx)
 ```
+
+### 페어링 목록이 뜨지 않을 경우
+
+1. `devices list` 에 항목이 뜨지 않을 경우 다음과 같은 원인일 가능성이 큽니다.
+	- **비보안 컨텍스트(Insecure Context):** 브라우저가 `https`가 아닌 `http`로 접속된 외부 IP를 '위험'으로 간주하여, 기기 식별값 자체를 게이트웨이에 전송하지 않는 경우입니다. 이 경우 서버는 요청을 받은 적이 없으므로 목록에 나타나지 않습니다.
+	- **토큰/포트 불일치:** CLI 명령어가 사용하는 기본 포트(18789)와 실제 설정한 포트가 다를 때 게이트웨이와 통신이 되지 않아 아무 결과도 출력되지 않습니다.
+2. 위의 페어링 과정이 정상적으로 진행되지 않을 경우, 보안 설정을 한 단계 낮추어 즉시 접속할 수 있습니다.
+
+설정 파일 수정 (`.openclaw/openclaw.json`):
+
+```json
+"gateway": {
+  ...
+  "controlUi": {
+    "enabled": true,
+    "allowInsecureAuth": true,
+    "dangerouslyDisableDeviceAuth": true,  // 이 옵션을 true로 추가
+    "allowedOrigins": ["*"]
+  }
+}
+```
+
+3. 이 방식은 편리하지만 다음과 같은 보안 취약점이 발생하므로 주의해야 합니다.
+	- **기기 식별 불가:** 어떤 기기가 접속했는지 서버가 검증하지 않습니다. 즉, **Gateway Token만 유출되면** 전 세계 누구라도 사용자님의 서버에 접속해 API를 남용하거나 대화 내역을 볼 수 있습니다.
+	- **무단 접속 위험:** 브루트포스(무차별 대입) 공격으로 토큰이 뚫릴 경우, 2차 방어선(기기 승인)이 없기 때문에 서버가 완전히 노출됩니다.
+
 
 이제 다시 웹 브라우저 대시보드로 돌아가 보면, 화면이 새로고침 되면서 게이트웨이와 정상적으로 **페어링(Connected)** 이 완료된 화면을 보실 수 있습니다
 
