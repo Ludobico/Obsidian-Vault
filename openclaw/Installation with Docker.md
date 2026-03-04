@@ -435,7 +435,39 @@ docker compose exec openclaw-gateway node dist/index.js devices approve fb9dxxx-
 Approved a4379xxxxxxxxx (fb9dxxx-xxxx-xxxx)
 ```
 
-### 페어링 목록이 뜨지 않을 경우
+
+### 페어링 목록이 뜨지 않을 경우 A (클라우드 환경)
+
+1. 클라우드 환경에서 `devices list` 에 항목이 뜨지 않을 경우 다음과 같은 원인일 가능성이 큽니다.
+	- **외부 IP 접속 문제** : 브라우저에서 `http:<클라우드ip>:<포트(기본 18789)>` 로 직접 접속하면 게트웨이는 내부 localhost 기반 요청으로 인식하지 않습니다.
+	- Gateway는 기본적으로 `localhost` 기준 컨텍스트에서 페어링을 처리하도록 설계되어 있어, 외부 IP 기반 접근 시 정상 동작하지 않을 수 있습니다.
+
+![[Pasted image 20260304165259.png]]
+
+이 경우, **SSH 포트 포워딩을 통해 로컬 localhost로 접속하도록 우회하면 해결**됩니다.
+
+로컬 PC에서 다음 명령어를 실행합니다 (VS Code로 SSH 를 접속하면 접속된 환경에서도 가능합니다.)
+
+```bash
+ssh -L 18789:localhost:18789 user@remote_server_ip
+```
+
+이후 브라우저로 접속합니다.
+
+```
+http://localhost:18789
+```
+
+그 다음 페어링 목록을 확인하고 승인합니다.
+
+```docker
+docker compose exec openclaw-gateway node dist/index.js devices list
+```
+
+```
+docker compose exec openclaw-gateway node dist/index.js devices approve <requestID>
+```
+### 페어링 목록이 뜨지 않을 경우 B
 
 1. `devices list` 에 항목이 뜨지 않을 경우 다음과 같은 원인일 가능성이 큽니다.
 	- **비보안 컨텍스트(Insecure Context):** 브라우저가 `https`가 아닌 `http`로 접속된 외부 IP를 '위험'으로 간주하여, 기기 식별값 자체를 게이트웨이에 전송하지 않는 경우입니다. 이 경우 서버는 요청을 받은 적이 없으므로 목록에 나타나지 않습니다.
@@ -459,6 +491,7 @@ Approved a4379xxxxxxxxx (fb9dxxx-xxxx-xxxx)
 3. 이 방식은 편리하지만 다음과 같은 보안 취약점이 발생하므로 주의해야 합니다.
 	- **기기 식별 불가:** 어떤 기기가 접속했는지 서버가 검증하지 않습니다. 즉, **Gateway Token만 유출되면** 전 세계 누구라도 사용자님의 서버에 접속해 API를 남용하거나 대화 내역을 볼 수 있습니다.
 	- **무단 접속 위험:** 브루트포스(무차별 대입) 공격으로 토큰이 뚫릴 경우, 2차 방어선(기기 승인)이 없기 때문에 서버가 완전히 노출됩니다.
+
 
 
 이제 다시 웹 브라우저 대시보드로 돌아가 보면, 화면이 새로고침 되면서 게이트웨이와 정상적으로 **페어링(Connected)** 이 완료된 화면을 보실 수 있습니다
