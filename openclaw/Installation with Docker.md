@@ -391,7 +391,7 @@ http://localhost:18789
 
 <font color="#00b050">토큰이 일치하지 않거나 연결이 안 될 때 해결법</font>
 
-- **방법 A (웹에서 새로고침):** 우리가 `.env`에 적었던 토큰 값을 복사한 뒤, 웹 브라우저의 Token 입력 칸에 직접 붙여넣고 `Refresh` 또는 `Save` 버튼을 클릭합니다.
+- **방법 A (웹에서 새로고침):** 우리가 `.env`에 적었던 토큰 값을 복사한 뒤, 웹 브라우저의 Token 입력 칸에 직접 붙여넣고 `Refresh` 후 `Connect` 버튼을 클릭합니다.
 
 - **방법 B (도커 컨테이너 재생성):** `.env` 파일의 내용을 수정했다면 단순한 `restart` 명령어로는 변경된 값이 적용되지 않습니다. 도커가 수정된 환경 변수를 새로 읽어들일 수 있도록 컨테이너를 완전히 내렸다가 다시 올려야 합니다.
 
@@ -449,7 +449,7 @@ Approved a4379xxxxxxxxx (fb9dxxx-xxxx-xxxx)
 로컬 PC에서 다음 명령어를 실행합니다 (VS Code로 SSH 를 접속하면 접속된 환경에서도 가능합니다.)
 
 ```bash
-ssh -L 18789:localhost:18789 user@remote_server_ip
+ssh -i yourkey.pem -L 18789:localhost:18789 <서버계정명>@<서버아이피>
 ```
 
 이후 브라우저로 접속합니다.
