@@ -446,7 +446,7 @@ Approved a4379xxxxxxxxx (fb9dxxx-xxxx-xxxx)
 
 이 경우, **SSH 포트 포워딩을 통해 로컬 localhost로 접속하도록 우회하면 해결**됩니다.
 
-로컬 PC에서 다음 명령어를 실행합니다 (VS Code로 SSH 를 접속하면 접속된 환경에서도 가능합니다.)
+로컬 PC에서 다음 명령어를 실행합니다.
 
 ```bash
 ssh -i yourkey.pem -L 18789:localhost:18789 <서버계정명>@<서버아이피>
@@ -469,10 +469,7 @@ docker compose exec openclaw-gateway node dist/index.js devices approve <request
 ```
 ### 페어링 목록이 뜨지 않을 경우 B
 
-1. `devices list` 에 항목이 뜨지 않을 경우 다음과 같은 원인일 가능성이 큽니다.
-	- **비보안 컨텍스트(Insecure Context):** 브라우저가 `https`가 아닌 `http`로 접속된 외부 IP를 '위험'으로 간주하여, 기기 식별값 자체를 게이트웨이에 전송하지 않는 경우입니다. 이 경우 서버는 요청을 받은 적이 없으므로 목록에 나타나지 않습니다.
-	- **토큰/포트 불일치:** CLI 명령어가 사용하는 기본 포트(18789)와 실제 설정한 포트가 다를 때 게이트웨이와 통신이 되지 않아 아무 결과도 출력되지 않습니다.
-2. 위의 페어링 과정이 정상적으로 진행되지 않을 경우, 보안 설정을 한 단계 낮추어 즉시 접속할 수 있습니다.
+위의 페어링 과정이 정상적으로 진행되지 않을 경우, 보안 설정을 한 단계 낮추어 즉시 접속할 수 있습니다.
 
 설정 파일 수정 (`.openclaw/openclaw.json`):
 
