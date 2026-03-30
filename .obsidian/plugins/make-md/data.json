@@ -131,8 +131,7 @@
     "Spaces/Home///LangChain/LangChain/langchain_core/LangChain/langchain_core/runnables",
     "Spaces/Home///LangChain/LangChain/LangGraph",
     "/",
-    "//Static",
-    "Spaces/Home///openclaw"
+    "//Static"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
