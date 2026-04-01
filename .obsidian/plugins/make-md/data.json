@@ -132,7 +132,9 @@
     "Spaces/Home///LangChain/LangChain/LangGraph",
     "/",
     "//Static",
-    "Spaces/Home///claude"
+    "Spaces/Home///Pytorch",
+    "Spaces/Home///Pytorch/Pytorch/Algorithm",
+    "Spaces/Home///Pytorch/Pytorch/Algorithm/Pytorch/Algorithm/Activation"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
