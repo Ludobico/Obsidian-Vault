@@ -132,9 +132,10 @@
     "Spaces/Home///LangChain/LangChain/LangGraph",
     "/",
     "//Static",
-    "Spaces/Home///Pytorch",
     "Spaces/Home///Pytorch/Pytorch/Algorithm",
-    "Spaces/Home///Pytorch/Pytorch/Algorithm/Pytorch/Algorithm/Activation"
+    "Spaces/Home///Pytorch/Pytorch/Algorithm/Pytorch/Algorithm/Activation",
+    "Spaces/Home///AI Concepts",
+    "Spaces/Home///AI Concepts/AI Concepts/NLP Concepts"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",

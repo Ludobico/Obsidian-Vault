@@ -121,8 +121,9 @@ $$
 입력 벡터 $x_m = [x_0, x_1, ..., x_{d-1}]$ 은 쌍 ($x_{2i}, x_{2i+1}$) 으로 나뉘어 각 블록에 대해 회전이 적용됩니다.
 
 $$
-\begin{bmatrix} x'_{2i} \\ x'_{xi+1} \end{bmatrix} = \begin{bmatrix} \cos(m\theta_i) & -\sin(m\theta_i) \\ \sin(m\theta_i) & \cos(m\theta_i) \end{bmatrix} \begin{bmatrix} x_{2i} \\ x_{xi+1} \end{bmatrix}
+\begin{bmatrix} x'_{2i} \\ x'_{2i+1} \end{bmatrix} = \begin{bmatrix} \cos(m\theta_i) & -\sin(m\theta_i) \\ \sin(m\theta_i) & \cos(m\theta_i) \end{bmatrix} \begin{bmatrix} x_{2i} \\ x_{2i+1} \end{bmatrix}
 $$
+
 
 이를 풀면
 
