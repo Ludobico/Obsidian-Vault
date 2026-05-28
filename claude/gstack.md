@@ -91,6 +91,12 @@ cd ~/.claude/skills/gstack
 ./setup
 ```
 
+### gemini cli에 설치
+
+```bash
+git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/gstack
+cd ~/gstack && ./setup --host gemini
+```
 
 ## example
 
