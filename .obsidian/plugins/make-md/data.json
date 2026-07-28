@@ -132,9 +132,9 @@
     "//Static",
     "Spaces/Home///Pytorch/Pytorch/Algorithm",
     "Spaces/Home///Pytorch/Pytorch/Algorithm/Pytorch/Algorithm/Activation",
+    "Spaces/Home///MADngine/MADngine/Credit",
     "Spaces/Home//",
-    "Spaces/Home///MADngine",
-    "Spaces/Home///MADngine/MADngine/Credit"
+    "Spaces/Home///vLLM"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
