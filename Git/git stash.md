@@ -3,10 +3,14 @@ git stash
 ```
 
 ```
-git pull
+git pull origin
 ```
 
 ```
 git stash pop
+```
+
+```
+git stash list
 ```
 
