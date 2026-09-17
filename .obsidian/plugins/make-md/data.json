@@ -74,7 +74,6 @@
     "//LangChain/LangChain/langchain_community/LangChain/langchain_community/document_loaders",
     "Spaces/Home",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/Methods",
-    "Spaces/Home///Reinforcement Learning/Reinforcement Learning/Algorithm",
     "//Pytorch/Pytorch/torch.Tensor",
     "//Pytorch/Pytorch/torch.Tensor",
     "Spaces/Home///HuggingFace/HuggingFace/transformers/HuggingFace/transformers/PreTrained",
@@ -134,8 +133,7 @@
     "Spaces/Home///Pytorch/Pytorch/Algorithm/Pytorch/Algorithm/Activation",
     "Spaces/Home///MADngine/MADngine/Credit",
     "Spaces/Home//",
-    "Spaces/Home///vLLM",
-    "Spaces/Home///Git"
+    "Spaces/Home///vLLM"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",

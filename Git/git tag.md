@@ -1,4 +1,5 @@
 
+
 - [[#Git Tag|Git Tag]]
 - [[#현재 커밋에 태그 생성하기|현재 커밋에 태그 생성하기]]
 - [[#특정 커밋에 태그 생성하기|특정 커밋에 태그 생성하기]]
@@ -79,5 +80,17 @@ git push origin --tags
 
 ```bash
 git ls-remote --tags origin
+```
+
+## 원격 저장소 커밋 해시에 태그
+
+
+
+```bash
+git tag -a <태그명> -m "<태그 설명 또는 릴리즈 메시지>" <커밋해시>
+```
+
+```bash
+git push origin <태그명>
 ```
 
