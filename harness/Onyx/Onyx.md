@@ -31,7 +31,7 @@ Slack(147)  Skills(146)  Sandbox(133)  Gateway(133)  Hooks(114) ...
 
 ## 아키텍처 형태
 
-Onyx는 코드로 임베드하는 SDK가 아니라, 통째로 배포하는 **제품(서비스)**입니다.
+Onyx는 코드로 임베드하는 SDK가 아니라, 통째로 배포하는 **제품(서비스)** 입니다.
 
 ```text
 스택:   FastAPI 백엔드(Python) + Next.js 프론트엔드(web/)
