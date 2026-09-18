@@ -89,3 +89,5 @@ if has_memory or include_all_guidance:
           → 인용 가이드(폴백) → 바인딩된 도구 안내문만 선택적으로
 ```
 
+각 상수의 실제 원문과 한국어 번역은 [[prompt-strings]] 참고.
+

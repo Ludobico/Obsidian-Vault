@@ -35,6 +35,7 @@ Cycle — 그 안에서 LLM 추론 1회 (도구 호출 여부와 무관)
 | [[llm-step]] | `run_llm_step` — LLM 스트림 델타를 reasoning/answer/tool_call로 분류 |
 | [[context-window]] | `construct_message_history` + `token_budget.py` — 히스토리 truncation, 토큰 예산 |
 | [[prompt-assembly]] | `build_system_prompt` — 시스템 프롬프트 조립 순서 |
+| [[prompt-strings]] | 조립되는 문자열 상수들의 실제 원문 + 한국어 번역 |
 | [[tool-execution]] | `run_tool_calls` — 도구 병합, 병렬 실행, 실패 격리 |
 | [[streaming-pipeline]] | `_run_models` — 워커/Writer/Reader 3단 스레드 구조, 취소 처리, 저장 보장 |
 | [[memory]] | `UserMemoryContext`, `add_memory` — 대화 중 학습되는 사용자 메모리 |
