@@ -135,9 +135,8 @@
     "Spaces/Home//",
     "Spaces/Home///vLLM",
     "Spaces/Home///harness",
-    "Spaces/Home///harness/harness/openhands",
-    "Spaces/Home///harness/harness/openhands/harness/openhands/software-agent-sdk",
-    "Spaces/Home///harness/harness/openhands/harness/openhands/software-agent-sdk/harness/openhands/software-agent-sdk/prompts"
+    "Spaces/Home///harness/harness/openhands/harness/openhands/software-agent-sdk/harness/openhands/software-agent-sdk/prompts",
+    "Spaces/Home///harness/harness/Onyx"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Spaces",
